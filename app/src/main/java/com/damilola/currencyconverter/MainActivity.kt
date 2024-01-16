@@ -1,8 +1,8 @@
-package com.theseuntaylor.currencyconverter
+package com.damilola.currencyconverter
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.theseuntaylor.currencyconverter.databinding.ActivityMainBinding
+import com.damilola.currencyconverter.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

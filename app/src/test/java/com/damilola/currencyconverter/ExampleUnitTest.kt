@@ -1,4 +1,4 @@
-package com.theseuntaylor.currencyconverter
+package com.damilola.currencyconverter
 
 import org.junit.Test
 

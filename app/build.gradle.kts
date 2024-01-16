@@ -33,7 +33,7 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = composeCompiler
     }
-    namespace = "com.theseuntaylor.currencyconverter"
+    namespace = "com.damilola.currencyconverter"
 }
 
 hilt {

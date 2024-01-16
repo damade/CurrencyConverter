@@ -1,4 +1,4 @@
-package com.theseuntaylor.currencyconverter
+package com.damilola.currencyconverter
 
 import android.app.Application
 import com.damilola.core_android.model.Initializable

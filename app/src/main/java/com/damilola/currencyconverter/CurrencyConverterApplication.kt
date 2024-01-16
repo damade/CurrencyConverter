@@ -1,6 +1,7 @@
-package com.theseuntaylor.currencyconverter
+package com.damilola.currencyconverter
 
 import android.app.Application
+import com.damilola.currencyconverter.AppInitializers
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
