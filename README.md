@@ -28,8 +28,8 @@ To build this project, you require:
 
 <h2 align="left">Screenshots Of App</h2>
 <h4 align="center">  
-<img src="https://github.com/damade/CurrencyConverter/blob/modularize/screenshots/Screenshot_20220502-094654_CurrencyConverter.jpg" width="20%" vspace="10" hspace="10">
-<img src="https://github.com/damade/CurrencyConverter/blob/modularize/screenshots/Screenshot_20220502-094810_CurrencyConverter.jpg" width="20%" vspace="10" hspace="10">
-<img src="https://github.com/damade/CurrencyConverter/blob/modularize/screenshots/Screenshot_20220502-192804_CurrencyConverter.jpg" width="20%" vspace="10" hspace="10">
-<img alt="Compose Screen" src="https://github.com/damade/CurrencyConverter/blob/modularize/screenshots/CurrencyCalculator.png" width="20%" vspace="10" hspace="10">
+<img src="https://github.com/damade/CurrencyConverter/blob/main/screenshots/Screenshot_20220502-094654_CurrencyConverter.jpg" width="20%" vspace="10" hspace="10">
+<img src="https://github.com/damade/CurrencyConverter/blob/main/screenshots/Screenshot_20220502-094810_CurrencyConverter.jpg" width="20%" vspace="10" hspace="10">
+<img src="https://github.com/damade/CurrencyConverter/blob/main/screenshots/Screenshot_20220502-192804_CurrencyConverter.jpg" width="20%" vspace="10" hspace="10">
+<img alt="Compose Screen" src="https://github.com/damade/CurrencyConverter/blob/main/screenshots/CurrencyCalculator.png" width="20%" vspace="10" hspace="10">
 
