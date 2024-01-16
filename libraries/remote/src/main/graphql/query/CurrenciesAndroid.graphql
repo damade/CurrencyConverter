@@ -1,0 +1,9 @@
+query CurrenciesAndroid {
+    countries {
+        code
+        name
+        currency
+        emoji
+        emojiU
+      }
+}

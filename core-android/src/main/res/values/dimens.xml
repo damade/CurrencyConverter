@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="app_padding">20dp</dimen>
+    <dimen name="badge_text_size">9sp</dimen>
+
+    <dimen name="intro_button_height">40dp</dimen>
+    <dimen name="button_height">47dp</dimen>
+    <dimen name="cardview_radius">4dp</dimen>
+
+    <dimen name="comment_corner_radius">6dp</dimen>
+    <dimen name="bottom_sheet_corner_radius">16dp</dimen>
+    <dimen name="bottom_sheet_top_padding">8dp</dimen>
+    <dimen name="backdrop_image_height">210dp</dimen>
+    <dimen name="sme_banner_height">160dp</dimen>
+
+    <dimen name="industry_item_image_width">150dp</dimen>
+    <dimen name="industry_item_image_height">100dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+
+    <!--general spacing-->
+    <dimen name="spacing_xsmall">2dp</dimen>
+    <dimen name="spacing_small">3dp</dimen>
+    <dimen name="spacing_medium">5dp</dimen>
+    <dimen name="spacing_xmedium">7dp</dimen>
+    <dimen name="spacing_middle">10dp</dimen>
+    <dimen name="spacing_large">15dp</dimen>
+    <dimen name="spacing_smlarge">18dp</dimen>
+    <dimen name="spacing_mlarge">20dp</dimen>
+    <dimen name="spacing_mxlarge">25dp</dimen>
+    <dimen name="spacing_toolbar">30dp</dimen>
+    <dimen name="spacing_xlarge">35dp</dimen>
+    <dimen name="spacing_xmlarge">40dp</dimen>
+    <dimen name="spacing_xxlarge">50dp</dimen>
+    <dimen name="spacing_xxxlarge">55dp</dimen>
+    <dimen name="spacing_page_toplarge">80dp</dimen>
+
+    <!--Guideline-->
+    <dimen name="guidleine_small">50dp</dimen>
+    <dimen name="guideline_medium">80dp</dimen>
+    <dimen name="guideline_large">100dp</dimen>
+    <dimen name="guideline_xxxlarge">120dp</dimen>
+
+    <!--Ellipse Size-->
+    <dimen name="ellipse_size">30dp</dimen>
+
+    <!--Title Font Size-->
+    <dimen name="title_size_small">23sp</dimen>
+    <dimen name="title_size_medium">27sp</dimen>
+    <dimen name="title_size_large">30sp</dimen>
+
+    <!--Body Font Size-->
+    <dimen name="body_size_small">16sp</dimen>
+    <dimen name="body_size_xsmall">18sp</dimen>
+    <dimen name="body_size_medium">20sp</dimen>
+    <dimen name="edit_text_input_size">14sp</dimen>
+    <dimen name="smallest_text_input_size">10sp</dimen>
+    <dimen name="body_size_large">24sp</dimen>
+    <dimen name="title_text">23sp</dimen>
+    <dimen name="body_size_largest">22sp</dimen>
+
+    <!--Body 2 Font Size-->
+    <dimen name="body_2_size_small">10sp</dimen>
+    <dimen name="body_2_size_x_small">9sp</dimen>
+    <dimen name="body_2_size_medium">12sp</dimen>
+    <dimen name="body_2_size_large">16sp</dimen>
+    <dimen name="card_view">2dp</dimen>
+    <dimen name="appbar_padding">16dp</dimen>
+
+    <!-- Image sizes -->
+    <dimen name="small_image">60dp</dimen>
+    <dimen name="ext_small_image">50dp</dimen>
+    <dimen name="medium_image">70dp</dimen>
+    <dimen name="large_image">100dp</dimen>
+    <dimen name="icon_size">35dp</dimen>
+
+    <!-- Image sizes -->
+    <dimen name="edit_text_size">56dp</dimen>
+
+    <!-- Opt box size -->
+    <dimen name="otp_box_size">55dp</dimen>
+
+    <!-- Edit text size -->
+    <dimen name="auth_edit_text_size">50dp</dimen>
+
+    <!-- button sizes -->
+    <dimen name="auth_btn">55dp</dimen>
+    <dimen name="next_btn">68dp</dimen>
+    <dimen name="confirm_btn_width">120dp</dimen>
+    <dimen name="confirm_btn_height">40dp</dimen>
+
+    <!--Autocomplete-->
+    <dimen name="title_view_height">100dp</dimen>
+
+    <!-- CardView -->
+    <dimen name="card_height">115dp</dimen>
+    <dimen name="card_corner_radius">5dp</dimen>
+
+    <!--screen spacing-->
+    <dimen name="spacing_screen_start">25dp</dimen>
+    <dimen name="spacing_screen_end">25dp</dimen>
+    <dimen name="spacing_screen_top">30dp</dimen>
+
+    <!--Chat Screen-->
+    <dimen name="corner_30">30dp</dimen>
+
+
+</resources>

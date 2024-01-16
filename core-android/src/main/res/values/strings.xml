@@ -1,0 +1,43 @@
+<resources>
+
+    <!--Main Activity Strings-->
+    <string name="app_name">CurrencyConverter</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="currency_calculator">Currency\nCalculator</string>
+    <string name="currency_calculator_dot">Currency\nCalculator.</string>
+    <string name="full_stop">.</string>
+    <string name="convert">Convert</string>
+
+    <string-array name="from_currencies">
+        <item>USD</item>
+        <item>GBP</item>
+        <item>JPY</item>
+        <item>CAD</item>
+        <item>NGN</item>
+    </string-array>
+
+    <string-array name="to_currencies">
+        <item>USD</item>
+        <item>GBP</item>
+        <item>JPY</item>
+        <item>CAD</item>
+        <item>NGN</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello">Hello</string>
+    <string name="currency_with_flags_entry">Convert currencies with flags? <u>click here</u> </string>
+    <string name="from_drop_down">From</string>
+    <string name="to_drop_down">To</string>
+    <string name="currency_converter_application">Currency Converter Application</string>
+    <string name="rate_result">The rate being used is %1$f from %2$s to %3$s</string>
+    <string name="history">history</string>
+    <string name="loader">loading</string>
+    <string name="clear_text">Clear the Text Fields</string>
+    <string name="item_empty_text">Yikes, such empty, you have not checked any rate yet.</string>
+
+    <string name="refresh">Refresh</string>
+    <string name="empty_state">Empty State</string>
+    <string name="error_text">Oops,\nSomething Went Wrong, Click To Refresh.</string>
+    <!--Login Screen-->
+    <string name="error_no_network_detected">No Network Detected,Check your Network Connection.</string>
+</resources>

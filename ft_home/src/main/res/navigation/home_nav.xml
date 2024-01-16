@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/homeFragment"
+    android:id="@+id/home_nav">
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.damilola.ft_home.presentation.splashScreen.SplashScreenFragment"
+        android:label="splash_screen_fragment"
+        tools:layout="@layout/fragment_splash_screen">
+        <action
+            android:id="@+id/action_splashScreenFragment_to_homeFragment"
+            app:enterAnim="@anim/top_animation"
+            app:exitAnim="@anim/bottom_anim"
+            app:popUpToInclusive="true"
+            app:popEnterAnim="@anim/nav_default_enter_anim"
+            app:popExitAnim="@anim/nav_default_exit_anim"
+            app:destination="@id/homeFragment"/>
+    </fragment>
+
+    <fragment android:id="@+id/homeFragment"
+        android:name="com.damilola.ft_home.presentation.homeScreen.HomeFragment"
+        android:label="home_fragment"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_homeFragment_to_conversionHistoryFragment"
+            app:enterAnim="@anim/top_animation"
+            app:exitAnim="@anim/bottom_anim"
+            app:popUpToInclusive="true"
+            app:popEnterAnim="@anim/nav_default_enter_anim"
+            app:popExitAnim="@anim/nav_default_exit_anim"
+            app:destination="@id/conversionHistoryFragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/conversionHistoryFragment"
+        android:name="com.damilola.ft_home.presentation.historyScreen.ConversionHistoryFragment"
+        android:label="conversation_history_fragment"
+        tools:layout="@layout/fragment_conversion_history">
+        <action
+            android:id="@+id/action_conversionHistoryFragment_to_homeFragment"
+            app:enterAnim="@anim/top_animation"
+            app:exitAnim="@anim/bottom_anim"
+            app:popUpToInclusive="true"
+            app:popEnterAnim="@anim/nav_default_enter_anim"
+            app:popExitAnim="@anim/nav_default_exit_anim"
+            app:destination="@id/homeFragment"/>
+    </fragment>
+
+
+</navigation>

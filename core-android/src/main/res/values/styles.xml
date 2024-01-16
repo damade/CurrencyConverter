@@ -1,0 +1,69 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:autoCompleteTextViewStyle">@style/Widget.AutoCompleteTextViewLight</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
+    <style name="AppTheme.Launcher" parent="AppTheme.NoActionBar">
+    <item name="android:windowBackground">@drawable/launch_screen</item>
+    <!-- Optional, on Android 5+ you can modify the colorPrimaryDark color to match the windowBackground color for further branding-->
+    <!-- <item name="colorPrimaryDark">@android:color/white</item> -->
+    </style>
+
+    <style name="spinner_style">
+        <item name="background">@drawable/spinner_outline</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:padding">5dp</item>
+    </style>
+
+    <style name="text_style">
+        <item name="font">@font/raleway_thin</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="ConversionButtonStyle" parent="Widget.MaterialComponents.Button">>
+
+    </style>
+
+    <style name="Widget.AutoCompleteTextViewLight" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="android:textColor">@color/app_main_color</item>
+    </style>
+
+    <style name="TextInputLayoutTextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/app_main_color</item>
+    </style>
+
+    <style name="DropDownStyle" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="android:textColorHint">@color/app_main_color</item>
+        <item name="hintTextColor">@color/app_main_color</item>
+        <item name="hintEnabled">true</item>
+        <item name="android:elevation">@dimen/spacing_small</item>
+        <item name="android:textColor">@color/app_main_color</item>
+        <item name="boxStrokeColor">@color/app_black</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:padding">5dp</item>
+    </style>
+
+    <style name="AutoCompleteTextViewStyle" parent="Widget.Material3.AutoCompleteTextView.OutlinedBox">
+        <item name="android:elevation">@dimen/spacing_small</item>
+        <item name="android:textColor">@color/app_main_color</item>
+    </style>
+
+</resources>

@@ -1,0 +1,11 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="DisableButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="font">@font/montserrat_bold</item>
+        <item name="android:backgroundTint">@color/app_diable_color</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="drawableEndCompat">@drawable/ic_button_forward</item>
+        <item name="android:gravity">left</item>
+    </style>
+
+</resources>

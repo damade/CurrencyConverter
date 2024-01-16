@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#262626</color>
+    <color name="colorPrimaryDark">#000</color>
+    <color name="colorAccent">#262626</color>
+
+    <color name="app_main_color">#01b252</color>
+    <color name="background_grey">#D3D0D0</color>
+    <color name="background_color">#f1f1f1</color>
+    <color name="currency_text_view_color">#676666</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- the colors for the applications -->
+    <color name="app_black">#000000</color>
+    <color name="app_red">#E6492D</color>
+    <color name="app_green">#009933</color>
+    <color name="app_diable_color">#BCBCBC</color>
+
+
+</resources>
