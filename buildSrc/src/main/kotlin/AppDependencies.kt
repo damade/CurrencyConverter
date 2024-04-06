@@ -387,9 +387,11 @@ object Dependencies {
             const val compose: String = "1.2.1"
             const val coroutines: String = "1.6.4"
             const val turbine: String = "0.12.1"
+            const val junitParams: String = "1.1.1"
         }
 
         const val junit: String = "junit:junit:${Version.junit}"
+        const val junitParams: String = "pl.pragmatists:JUnitParams:${Version.junitParams}"
         const val runner: String = "androidx.test:runner:${Version.runner}"
         const val fragmentTesting: String = "androidx.fragment:fragment-testing:${Version.fragment}"
         const val androidXTest: String = "androidx.test.ext:junit:${Version.testExt}"
