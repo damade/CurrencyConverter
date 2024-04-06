@@ -4,17 +4,11 @@ import com.android.build.gradle.TestedExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.api.plugins.ExtensionContainer
-import org.gradle.api.plugins.JavaLibraryPlugin
 import org.gradle.kotlin.dsl.repositories
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 class CurrencyConverterPlugin : BaseGradlePlugin() {
-
-    companion object {
-        const val DEBUG: String = "debug"
-        const val RELEASE: String = "release"
-    }
 
     override fun apply(target: Project) {
         with(target) {
@@ -43,55 +37,36 @@ class CurrencyConverterPlugin : BaseGradlePlugin() {
         project: Project,
         extension: TestedExtension,
     ) {
-        extension.apply {
-            setCompileSdkVersion(Config.Version.compileSdkVersion)
-
-            defaultConfig.apply {
-                minSdk = Config.Version.minSdkVersion
-                targetSdk = Config.Version.targetSdkVersion
-                multiDexEnabled = Config.isMultiDexEnabled
-                testInstrumentationRunner = Config.Android.testInstrumentationRunner
-                vectorDrawables {
-                    useSupportLibrary = true
-                }
-                consumerProguardFiles("consumer-rules.pro")
-            }
-
-            viewBinding.isEnabled = Config.isViewBindingEnabled
-
-            compileOptions.apply {
-                sourceCompatibility = JavaVersion.VERSION_17
-                targetCompatibility = JavaVersion.VERSION_17
-            }
-
-            project.tasks.withType<KotlinCompile> {
-                kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
-            }
-
-            buildTypes.apply {
-                getByName(BuildType.DEBUG).run {
-                    isTestCoverageEnabled = BuildTypeDebug.isTestCoverageEnabled
-                }
-                getByName(BuildType.RELEASE).run {
-                    isMinifyEnabled = BuildTypeRelease.isMinifyEnabled
-                    isTestCoverageEnabled = BuildTypeRelease.isTestCoverageEnabled
-                }
-            }
-            packagingOptions {
-                resources {
-                    excludes += "/META-INF/{AL2.0,LGPL2.1}"
-                }
-            }
-        }
+        extension.applyCommonProperties(project = project, isAppPlugin = false)
     }
 
     private fun setUpAndroidAppModules(
         project: Project,
         extension: TestedExtension,
     ) {
-        extension.apply {
-            setCompileSdkVersion(Config.Version.compileSdkVersion)
+        extension.applyCommonProperties(project = project, isAppPlugin = true)
+    }
+}
 
+private fun TestedExtension.applyCommonProperties(
+    project: Project,
+    isAppPlugin: Boolean,
+): TestedExtension {
+    return this.apply {
+        setCompileSdkVersion(Config.Version.compileSdkVersion)
+
+        viewBinding.isEnabled = Config.isViewBindingEnabled
+
+        compileOptions.apply {
+            sourceCompatibility = JavaVersion.VERSION_17
+            targetCompatibility = JavaVersion.VERSION_17
+        }
+
+        project.tasks.withType<KotlinCompile> {
+            kotlinOptions.jvmTarget = Jvm.kotlinCompileJvmVersion
+        }
+
+        if (isAppPlugin) {
             defaultConfig.apply {
                 applicationId = Config.Android.applicationId
                 minSdk = Config.Version.minSdkVersion
@@ -105,18 +80,6 @@ class CurrencyConverterPlugin : BaseGradlePlugin() {
                 }
                 consumerProguardFiles("consumer-rules.pro")
             }
-
-            viewBinding.isEnabled = Config.isViewBindingEnabled
-
-            compileOptions.apply {
-                sourceCompatibility = JavaVersion.VERSION_17
-                targetCompatibility = JavaVersion.VERSION_17
-            }
-
-            project.tasks.withType<KotlinCompile> {
-                kotlinOptions.jvmTarget = Jvm.kotlinCompileJvmVersion
-            }
-
             buildTypes.apply {
                 getByName(BuildType.DEBUG).run {
                     isMinifyEnabled = BuildTypeDebug.isMinifyEnabled
@@ -132,17 +95,33 @@ class CurrencyConverterPlugin : BaseGradlePlugin() {
                     proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
                 }
             }
-            packagingOptions {
-                resources {
-                    excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        } else {
+            defaultConfig.apply {
+                minSdk = Config.Version.minSdkVersion
+                targetSdk = Config.Version.targetSdkVersion
+                multiDexEnabled = Config.isMultiDexEnabled
+                testInstrumentationRunner = Config.Android.testInstrumentationRunner
+                vectorDrawables {
+                    useSupportLibrary = true
+                }
+                consumerProguardFiles("consumer-rules.pro")
+            }
+            buildTypes.apply {
+                getByName(BuildType.DEBUG).run {
+                    isTestCoverageEnabled = BuildTypeDebug.isTestCoverageEnabled
+                }
+                getByName(BuildType.RELEASE).run {
+                    isMinifyEnabled = BuildTypeRelease.isMinifyEnabled
+                    isTestCoverageEnabled = BuildTypeRelease.isTestCoverageEnabled
                 }
             }
         }
+        packagingOptions {
+            resources {
+                excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            }
+        }
     }
-}
-
-private fun TestedExtension.applyCommonProperties() {
-
 }
 
 inline fun <reified T : Any> ExtensionContainer.getByType(): T = getByType(T::class.java)
