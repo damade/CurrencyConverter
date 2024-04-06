@@ -12,8 +12,8 @@ import ProjectLib.navigation
 
 plugins {
     androidApplication
-    kotlin(kotlinAndroid)
-    kotlin(kotlinKapt)
+    kotlinAndroidModule
+    kotlinKaptModule
     safeArgs
     daggerHilt
 }
@@ -29,7 +29,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = composeCompiler
+        kotlinCompilerExtensionVersion = Compose.Version.composeCompiler
     }
     namespace = "com.damilola.currencyconverter"
 }

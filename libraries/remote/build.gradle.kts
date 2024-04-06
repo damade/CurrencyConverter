@@ -1,5 +1,3 @@
-import BuildType.Companion.DEBUG
-import BuildType.Companion.RELEASE
 import Dependencies.AndroidX
 import Dependencies.ApolloGraphQl
 import Dependencies.Coroutines
@@ -12,8 +10,8 @@ import ProjectLib.core
 
 plugins {
     androidLibrary
-    kotlin(kotlinAndroid)
-    kotlin(kotlinKapt)
+    kotlinAndroidModule
+    kotlinKaptModule
     daggerHilt
     apollo
 }
@@ -31,7 +29,6 @@ android {
 }
 
 dependencies {
-
     implementation(project(core))
     implementation(project(config))
     debugImplementation(Performance.logger)

@@ -1,4 +1,3 @@
-import BuildType.Companion.DEBUG
 import Dependencies.Cache
 import Dependencies.Coroutines
 import Dependencies.DI
@@ -12,8 +11,8 @@ import ProjectLib.testUtils
 
 plugins {
     androidLibrary
-    kotlin(kotlinAndroid)
-    kotlin(kotlinKapt)
+    kotlinAndroidModule
+    kotlinKaptModule
     daggerHilt
 }
 

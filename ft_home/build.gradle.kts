@@ -9,8 +9,8 @@ import ProjectLib.libCurrencySearch
 
 plugins {
     androidLibrary
-    kotlin(kotlinAndroid)
-    kotlin(kotlinKapt)
+    kotlinAndroidModule
+    kotlinKaptModule
     safeArgs
     daggerHilt
 }

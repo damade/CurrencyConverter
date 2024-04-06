@@ -1,8 +1,7 @@
 import Dependencies.Test
 
 plugins {
-    javaLibrary
-    jvmLibrary
+    kotlinModule
 }
 
 apply<CurrencyConverterPlugin>()

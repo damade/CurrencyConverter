@@ -9,8 +9,8 @@ import ProjectLib.core
 
 plugins {
     androidLibrary
-    kotlin(kotlinAndroid)
-    kotlin(kotlinKapt)
+    kotlinAndroidModule
+    kotlinKaptModule
     daggerHilt
 }
 
@@ -28,7 +28,6 @@ android {
 }
 
 dependencies {
-
     implementation(project(core))
     implementation(project(config))
     debugImplementation(Performance.logger)

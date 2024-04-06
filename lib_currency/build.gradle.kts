@@ -1,4 +1,3 @@
-import BuildType.Companion.DEBUG
 import Dependencies.Cache
 import Dependencies.DI
 import Dependencies.RxJava
@@ -10,8 +9,8 @@ import ProjectLib.remote
 
 plugins {
     androidLibrary
-    kotlin(kotlinAndroid)
-    kotlin(kotlinKapt)
+    kotlinAndroidModule
+    kotlinKaptModule
     daggerHilt
 }
 

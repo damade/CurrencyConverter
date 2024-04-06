@@ -6,8 +6,8 @@ import ProjectLib.coreAndroid
 
 plugins {
     androidLibrary
-    kotlin(kotlinAndroid)
-    kotlin(kotlinKapt)
+    kotlinAndroidModule
+    kotlinKaptModule
 }
 
 apply<CurrencyConverterPlugin>()
@@ -15,7 +15,7 @@ apply<CurrencyConverterPlugin>()
 android {
 
     composeOptions {
-        kotlinCompilerExtensionVersion = composeCompiler
+        kotlinCompilerExtensionVersion = Compose.Version.composeCompiler
     }
 
     buildFeatures {
