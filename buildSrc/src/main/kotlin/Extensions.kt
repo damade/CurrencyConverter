@@ -26,9 +26,6 @@ val PluginDependenciesSpec.apollo: PluginDependencySpec
 val PluginDependenciesSpec.daggerHilt: PluginDependencySpec
     get() = id("dagger.hilt.android.plugin")
 
-val Project.applySpotless
-    get() = apply(plugin = "spotless")
-
 val PluginDependenciesSpec.kotlinLibrary: PluginDependencySpec
     get() = id("kotlin-library")
 
