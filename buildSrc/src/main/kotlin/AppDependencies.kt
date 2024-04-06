@@ -29,12 +29,12 @@ interface Libraries {
 object Dependencies {
     object AndroidX : Libraries {
         object Version {
-            const val coreKtx: String = "1.10.1"
-            const val navigation: String = "2.6.0"
+            const val coreKtx: String = "1.12.0"
+            const val navigation: String = "2.7.7"
             const val multidex: String = "2.0.1"
-            const val lifeCycle: String = "2.6.1"
-            const val activity: String = "1.7.2"
-            const val paging: String = "3.1.1"
+            const val lifeCycle: String = "2.7.0"
+            const val activity: String = "1.8.2"
+            const val paging: String = "3.2.1"
             const val legacy: String = "1.0.0"
         }
 
@@ -78,9 +78,9 @@ object Dependencies {
             const val shimmerLayout: String = "0.5.0"
             const val appCompat: String = "1.6.1"
             const val constraintLayout: String = "2.1.4"
-            const val fragment: String = "1.5.7"
+            const val fragment: String = "1.6.2"
             const val cardView: String = "1.0.0"
-            const val recyclerView: String = "1.3.0"
+            const val recyclerView: String = "1.3.2"
             const val swipeRefresh: String = "1.1.0"
             const val loadingButton: String = "2.2.0"
             const val countryPicker: String = "2.4.2"
