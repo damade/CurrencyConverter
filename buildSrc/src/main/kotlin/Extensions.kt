@@ -4,6 +4,7 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.initialization.dsl.ScriptHandler
 import org.gradle.kotlin.dsl.apply
+import org.gradle.kotlin.dsl.kotlin
 import org.gradle.plugin.use.PluginDependenciesSpec
 import org.gradle.plugin.use.PluginDependencySpec
 
@@ -33,6 +34,12 @@ val PluginDependenciesSpec.kotlinLibrary: PluginDependencySpec
 
 val PluginDependenciesSpec.kotlinModule: PluginDependencySpec
     get() = id("kotlin")
+
+val PluginDependenciesSpec.kotlinAndroidModule: PluginDependencySpec
+    get() = kotlin("android")
+
+val PluginDependenciesSpec.kotlinKaptModule: PluginDependencySpec
+    get() = kotlin("kapt")
 
 val PluginDependenciesSpec.safeArgs: PluginDependencySpec
     get() = id("androidx.navigation.safeargs.kotlin")

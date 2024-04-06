@@ -1,9 +1,3 @@
-const val kotlinAndroid: String = "android"
-const val kotlinKapt: String = "kapt"
-const val ktLintVersion: String = "0.43.0"
-const val kotlinVersion = "1.8.22"
-const val composeCompiler: String = "1.4.8"
-
 object Config {
     object Version {
         const val minSdkVersion: Int = 24
@@ -11,10 +5,6 @@ object Config {
         const val targetSdkVersion: Int = 34
         const val versionName: String = "1.0"
         const val versionCode: Int = 1
-    }
-
-    object Jvm {
-        const val kotlinCompileJvmVersion = "17"
     }
 
     const val isMultiDexEnabled: Boolean = true
@@ -26,6 +16,10 @@ object Config {
         const val testInstrumentationRunner: String =
             "androidx.test.runner.AndroidJUnitRunner"
     }
+}
+
+object Jvm {
+    const val kotlinCompileJvmVersion = "17"
 }
 
 interface Libraries {

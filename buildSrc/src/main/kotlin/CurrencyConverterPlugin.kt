@@ -4,6 +4,7 @@ import com.android.build.gradle.TestedExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.api.plugins.ExtensionContainer
+import org.gradle.api.plugins.JavaLibraryPlugin
 import org.gradle.kotlin.dsl.repositories
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -113,8 +114,7 @@ class CurrencyConverterPlugin : BaseGradlePlugin() {
             }
 
             project.tasks.withType<KotlinCompile> {
-                kotlinOptions.jvmTarget = "17"
-                //JavaVersion.VERSION_17.toString()
+                kotlinOptions.jvmTarget = Jvm.kotlinCompileJvmVersion
             }
 
             buildTypes.apply {
@@ -139,6 +139,10 @@ class CurrencyConverterPlugin : BaseGradlePlugin() {
             }
         }
     }
+}
+
+private fun TestedExtension.applyCommonProperties() {
+
 }
 
 inline fun <reified T : Any> ExtensionContainer.getByType(): T = getByType(T::class.java)
