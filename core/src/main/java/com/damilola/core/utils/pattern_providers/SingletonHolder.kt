@@ -1,8 +1,9 @@
 package com.damilola.core.utils.pattern_providers
 
-open class SingletonHolder<out T: Any, in A>(creator: (A) -> T) {
+open class SingletonHolder<out T : Any, in A>(creator: (A) -> T) {
     private var creator: ((A) -> T)? = creator
-    @Volatile private var instance: T? = null
+    @Volatile
+    private var instance: T? = null
 
     fun getInstance(arg: A): T {
         val checkInstance = instance
@@ -24,7 +25,7 @@ open class SingletonHolder<out T: Any, in A>(creator: (A) -> T) {
     }
 
     fun currentInstance(): T? {
-       return instance
+        return instance
     }
 
     fun destroyInstance() {

@@ -24,6 +24,7 @@ dependencies {
     }
     Test.run {
         testImplementation(junit)
+        testImplementation(junitParams)
         testImplementation(truth)
         testImplementation(coroutinesTest)
         testImplementation(turbine)

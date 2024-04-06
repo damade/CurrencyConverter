@@ -4,7 +4,6 @@ package com.damilola.core.usecase
 import com.damilola.core.ext.errorMessage
 import com.damilola.core.model.Either
 import com.damilola.core.model.Failure
-
 import com.jakewharton.rxrelay3.PublishRelay
 import com.jakewharton.rxrelay3.Relay
 import io.reactivex.rxjava3.core.Observable

@@ -1,4 +1,4 @@
 package com.damilola.core.ext
 
 val Throwable.errorMessage: String
-    get() = message ?: localizedMessage ?: "An error occurred"
+    get() = message ?: localizedMessage ?: "An unknown error occurred"

@@ -11,18 +11,18 @@ sealed class Result<out T : Any> {
 
 data class ResultState(
     var failure: Result.RemoteFailure<Any>?,
-    var success: Result.Success<Any>?
+    var success: Result.Success<Any>?,
 ) {
     var loadedFromDb: Boolean = true
 
 }
 
-fun ResultState.toSuc(): Any?{
+fun ResultState.toSuc(): Any? {
     return this.success?.response
 }
 
 fun ResultState.toFail(): Failure {
-    return Failure.UnexpectedFailure(this.failure?.response as String?)
+    return Failure.UnexpectedFailure((this.failure?.response as String?).orEmpty())
 }
 
 

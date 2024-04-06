@@ -4,6 +4,10 @@ import com.damilola.core.ext.errorMessage
 import java.net.SocketTimeoutException
 import javax.net.ssl.SSLException
 
+
+/**
+ * This is our custom class for all possible exceptions in the app.
+ */
 sealed class Failure : Throwable() {
 
     /**
@@ -13,18 +17,42 @@ sealed class Failure : Throwable() {
     open class CustomFailure : Failure()
 
     data class UnexpectedFailure(
-        val failureMessage: String?
+        val failureMessage: String,
     ) : Failure()
 
     data class ThrowableFailure(
-        val throwable: Throwable
+        val throwable: Throwable,
     ) : Failure()
 
     override val message: String?
         get() = getErrorMessage()
 }
 
-private fun Failure.getErrorMessage(): String? {
+class NetworkMiddlewareFailure(
+    val middleWareExceptionMessage: String,
+) : Failure.CustomFailure()
+
+object TimeOut : Failure.CustomFailure() {
+    private fun readResolve(): Any = TimeOut
+}
+
+object NetworkConnectionLostSuddenly : Failure.CustomFailure() {
+    private fun readResolve(): Any = NetworkConnectionLostSuddenly
+}
+
+object SSLError : Failure.CustomFailure() {
+    private fun readResolve(): Any = SSLError
+}
+
+/**
+ * If your service return some custom error use this with the given errors you expect.
+ */
+data class ServiceBodyFailure(
+    val internalCode: Int,
+    val internalMessage: String,
+) : Failure.CustomFailure()
+
+private fun Failure.getErrorMessage(): String {
     return when (this) {
         is Failure.UnexpectedFailure -> this.failureMessage
         is Failure.ThrowableFailure -> this.throwable.errorMessage
@@ -32,7 +60,7 @@ private fun Failure.getErrorMessage(): String? {
     }
 }
 
-fun Failure.CustomFailure.getCustomErrorMessage(): String? {
+fun Failure.CustomFailure.getCustomErrorMessage(): String {
     return when (this) {
         is NetworkMiddlewareFailure -> this.middleWareExceptionMessage
         is TimeOut -> SocketTimeoutException().localizedMessage

@@ -10,15 +10,15 @@ sealed class Either<out L, out R> {
     /** * Represents the right side of [Either] class which by convention is a "Success". */
     data class Success<out R>(val success: R?) : Either<Nothing, R>()
 
-    val isSuccess get() = this is Success<R>
+    val isSuccess: Boolean get() = this is Success<R>
     val isError get() = this is Error<L>
 
     fun either(fnL: (L) -> Unit, fnR: (R) -> Unit): Any =
         when (this) {
             is Error -> fnL(error)
-            is Success -> if (success == null){
+            is Success -> if (success == null) {
                 //fnL(success as L)
-            }else{
+            } else {
                 fnR(success as R)
             }
         }
@@ -32,7 +32,7 @@ sealed class Either<out L, out R> {
      * @see [https://github.com/arrow-kt/arrow-core/blob/master/arrow-core-data/src/main/kotlin/arrow/core/Either.kt]
      */
     suspend inline fun <T> coMapSuccess(
-        crossinline transform: suspend (R) -> T
+        crossinline transform: suspend (R) -> T,
     ): Either<L, T?> {
         return when (this) {
             is Success<*> -> transform(this.success as R).toSuccess()
@@ -48,7 +48,7 @@ sealed class Either<out L, out R> {
      * @return [Either.Success<T>] or the expected [Either.Error]
      */
     inline fun <T> mapSuccess(
-        crossinline transform: (R) -> T
+        crossinline transform: (R) -> T,
     ): Either<L, T> {
         return when (this) {
             is Success<*> -> transform(this.success as R).toSuccess()
