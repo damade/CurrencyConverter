@@ -7,10 +7,14 @@ const val composeCompiler: String = "1.4.8"
 object Config {
     object Version {
         const val minSdkVersion: Int = 24
-        const val compileSdkVersion: Int = 33
-        const val targetSdkVersion: Int = 31
+        const val compileSdkVersion: Int = 34
+        const val targetSdkVersion: Int = 34
         const val versionName: String = "1.0"
         const val versionCode: Int = 1
+    }
+
+    object Jvm {
+        const val kotlinCompileJvmVersion = "17"
     }
 
     const val isMultiDexEnabled: Boolean = true

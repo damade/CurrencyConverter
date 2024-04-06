@@ -8,8 +8,6 @@ import ProjectLib.core
 import ProjectLib.coreAndroid
 import ProjectLib.ftCurrency
 import ProjectLib.ftHome
-import ProjectLib.libCurrency
-import ProjectLib.libCurrencySearch
 import ProjectLib.navigation
 
 plugins {
@@ -45,8 +43,6 @@ dependencies {
 
     implementation(project(core))
     implementation(project(coreAndroid))
-    implementation(project(libCurrencySearch))
-    implementation(project(libCurrency))
     implementation(project(ftCurrency))
     implementation(project(ftHome))
     implementation(project(navigation))
