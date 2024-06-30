@@ -14,7 +14,6 @@ internal class ConversionAdapter : ListAdapter<ConversionUi, ConversionAdapter.C
     DefaultDiffUtilItemCallback()
 ) {
 
-
     inner class ConversionViewHolder(private val binding: ItemConversionHistoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
