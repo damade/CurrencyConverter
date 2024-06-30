@@ -2,5 +2,6 @@
 <network-security-config xmlns:android="http://schemas.android.com/apk/res/android">
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">currencylayer.com</domain>
+        <domain includeSubdomains="true">api.exchangerate.host</domain>
     </domain-config>
 </network-security-config>
