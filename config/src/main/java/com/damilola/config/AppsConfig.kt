@@ -12,7 +12,7 @@ interface AppsConfig {
 
 object BuildTypeDebug : AppsConfig {
     override val API_KEY: String = "833784589adc2e2db471cdb439a13301"
-    override val BASE_URL: String = "https://api.exchangerate.host/"
+    override val BASE_URL: String = "http://api.exchangerate.host/"
     override val APOLLO_BASE_URL: String = "https://countries.trevorblades.com/graphql"
     override val isDebug: Boolean = true
     override val DB_NAME: String = "currency_converter_db_debug"
@@ -22,7 +22,7 @@ object BuildTypeDebug : AppsConfig {
 
 object BuildTypeRelease : AppsConfig {
     override val API_KEY: String = "833784589adc2e2db471cdb439a13301"
-    override val BASE_URL: String = "https://api.exchangerate.host/"
+    override val BASE_URL: String = "http://api.exchangerate.host/"
     override val APOLLO_BASE_URL: String = "https://countries.trevorblades.com/graphql"
     override val isDebug: Boolean = false
     override val DB_NAME: String = "currency_converter_db"
