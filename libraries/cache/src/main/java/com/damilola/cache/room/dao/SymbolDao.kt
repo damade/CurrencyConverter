@@ -1,8 +1,10 @@
 package com.damilola.cache.room.dao
 
-import androidx.paging.PagingSource
-import androidx.room.*
-import androidx.sqlite.db.SupportSQLiteQuery
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import androidx.room.Transaction
 import com.damilola.cache.model.SymbolCacheModel
 
 @Dao
