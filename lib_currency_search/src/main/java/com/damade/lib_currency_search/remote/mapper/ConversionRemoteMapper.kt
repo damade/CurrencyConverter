@@ -13,7 +13,7 @@ internal class ConversionRemoteMapper @Inject constructor() :
     override fun mapFromModel(model: CurrencyConversionResponse): ConversionEntity {
         return ConversionEntity(
            result = model.result?.to2dp(),
-           rate =  model.info.rate?.to4dp(),
+           rate =  model.info.quote?.to4dp(),
             from = model.query.from,
             to = model.query.to,
             amount = model.query.amount
