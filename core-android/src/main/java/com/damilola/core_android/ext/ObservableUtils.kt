@@ -4,7 +4,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Observer
-import com.damilola.core.objects.Event
+import com.damilola.core.model.Event
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.Disposable
@@ -52,20 +52,9 @@ fun <T> LiveData<T>.observe(owner: LifecycleOwner, observer: (t: T) -> Unit) {
 
 fun <T> LiveData<Event<T>>.eventObserve(owner: LifecycleOwner, observer: (t: T) -> Unit) {
     this.observe(owner, Observer {
-            if (it.hasNotBeenHandled) {
-                val result = it.getContentIfNotHandled()
-                result?.let {
-                    observer(result)
-                }
-            }else{
-                val result = it.peekContent()
-                result?.let {
-                    observer(result)
-                }
-//                if (result != null) {
-//                    observer(result)
-//                }
-            }
+        it.consume { result ->
+            observer(result)
+        }
     })
 }
 
@@ -75,6 +64,7 @@ fun <T> LiveData<T>.nonNull(): NonNullMediatorLiveData<T> {
     mediator.addSource(this, Observer { it?.let { mediator.value = it } })
     return mediator
 }
+
 fun <T> NonNullMediatorLiveData<T>.observe(owner: LifecycleOwner, observer: (t: T) -> Unit) {
     this.observe(owner, Observer {
         it?.let(observer)
