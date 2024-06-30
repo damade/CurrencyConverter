@@ -36,7 +36,7 @@ In no particular order
 * Replace BuildSrc, migrate to using version catalogs and update App Dependencies.
 * Add screenshot and UI/integration testing, 
 
-## Product Tech Roadmap
+## Product Roadmap
 * Add widget
 * Add live rates (5) and a view more screen.
 * Add favourite currencies to have on the live rate list and potentially have notifications sent based on a price drop.  
