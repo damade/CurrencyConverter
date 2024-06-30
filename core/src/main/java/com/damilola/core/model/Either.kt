@@ -56,6 +56,25 @@ sealed class Either<out L, out R> {
         }
     }
 
+    inline fun <T> mapSuccessAndError(
+        errorTransformation: (R) -> Failure?,
+        shouldMapToFailure: (R) -> Boolean,
+        crossinline transform: (R) -> T,
+    ): Either<L, T> {
+        return when (this) {
+            is Error -> this
+            is Success<*> -> {
+                val successProperty = this.success as R
+                val error = errorTransformation(successProperty)
+                if (shouldMapToFailure(successProperty) && error != null) {
+                    Error(error = error as L)
+                } else {
+                    transform(successProperty).toSuccess()
+                }
+            }
+        }
+    }
+
     fun getSuccessOrNull(): R? = if (this is Success<R>) {
         this.success
     } else {
