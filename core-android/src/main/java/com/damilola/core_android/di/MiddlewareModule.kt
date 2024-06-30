@@ -20,16 +20,15 @@ abstract class MiddlewareModule {
     abstract fun bindResourceProvider(resourceProviderImpl: ResourceProviderImpl): ResourceProvider
 
 
-    companion object{
+    companion object {
         @Provides
         @Singleton
         fun bindMiddlewareProvider(
             connectivityMiddlewareImpl:
-            ConnectivityMiddleware
+            ConnectivityMiddleware,
         ): com.damilola.core.middleware.MiddlewaresProducer =
-            MiddlewareProducerImpl.Builder()
+            MiddlewareProducerImpl()
                 .add(middleware = connectivityMiddlewareImpl)
-                .build()
     }
 
 }

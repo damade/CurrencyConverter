@@ -4,21 +4,13 @@ import com.damilola.core.middleware.MiddlewaresProducer
 import com.damilola.core.network.NetworkMiddleware
 
 
-class MiddlewareProducerImpl private constructor(
-    private val middlewareList: List<NetworkMiddleware> = listOf()
-) : MiddlewaresProducer {
+class MiddlewareProducerImpl : MiddlewaresProducer {
 
-    class Builder(
-        private val middlewareList: MutableList<NetworkMiddleware> = mutableListOf()
-    ) {
+    private val middlewareList: MutableList<NetworkMiddleware> = mutableListOf()
 
-        fun add(middleware: NetworkMiddleware) = apply {
-            this.middlewareList.add(middleware)
-        }
-
-        fun build() = MiddlewareProducerImpl(
-            middlewareList = middlewareList
-        )
+    fun add(middleware: NetworkMiddleware): MiddlewaresProducer {
+        this.middlewareList.add(middleware)
+        return this
     }
 
 
