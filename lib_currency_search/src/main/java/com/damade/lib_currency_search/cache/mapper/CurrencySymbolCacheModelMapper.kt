@@ -22,8 +22,8 @@ internal class CurrencySymbolCacheModelMapper @Inject constructor() :
         )
     }
 
-    override fun mapListToModel(entity: List<Symbol>): List<SymbolCacheModel> {
-        return entity.map(::mapToModel)
+    override fun mapListToModel(domain: List<Symbol>): List<SymbolCacheModel> {
+        return domain.map(::mapToModel)
     }
 
     override fun mapListToDomain(model: List<SymbolCacheModel>): List<Symbol> {
