@@ -1,5 +1,5 @@
 # CurrencyConverter [Under Construction]
-A simple app that converts the value of a currency to other currencies from [ExchangeRate](https://exchangerate.host/) and [Countries GraphQL API](https://countries.trevorblades.com/graphql) for the GraphQl APIs to get list of currencies with their country flags; built with the aim of achieving Clean Architecture and Modularization via MVVM pattern (architecture), Kotlin Flow, Coroutines, RxJava, Compose. 
+A simple app that converts the value of a currency to other currencies from [ExchangeRate](https://exchangerate.host/) and [Countries GraphQL API](https://countries.trevorblades.com/graphql) for the GraphQl APIs to get the list of currencies with their country flags; built to achieve Clean Architecture and Modularization via MVVM pattern (architecture), Kotlin Flow, Coroutines, RxJava, Compose. 
 
 ## Link To Project
 [My Currency Converter](https://github.com/damade/CurrencyConverter) inspired by [@theseuntaylor](https://github.com/theseuntaylor)
@@ -25,6 +25,24 @@ To build this project, you require:
 * Compose (Compose with Flow, RxJava Observable, Navigation)
 * Unit Test
 * Plugin for managing dependencies
+
+## Future Tech Roadmap
+In no particular order
+* Add in-memory and locale cache for rate particular to currencies to reduce Api request calls conversion
+* Setup Ktlint on the project
+* Migrate to KSP and K2 compiler.
+* Use the Konsist library to write rules about the architecture and class conventions.
+* Set up macro benchmark and fix memory leaks. 
+* Replace BuildSrc, migrate to using version catalogs and update App Dependencies.
+* Add screenshot and UI/integration testing, 
+
+## Product Tech Roadmap
+* Add widget
+* Add live rates (5) and a view more screen.
+* Add favourite currencies to have on the live rate list and potentially have notifications sent based on a price drop.  
+* Add a local profile screen with the possibility of having a remote profile in the future.
+* Add features that utilize Locale, Accessibility, Notifications and Workmanager.
+* Create a WearOs app showing live saved/favourite currency conversion rates.
 
 <h2 align="left">Screenshots Of App</h2>
 <h4 align="center">  
