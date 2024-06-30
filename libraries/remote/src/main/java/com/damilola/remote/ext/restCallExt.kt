@@ -47,7 +47,6 @@ suspend inline fun <T> executeRetrofitCall(
         } catch (e: Exception) {
             if (e !is CancellationException) {
                 println(e)
-                println("I got here")
                 return@withContext e.parseException(adapter).toError()
             } else {
                 throw e
