@@ -57,7 +57,7 @@ object : ReadOnlyProperty<Fragment, T>, DefaultLifecycleObserver {
 fun <T> Fragment.viewLifecycle(): ReadWriteProperty<Fragment, T> =
     object : ReadWriteProperty<Fragment, T>, DefaultLifecycleObserver {
 
-        private var binding: T? = null
+        private var bindingObject: T? = null
 
         init {
             // Observe the view lifecycle of the Fragment.
@@ -71,14 +71,14 @@ fun <T> Fragment.viewLifecycle(): ReadWriteProperty<Fragment, T> =
         }
 
         override fun onDestroy(owner: LifecycleOwner) {
-            binding = null
+            bindingObject = null
         }
 
         override fun getValue(
             thisRef: Fragment,
             property: KProperty<*>
         ): T {
-            return this.binding ?: error("Called before onCreateView or after onDestroyView.")
+            return this.bindingObject ?: error("Called before onCreateView or after onDestroyView.")
         }
 
         override fun setValue(
@@ -86,6 +86,6 @@ fun <T> Fragment.viewLifecycle(): ReadWriteProperty<Fragment, T> =
             property: KProperty<*>,
             value: T
         ) {
-            this.binding = value
+            this.bindingObject = value
         }
     }
