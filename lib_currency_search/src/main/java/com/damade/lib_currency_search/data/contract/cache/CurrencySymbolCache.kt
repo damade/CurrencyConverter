@@ -1,8 +1,8 @@
 package com.damade.lib_currency_search.data.contract.cache
 
-import com.damade.lib_currency_search.data.model.SymbolEntity
+import com.damade.lib_currency_search.domain.model.Symbol
 
 internal interface CurrencySymbolCache {
-    suspend fun saveCurrencySymbol(symbolEntities: List<SymbolEntity>)
-    suspend fun fetchCurrencySymbol(): List<SymbolEntity>?
+    suspend fun saveCurrencySymbol(symbol: List<Symbol>)
+    suspend fun fetchCurrencySymbol(): List<Symbol>?
 }

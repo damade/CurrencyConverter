@@ -15,7 +15,7 @@ class CurrencySymbolCacheModelMapperTest {
         val symbolEntity: SymbolEntity = CacheDummyData.symbolEntity
         val expectedSymbolCacheData = CacheDummyData.symbolCacheModel
         // when
-        val symbolCacheModel = mapper.mapToModel(entity = symbolEntity)
+        val symbolCacheModel = mapper.mapToModel(domain = symbolEntity)
         // then
         assertThat(symbolCacheModel).isEqualTo(expectedSymbolCacheData)
     }
@@ -26,7 +26,7 @@ class CurrencySymbolCacheModelMapperTest {
         val symbolCacheModel: SymbolCacheModel = CacheDummyData.symbolCacheModel
         val expectedSymbolEntityData = CacheDummyData.symbolEntity
         // when
-        val entity = mapper.mapToEntity(model = symbolCacheModel)
+        val entity = mapper.mapToDomain(model = symbolCacheModel)
         // then
         assertThat(entity).isEqualTo(expectedSymbolEntityData)
     }
@@ -48,7 +48,7 @@ class CurrencySymbolCacheModelMapperTest {
         val symbolCacheModel: List<SymbolCacheModel> = listOf(CacheDummyData.symbolCacheModel)
         val expectedSymbolEntityData = listOf(CacheDummyData.symbolEntity)
         // when
-        val entity = mapper.mapListToEntity(model = symbolCacheModel)
+        val entity = mapper.mapListToDomain(model = symbolCacheModel)
         // then
         assertThat(entity).isEqualTo(expectedSymbolEntityData)
     }

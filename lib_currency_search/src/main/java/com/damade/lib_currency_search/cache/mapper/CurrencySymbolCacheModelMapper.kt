@@ -1,32 +1,32 @@
 package com.damade.lib_currency_search.cache.mapper
 
-import com.damade.lib_currency_search.data.model.SymbolEntity
+import com.damade.lib_currency_search.domain.model.Symbol
 import com.damilola.cache.mapper.CacheModelMapper
 import com.damilola.cache.model.SymbolCacheModel
 import javax.inject.Inject
 
 internal class CurrencySymbolCacheModelMapper @Inject constructor() :
-    CacheModelMapper<SymbolCacheModel, SymbolEntity> {
+    CacheModelMapper<SymbolCacheModel, Symbol> {
 
-    override fun mapToModel(entity: SymbolEntity): SymbolCacheModel {
+    override fun mapToModel(domain: Symbol): SymbolCacheModel {
         return SymbolCacheModel(
-            currencyCode = entity.code,
-            currencyDescription = entity.description
+            currencyCode = domain.currencyCode,
+            currencyDescription = domain.currencyDescription,
         )
     }
 
-    override fun mapToEntity(model: SymbolCacheModel): SymbolEntity {
-        return SymbolEntity(
-            code = model.currencyCode,
-            description = model.currencyDescription
+    override fun mapToDomain(model: SymbolCacheModel): Symbol {
+        return Symbol(
+            currencyCode = model.currencyCode,
+            currencyDescription = model.currencyDescription,
         )
     }
 
-    override fun mapListToModel(entity: List<SymbolEntity>): List<SymbolCacheModel> {
-        return entity.map { mapToModel(it) }
+    override fun mapListToModel(entity: List<Symbol>): List<SymbolCacheModel> {
+        return entity.map(::mapToModel)
     }
 
-    override fun mapListToEntity(model: List<SymbolCacheModel>): List<SymbolEntity> {
-        return model.map { mapToEntity(it) }
+    override fun mapListToDomain(model: List<SymbolCacheModel>): List<Symbol> {
+        return model.map(::mapToDomain)
     }
 }
