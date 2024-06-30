@@ -13,16 +13,23 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.damilola.core.ext.*
 import com.damilola.core.model.ErrorState
 import com.damilola.core.model.NavigateToPreviousScreen
-import com.damilola.core_android.ext.*
-import com.damilola.core_android.utils.resource_providers.ResourceProvider
+import com.damilola.core_android.ext.bindObserver
+import com.damilola.core_android.ext.onBackPress
+import com.damilola.core_android.ext.show
+import com.damilola.core_android.ext.showErrorMessage
+import com.damilola.core_android.ext.startAnim
+import com.damilola.core_android.ext.stopAnim
+import com.damilola.core_android.ext.viewLifecycle
+import com.damilola.core_android.utils.resource_providers.StringResource
+import com.damilola.core_android.utils.resource_providers.string
 import com.damilola.core_android.utils.ui_providers.SnackBarProvider
 import com.damilola.ft_home.databinding.FragmentConversionHistoryBinding
 import com.damilola.ft_home.model.ConversionUi
 import com.damilola.ft_home.presentation.historyScreen.adapter.ConversionAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass.
@@ -34,13 +41,7 @@ class ConversionHistoryFragment : Fragment() {
 
     private var binder: FragmentConversionHistoryBinding by viewLifecycle()
     private val conversionHistoryViewModel: ConversionHistoryViewModel by viewModels()
-
-    private var conversionAdapter by AutoClearedValue<ConversionAdapter>()
-
-    //For reading string and other resources
-    @Inject
-    lateinit var resourceProvider: ResourceProvider
-
+    private lateinit var conversionAdapter: ConversionAdapter
 
     @Inject
     lateinit var navigateToPreviousScreen: NavigateToPreviousScreen
@@ -51,7 +52,7 @@ class ConversionHistoryFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         // Inflate the layout for this fragment
         binder = FragmentConversionHistoryBinding.inflate(layoutInflater)
@@ -70,7 +71,7 @@ class ConversionHistoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        //Observes State For Currency Conversion History Done
+        // Observes State For Currency Conversion History Done
         lifecycleScope.launch {
             conversionHistoryViewModel.uiState
                 .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
@@ -87,33 +88,34 @@ class ConversionHistoryFragment : Fragment() {
 
     }
 
-    //Initializing the RecyclerView
+    // Initializing the RecyclerView
     private fun initView() {
+        conversionAdapter = ConversionAdapter()
         binder.itemRv.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = conversionAdapter
             bindObserver(binder.emptyState.root)
         }
 
-        binder.emptyState.emptyStateMessage.text = resourceProvider.getString(com.damilola.core_android.R.string.item_empty_text)
+        binder.emptyState.emptyStateMessage.string = StringResource(res = com.damilola.core_android.R.string.item_empty_text)
     }
 
-    //Sets All Currency Conversion History List
+    // Sets All Currency Conversion History List
     private fun setConversationHistoryData(data: List<ConversionUi>?) {
         if (data.isNotNullOrEmpty() && data != null) {
 
-            //Show Clear History Button
+            // Show Clear History Button
             binder.clearButton.visibility = View.VISIBLE
 
             binder.clearButton.setOnClickListener {
                 conversionHistoryViewModel.clearConversionHistories()
             }
 
-            conversionAdapter = context?.let { ConversionAdapter(data, it) }!!
+            conversionAdapter.submitList(data)
         }
     }
 
-    //Displays Error Message
+    // Displays Error Message
     private fun showErrorMessage(errorState: ErrorState) {
         if (errorState.showError) {
             setOnRetryListener()
@@ -124,12 +126,12 @@ class ConversionHistoryFragment : Fragment() {
         }
     }
 
-    //Displays Empty Layout when History List is Empty
+    // Displays Empty Layout when History List is Empty
     private fun showEmptyState(visible: Boolean) {
         binder.emptyState.root.show = visible
     }
 
-    //Indicates That Data Has Been Fetched
+    // Indicates That Data Has Been Fetched
     private fun showOnLoading(isLoading: Boolean) {
         if (isLoading) {
             onRefresh()
@@ -139,21 +141,21 @@ class ConversionHistoryFragment : Fragment() {
         }
     }
 
-    //Indicates That Data Has Been Refreshed
+    // Indicates That Data Has Been Refreshed
     private fun showOnRefresh(isRefreshing: Boolean) {
         if (isRefreshing) {
             binder.refreshBtn.isRefreshing = false
         }
     }
 
-    //Setting listener to attempt to load data if there is a failure
+    // Setting listener to attempt to load data if there is a failure
     private fun setOnRetryListener() {
         binder.errorState.errorRefresh.setOnClickListener {
             conversionHistoryViewModel.getConversionHistories()
         }
     }
 
-    //Setting listener for refreshing data again
+    // Setting listener for refreshing data again
     private fun onRefresh() {
         binder.refreshBtn.setOnRefreshListener {
             conversionHistoryViewModel.onSwipeRefresh()
