@@ -1,12 +1,12 @@
 package com.damilola.cache.mapper
 
-interface CacheModelMapper<M, E> {
+interface CacheModelMapper<E, D> {
 
-    fun mapToModel(entity: E): M
+    fun mapToModel(domain: D): E
 
-    fun mapToEntity(model: M): E
+    fun mapToDomain(model: E): D
 
-    fun mapListToModel(entity: List<E>): List<M>
+    fun mapListToModel(domain: List<D>): List<E>
 
-    fun mapListToEntity(model: List<M>): List<E>
+    fun mapListToDomain(model: List<E>): List<D>
 }
