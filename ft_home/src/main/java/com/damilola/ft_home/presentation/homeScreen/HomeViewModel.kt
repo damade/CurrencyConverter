@@ -75,7 +75,6 @@ internal class HomeViewModel @Inject constructor(
                         HomeUiState.Loading
                     }
                 }.catch { error ->
-
                     mutableHomeUiState.applyUpdate {
                         HomeUiState.Error(errorState = error.errorMessage.toErrorState())
                     }
