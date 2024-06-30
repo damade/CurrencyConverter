@@ -53,7 +53,8 @@ class RemoteModule {
         ): OkHttpClient {
             return OkHttpClient.Builder()
                 .addInterceptor(tokenInterceptor)
-                .addInterceptor(HttpsInterceptor)
+                //.addInterceptor(HttpsInterceptor)
+                // I can only use http as I am using a free service, to be replaced later.
                 .addInterceptor(NoInternetInterceptor)
                 .addInterceptor(UnsuccessfulCallInterceptor)
                 .addInterceptor(httpLoggingInterceptor)
