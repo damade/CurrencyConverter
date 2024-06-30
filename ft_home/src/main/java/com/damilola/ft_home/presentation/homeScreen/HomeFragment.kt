@@ -78,7 +78,7 @@ class HomeFragment : Fragment() {
                 .collect(::renderUiState)
         }
 
-        //Observes State For Currency Rate Conversion
+        // Observes State For Currency Rate Conversion
         lifecycleScope.launch {
             homeViewModel.navigationEvent
                 .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
@@ -126,7 +126,7 @@ class HomeFragment : Fragment() {
         binding.rateResultView.text = null
     }
 
-    //Set Info After Conversion
+    // Set Info After Conversion
     private fun setConversionResultData(data: ConversionUi?) {
         if (data != null) {
             binding.currencyToEditText.text = commaSeparator(data.result)
@@ -136,16 +136,16 @@ class HomeFragment : Fragment() {
         }
     }
 
-    //Displays Error Message
+    // Displays Error Message
     private fun showErrorMessage(errorState: ErrorState) {
         errorState.ifThenDo({
-            it.showError && it.errorMessage.isNotNullOrBlank()
+            it.errorMessage.isNotNullOrBlank() && it.showError
         }, {
             snackbar.showShortMessage(binding.root, it.errorMessage.orEmpty())
         })
     }
 
-    //Initializes all views and listeners
+    // Initializes all views and listeners
     private fun initializeViews() {
         val currencyToTextView = binding.currencyToTextView
 
@@ -179,13 +179,13 @@ class HomeFragment : Fragment() {
             },
         )
 
-        //Clear All Input and Output Fields
+        // Clear All Input and Output Fields
         binding.clearButton.setOnClickListener { homeViewModel.onReset() }
 
-        //Calls the convert method from repository
+        // Calls the convert method from repository
         binding.convertButton.setOnClickListener { onCurrencyConversion() }
 
-        //Setting Reversal Button
+        // Setting Reversal Button
         binding.swapButton.setOnClickListener { onSwapCurrency() }
     }
 
