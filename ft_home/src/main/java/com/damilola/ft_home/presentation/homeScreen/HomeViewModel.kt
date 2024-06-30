@@ -35,11 +35,11 @@ internal class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val mutableHomeUiState: MutableStateFlow<HomeUiState> = MutableStateFlow(HomeUiState.Hidden)
-    val homeUiState: StateFlow<HomeUiState> = mutableHomeUiState.asStateFlow()
+    val homeUiState: StateFlow<HomeUiState> = mutableHomeUiState
 
     private val mutableNavigationEvent: MutableStateFlow<HomeScreenNavigationEvent> =
         MutableStateFlow(HomeScreenNavigationEvent.Hidden)
-    val navigationEvent: StateFlow<HomeScreenNavigationEvent> = mutableNavigationEvent.asStateFlow()
+    val navigationEvent: StateFlow<HomeScreenNavigationEvent> = mutableNavigationEvent
 
     /**
      * init{} is called immediately when this ViewModel is created.
@@ -75,6 +75,7 @@ internal class HomeViewModel @Inject constructor(
                         HomeUiState.Loading
                     }
                 }.catch { error ->
+
                     mutableHomeUiState.applyUpdate {
                         HomeUiState.Error(errorState = error.errorMessage.toErrorState())
                     }
