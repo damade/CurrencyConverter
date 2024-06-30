@@ -1,38 +1,38 @@
 package com.damade.lib_currency.cache.mapper
 
-import com.damade.lib_currency.data.model.SymbolFlagEntity
+import com.damade.lib_currency.domain.model.SymbolFlag
 import com.damilola.cache.mapper.CacheModelMapper
 import com.damilola.cache.model.SymbolFlagCacheModel
 import javax.inject.Inject
 
 internal class SymbolFlagsCacheModelMapper @Inject constructor() :
-    CacheModelMapper<SymbolFlagCacheModel, SymbolFlagEntity> {
+    CacheModelMapper<SymbolFlagCacheModel, SymbolFlag> {
 
-    override fun mapToModel(entity: SymbolFlagEntity): SymbolFlagCacheModel{
-        return with(entity){
+    override fun mapToModel(domain: SymbolFlag): SymbolFlagCacheModel {
+        return with(domain) {
             SymbolFlagCacheModel(
-                currencyCode = code,
-                currencyFlag = flag,
-                currencyFlagUtf = flagUtf
+                currencyCode = currencyCode,
+                currencyFlag = currencyFlag,
+                currencyFlagUtf = currencyFlagUtf,
             )
         }
     }
 
-    override fun mapToEntity(model: SymbolFlagCacheModel): SymbolFlagEntity{
+    override fun mapToDomain(model: SymbolFlagCacheModel): SymbolFlag {
         return with(model) {
-            SymbolFlagEntity(
-                code = currencyCode,
-                flag = currencyFlag,
-                flagUtf = currencyFlagUtf
+            SymbolFlag(
+                currencyCode = currencyCode,
+                currencyFlag = currencyFlag,
+                currencyFlagUtf = currencyFlagUtf,
             )
         }
     }
 
-    override fun mapListToModel(entity: List<SymbolFlagEntity>): List<SymbolFlagCacheModel> {
-        return entity.map { mapToModel(it) }
+    override fun mapListToModel(domain: List<SymbolFlag>): List<SymbolFlagCacheModel> {
+        return domain.map(::mapToModel)
     }
 
-    override fun mapListToEntity(model: List<SymbolFlagCacheModel>): List<SymbolFlagEntity> {
-        return model.map { mapToEntity(it) }
+    override fun mapListToDomain(model: List<SymbolFlagCacheModel>): List<SymbolFlag> {
+        return model.map(::mapToDomain)
     }
 }

@@ -13,7 +13,7 @@ internal class SymbolFlagEntityMapper @Inject constructor() :
             SymbolFlag(
                 currencyCode = code,
                 currencyFlag = flag,
-                currencyFlagUtF = flagUtf
+                currencyFlagUtf = flagUtf
             )
         }
     }
@@ -23,7 +23,7 @@ internal class SymbolFlagEntityMapper @Inject constructor() :
             SymbolFlagEntity(
                 code = currencyCode,
                 flag = currencyFlag,
-                flagUtf = currencyFlagUtF
+                flagUtf = currencyFlagUtf
             )
         }
     }

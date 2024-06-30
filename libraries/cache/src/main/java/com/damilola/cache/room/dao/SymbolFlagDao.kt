@@ -25,8 +25,8 @@ interface SymbolFlagDao {
     fun clearCurrencySymbols()
 
     @Transaction
-    fun insertSymbolsWithFlag(carersRemoteList: List<SymbolFlagCacheModel>) {
+    fun insertSymbolsWithFlag(symbols: List<SymbolFlagCacheModel>) {
         clearCurrencySymbols()
-        insert(carersRemoteList)
+        insert(symbols)
     }
 }

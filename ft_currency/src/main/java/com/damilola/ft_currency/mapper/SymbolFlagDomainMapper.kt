@@ -13,7 +13,7 @@ internal class SymbolFlagDomainMapper @Inject constructor() :
         return SymbolFlagUi(
             currencyCode = domain.currencyCode,
             currencyFlag = domain.currencyFlag,
-            currencyFlagUtF = domain.currencyFlagUtF
+            currencyFlagUtF = domain.currencyFlagUtf
         )
     }
 
@@ -21,7 +21,7 @@ internal class SymbolFlagDomainMapper @Inject constructor() :
         return SymbolFlag(
             currencyCode = uiModel.currencyCode,
             currencyFlag = uiModel.currencyFlag,
-            currencyFlagUtF = uiModel.currencyFlagUtF
+            currencyFlagUtf = uiModel.currencyFlagUtF
         )
     }
 }
