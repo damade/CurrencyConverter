@@ -25,7 +25,7 @@ fun String?.isNotNullOrBlank(): Boolean {
     contract {
         returns(true) implies (this@isNotNullOrBlank != null)
     }
-    return (this != null && this.isBlankOptimized())
+    return (this != null && !this.isBlankOptimized())
 }
 
 fun String?.isNotEqual(secondString: String): Boolean {
