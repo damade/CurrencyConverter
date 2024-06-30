@@ -5,6 +5,7 @@ import com.damilola.config.AppsConfig
 import com.damilola.core.model.ResponseMessage
 import com.damilola.remote.interceptors.HttpsInterceptor
 import com.damilola.remote.interceptors.NoInternetInterceptor
+import com.damilola.remote.interceptors.TokenInterceptor
 import com.damilola.remote.interceptors.UnsuccessfulCallInterceptor
 import com.damilola.remote.network_factories.ApolloNetworkFactory
 import com.damilola.remote.network_factories.NetworkFactory
@@ -46,8 +47,12 @@ class RemoteModule {
         }
 
         @[Provides Singleton]
-        fun makeOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+        fun makeOkHttpClient(
+            httpLoggingInterceptor: HttpLoggingInterceptor,
+            tokenInterceptor: TokenInterceptor,
+        ): OkHttpClient {
             return OkHttpClient.Builder()
+                .addInterceptor(tokenInterceptor)
                 .addInterceptor(HttpsInterceptor)
                 .addInterceptor(NoInternetInterceptor)
                 .addInterceptor(UnsuccessfulCallInterceptor)
