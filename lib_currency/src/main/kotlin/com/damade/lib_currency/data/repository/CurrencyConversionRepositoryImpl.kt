@@ -3,7 +3,6 @@ package com.damade.lib_currency.data.repository
 import com.damade.lib_currency.data.contract.cache.SymbolFlagCache
 import com.damade.lib_currency.data.contract.remote.SymbolFlagsRemote
 import com.damade.lib_currency.data.mapper.SymbolFlagEntityMapper
-import com.damade.lib_currency.data.model.SymbolFlagEntity
 import com.damade.lib_currency.domain.model.SymbolFlag
 import com.damilola.core.model.Either
 import com.damilola.core.model.Failure
@@ -23,17 +22,17 @@ internal class CurrencyConversionRepositoryImpl @Inject constructor(
 
         return symbolFlagsRemote.fetchCurrencyWithFlags()
             .subscribeOn(ioScheduler)
+            .map { symbolFlagEntityMapper.mapFromEntityList(entities = it) }
             .onErrorResumeNext { fetchCurrencySymbolWithFlagLocally() }
-            .map {
-                symbolFlagCache.saveCurrencySymbolFlag(it)
-                Either.Success(symbolFlagEntityMapper.mapFromEntityList(it))
+            .map { symbolFlags ->
+                symbolFlagCache.saveCurrencySymbolFlag(symbolFlag = symbolFlags)
+                Either.Success(symbolFlags)
             }
 
     }
 
-    private fun fetchCurrencySymbolWithFlagLocally(): Observable<List<SymbolFlagEntity>> {
-        return symbolFlagCache
-            .fetchCurrencySymbolFlagWithObservable()
+    private fun fetchCurrencySymbolWithFlagLocally(): Observable<List<SymbolFlag>> {
+        return symbolFlagCache.fetchCurrencySymbolFlagWithObservable()
     }
 }
 
