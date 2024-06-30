@@ -1,49 +1,49 @@
 package com.damade.lib_currency_search.cache.mapper
 
-import com.damade.lib_currency_search.data.model.ConversionWithFlagsEntity
+import com.damade.lib_currency_search.domain.model.ConversionWithFlags
 import com.damilola.cache.mapper.CacheModelMapper
 import com.damilola.cache.model.ConversionHistoryWithFlagsCacheModel
 import javax.inject.Inject
 
 class CurrencyConversionWithFlagsCacheModelMapper @Inject constructor() :
-    CacheModelMapper<ConversionHistoryWithFlagsCacheModel, ConversionWithFlagsEntity>{
+    CacheModelMapper<ConversionHistoryWithFlagsCacheModel, ConversionWithFlags> {
 
     @Throws(NumberFormatException::class)
-    override fun mapToModel(entity: ConversionWithFlagsEntity): ConversionHistoryWithFlagsCacheModel {
-        with(entity){
+    override fun mapToModel(domain: ConversionWithFlags): ConversionHistoryWithFlagsCacheModel {
+        with(domain) {
             return ConversionHistoryWithFlagsCacheModel(
-                from = from,
+                from = fromCurrency,
                 fromCurrencyFlag = fromCurrencyFlag,
-                to = to,
+                to = toCurrency,
                 toCurrencyFlag = toCurrencyFlag,
-                amount = amount,
+                amount = amountOfCurrencyFrom,
                 rate = rate,
-                result = result
+                result = amountOfCurrencyTo,
 
-            )
+                )
         }
 
     }
 
-    override fun mapToEntity(model: ConversionHistoryWithFlagsCacheModel): ConversionWithFlagsEntity {
-        with(model){
-            return ConversionWithFlagsEntity(
-                from = from,
+    override fun mapToDomain(model: ConversionHistoryWithFlagsCacheModel): ConversionWithFlags {
+        with(model) {
+            return ConversionWithFlags(
+                fromCurrency = from,
                 fromCurrencyFlag = fromCurrencyFlag,
-                to = to,
+                toCurrency = to,
                 toCurrencyFlag = toCurrencyFlag,
-                amount = amount,
-                result = result,
+                amountOfCurrencyFrom = amount,
+                amountOfCurrencyTo = result,
                 rate = rate
             )
         }
     }
 
-    override fun mapListToModel(entity: List<ConversionWithFlagsEntity>): List<ConversionHistoryWithFlagsCacheModel> {
-       return entity.map { mapToModel(it) }
+    override fun mapListToModel(domain: List<ConversionWithFlags>): List<ConversionHistoryWithFlagsCacheModel> {
+        return domain.map { mapToModel(it) }
     }
 
-    override fun mapListToEntity(model: List<ConversionHistoryWithFlagsCacheModel>): List<ConversionWithFlagsEntity> {
-        return model.map { mapToEntity(it) }
+    override fun mapListToDomain(model: List<ConversionHistoryWithFlagsCacheModel>): List<ConversionWithFlags> {
+        return model.map { mapToDomain(it) }
     }
 }
