@@ -13,7 +13,7 @@ import com.damade.lib_currency_search.domain.model.Conversion
 import com.damade.lib_currency_search.domain.model.ConversionWithFlags
 import com.damade.lib_currency_search.domain.model.Symbol
 import com.damade.lib_currency_search.domain.repository.CurrencyConversionRepository
-import com.damilola.core.ext.isNotNullOrEmpty
+import com.damilola.core.mapper.mapData
 import com.damilola.core.model.Either
 import com.damilola.core.model.Failure
 import kotlinx.coroutines.flow.Flow
@@ -34,26 +34,13 @@ internal class CurrencyConversionRepositoryImpl @Inject constructor(
         return flow {
             val symbolRemote: Either<Failure, List<SymbolEntity>?> = currencyRemote.fetchSymbols()
 
-            if (symbolRemote.isSuccess) {
-                val symbolEntity: List<SymbolEntity>? = symbolRemote.getSuccessOrNull()
-
-                symbolEntity?.let {
-                    val symbols = symbolEntityMapper.mapFromEntityList(entities = it)
-                    emit(symbols)
-                    currencySymbolCache.saveCurrencySymbol(symbol = symbols)
-                }
-            } else if (symbolRemote.isError) {
-                val cachedSymbol: List<Symbol>? = currencySymbolCache.fetchCurrencySymbol()
-                if (cachedSymbol != null && cachedSymbol.isNotNullOrEmpty()) {
-                    emit(cachedSymbol)
-                } else {
-                    val failureEntity: Failure? = symbolRemote.getFailureOrNull()
-                    if (failureEntity != null) {
-                        throw failureEntity
-                    }
-                }
-
-            }
+            emit(
+                symbolRemote.mapData(
+                    entityMapper = symbolEntityMapper::mapFromEntityList,
+                    cacheStorage = currencySymbolCache::saveCurrencySymbol,
+                    cacheFetch = currencySymbolCache::fetchCurrencySymbol,
+                )
+            )
         }
     }
 
@@ -66,19 +53,12 @@ internal class CurrencyConversionRepositoryImpl @Inject constructor(
             val conversionRemote: Either<Failure, ConversionEntity?> =
                 currencyRemote.fetchConversion(from, to, amount)
 
-            if (conversionRemote.isSuccess) {
-                val conversionEntity: ConversionEntity? = conversionRemote.getSuccessOrNull()
-                conversionEntity?.let {
-                    val conversion = conversionEntityMapper.mapFromEntity(it)
-                    currencyConversionCache.saveCurrencyConversion(conversion = conversion)
-                    emit(conversion)
-                }
-            } else if (conversionRemote.isError) {
-                val failureEntity: Failure? = conversionRemote.getFailureOrNull()
-                if (failureEntity != null) {
-                    throw failureEntity
-                }
-            }
+            emit(
+                conversionRemote.mapData(
+                    entityMapper = conversionEntityMapper::mapFromEntity,
+                    cacheStorage = currencyConversionCache::saveCurrencyConversion,
+                )
+            )
         }
     }
 

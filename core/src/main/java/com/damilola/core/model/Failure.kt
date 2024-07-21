@@ -36,6 +36,10 @@ object TimeOut : Failure.CustomFailure() {
     private fun readResolve(): Any = TimeOut
 }
 
+object EitherFailure : Failure.CustomFailure() {
+    private fun readResolve(): Any = EitherFailure
+}
+
 object NetworkConnectionLostSuddenly : Failure.CustomFailure() {
     private fun readResolve(): Any = NetworkConnectionLostSuddenly
 }
@@ -67,6 +71,7 @@ fun Failure.CustomFailure.getCustomErrorMessage(): String {
         is NetworkConnectionLostSuddenly -> SSLException("Network Lost").localizedMessage
         is ServiceBodyFailure -> this.internalMessage
         is SSLError -> SSLException("Invalid SSL Certificate").localizedMessage
+        is EitherFailure -> "Could not parse the response from Either class"
         else -> "Exception not handled caused an Unknown failure"
     }
 }

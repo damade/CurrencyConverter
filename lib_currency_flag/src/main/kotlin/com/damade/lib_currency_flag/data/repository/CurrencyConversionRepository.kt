@@ -7,6 +7,5 @@ import io.reactivex.rxjava3.core.Observable
 
 
 interface CurrencyConversionRepository {
-
     fun getCurrencySymbolWithFlag(): Observable<Either<Failure, List<SymbolFlag>>>
 }
