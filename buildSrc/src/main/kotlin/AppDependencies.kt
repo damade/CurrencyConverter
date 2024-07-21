@@ -423,7 +423,7 @@ object ProjectLib {
     const val cache: String = ":libraries:cache"
     const val config: String = ":config"
     const val libCurrencySearch: String = ":lib_currency_search"
-    const val libCurrency: String = ":lib_currency"
+    const val libCurrencyFlag: String = ":lib_currency_flag"
     const val testUtils: String = ":libraries:testUtils"
     const val ftCurrency: String = ":ft_currency"
     const val ftHome: String = ":ft_home"

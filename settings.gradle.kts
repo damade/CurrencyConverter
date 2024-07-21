@@ -16,7 +16,7 @@ include(
     ":config",
     ":lib_compose_core",
     ":lib_currency_search",
-    ":lib_currency",
+    ":lib_currency_flag",
     ":ft_currency",
     ":ft_home",
     ":navigation",

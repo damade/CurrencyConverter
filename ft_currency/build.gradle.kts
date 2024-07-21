@@ -7,7 +7,7 @@ import Dependencies.View
 import ProjectLib.core
 import ProjectLib.coreAndroid
 import ProjectLib.libComposeCore
-import ProjectLib.libCurrency
+import ProjectLib.libCurrencyFlag
 import ProjectLib.libCurrencySearch
 
 plugins {
@@ -52,7 +52,7 @@ dependencies {
     implementation(project(core))
     implementation(project(coreAndroid))
     implementation(project(libComposeCore))
-    implementation(project(libCurrency))
+    implementation(project(libCurrencyFlag))
     implementation(project(libCurrencySearch))
     implementAll(RxJava.components)
 

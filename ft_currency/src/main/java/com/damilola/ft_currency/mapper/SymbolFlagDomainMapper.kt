@@ -1,7 +1,7 @@
 package com.damilola.ft_currency.mapper
 
 
-import com.damade.lib_currency.domain.model.SymbolFlag
+import com.damade.lib_currency_flag.domain.model.SymbolFlag
 import com.damilola.core.mapper.DomainMapper
 import com.damilola.ft_currency.model.SymbolFlagUi
 import javax.inject.Inject

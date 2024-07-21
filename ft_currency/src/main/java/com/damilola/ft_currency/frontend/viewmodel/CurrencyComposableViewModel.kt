@@ -2,7 +2,7 @@ package com.damilola.ft_currency.frontend.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.damade.lib_currency.domain.usecase.GetSymbolFlags
+import com.damade.lib_currency_flag.domain.usecase.GetSymbolFlags
 import com.damade.lib_currency_search.domain.model.ConversionWithFlagsQuery
 import com.damade.lib_currency_search.domain.usecase.conversion.GetConversionWithFlagRate
 import com.damilola.core.ext.applyUpdate
