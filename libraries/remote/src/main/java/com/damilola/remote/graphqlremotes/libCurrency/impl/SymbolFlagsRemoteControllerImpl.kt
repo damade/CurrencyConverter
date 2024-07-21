@@ -15,7 +15,7 @@ import query.CurrenciesAndroidQuery
 class SymbolFlagsRemoteControllerImpl @Inject constructor(
     private val middlewareProvider: MiddlewaresProducer,
     private val errorAdapter: JsonAdapter<ResponseMessage>,
-    private val apolloClient: ApolloClient
+    private val apolloClient: ApolloClient,
 ) : SymbolFlagsRemoteController {
 
     override fun fetchCurrencyWithFlags(): Observable<List<SymbolFlagResponse>> {
@@ -26,7 +26,9 @@ class SymbolFlagsRemoteControllerImpl @Inject constructor(
             query = CurrenciesAndroidQuery()
         ).map { response ->
             if (response.data?.countries != null && response.data?.countries.isNotNullOrEmpty()) {
-                groupCountriesByCurrencies(response.data?.countries as List<CurrenciesAndroidQuery.Country>)
+                mapCountriesToCurrencies(
+                    remoteModel = response.data?.countries.orEmpty()
+                )
             } else {
                 throw Throwable(message = "Currencies Flag GraphQL Error")
             }
@@ -34,49 +36,68 @@ class SymbolFlagsRemoteControllerImpl @Inject constructor(
     }
 
 
-    private fun groupCountriesByCurrencies(remoteModel: List<CurrenciesAndroidQuery.Country>): List<SymbolFlagResponse>
-    {
-
-        val groupedCountriesList: Map<String?, List<CurrenciesAndroidQuery.Country>> = remoteModel.groupBy {
-            it.currency?.split(",")?.get(0)
-        }
+    private fun mapCountriesToCurrencies(
+        remoteModel: List<CurrenciesAndroidQuery.Country?>,
+    ): List<SymbolFlagResponse> {
+        val groupedCountriesList: Map<String, List<CurrenciesAndroidQuery.Country>> = remoteModel
+            .mapNotNull { it }
+            .groupBy {
+                it.currency?.split(",")?.get(0).orEmpty()
+            }
 
         val symbolFlagResponses = mutableListOf<SymbolFlagResponse>()
-        for (currencyCode: String? in groupedCountriesList.keys) {
-            if (currencyCode != null && currencyCode.isNotNullOrEmpty()) {
-                val countries = groupedCountriesList[currencyCode]
+        for (currencyCode: String in groupedCountriesList.keys) {
+            if (currencyCode.isNotNullOrEmpty()) {
+                val countries = groupedCountriesList[currencyCode].orEmpty()
 
                 val eachSymbolFlagResponse = SymbolFlagResponse(
                     remoteCurrencyCode = currencyCode,
-                    remoteCurrencyFlags = when (currencyCode) {
-                        "EUR" -> {
-                            "🇪🇺"
-                        }
-                        "USD" -> {
-                            "🇺🇸"
-                        }
-                        else -> {
-                            countries?.get(0)?.emoji ?: "🏴‍☠️"
-                        }
-                    },
-                    remoteCurrencyFlagsUtF = when(currencyCode){
-                        "EUR" -> {
-                            "\uD83C\uDDEA\uD83C\uDDFA"
-                        }
-                        "USD" -> {
-                            "\uD83C\uDDFA\uD83C\uDDF8"
-                        }
-                        else -> {
-                            countries?.get(0)?.emojiU ?: "\uD83C\uDFF4\u200D☠️️"
-                        }
-                    }
+                    remoteCurrencyFlags = mapCurrencyFlag(
+                        currencyCode = currencyCode,
+                        countryEmoji = countries.firstOrNull()?.emoji,
+                    ),
+                    remoteCurrencyFlagsUtF = mapCurrencyFlagUtf(
+                        currencyCode = currencyCode,
+                        countryEmojiUtf = countries.firstOrNull()?.emojiU,
+                    )
                 )
                 symbolFlagResponses.add(eachSymbolFlagResponse)
             }
-
         }
-
         return symbolFlagResponses
     }
 
+    private fun mapCurrencyFlag(
+        currencyCode: String,
+        countryEmoji: String?,
+    ): String = when (currencyCode) {
+        "EUR" -> {
+            "🇪🇺"
+        }
+
+        "USD" -> {
+            "🇺🇸"
+        }
+
+        else -> {
+            countryEmoji ?: "🏴‍☠️"
+        }
+    }
+
+    private fun mapCurrencyFlagUtf(
+        currencyCode: String,
+        countryEmojiUtf: String?,
+    ): String = when (currencyCode) {
+        "EUR" -> {
+            "\uD83C\uDDEA\uD83C\uDDFA"
+        }
+
+        "USD" -> {
+            "\uD83C\uDDFA\uD83C\uDDF8"
+        }
+
+        else -> {
+            countryEmojiUtf ?: "\uD83C\uDFF4\u200D☠️️"
+        }
+    }
 }
