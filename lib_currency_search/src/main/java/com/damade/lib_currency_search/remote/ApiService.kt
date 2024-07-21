@@ -4,14 +4,17 @@ import com.damade.lib_currency_search.remote.model.response.CurrencyConversionRe
 import com.damade.lib_currency_search.remote.model.response.CurrencyHistoryResponse
 import com.damade.lib_currency_search.remote.model.response.CurrencySymbolResponse
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.Path
 import retrofit2.http.Query
 
 internal interface ApiService {
 
+    @Headers("Cache-Control: public, max-age=86400")
     @GET("/list")
     suspend fun getCurrencySymbol(): CurrencySymbolResponse
 
+    @Headers("Cache-Control: public, max-age=3600")
     @GET("/convert")
     suspend fun getConvertedExchange(
         @Query("from") from: String,
@@ -19,6 +22,7 @@ internal interface ApiService {
         @Query("amount") amount: Int,
     ): CurrencyConversionResponse
 
+    @Headers("Cache-Control: public, max-age=86400")
     @GET("/{date}")
     suspend fun getCurrencySymbolHistory(
         @Path("date") date: String,
