@@ -1,9 +1,9 @@
 package com.damilola.remote.di
 
+import android.content.Context
 import com.apollographql.apollo3.ApolloClient
 import com.damilola.config.AppsConfig
 import com.damilola.core.model.ResponseMessage
-import com.damilola.remote.interceptors.HttpsInterceptor
 import com.damilola.remote.interceptors.NoInternetInterceptor
 import com.damilola.remote.interceptors.TokenInterceptor
 import com.damilola.remote.interceptors.UnsuccessfulCallInterceptor
@@ -16,7 +16,9 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -50,7 +52,10 @@ class RemoteModule {
         fun makeOkHttpClient(
             httpLoggingInterceptor: HttpLoggingInterceptor,
             tokenInterceptor: TokenInterceptor,
+            @ApplicationContext context: Context,
         ): OkHttpClient {
+            val cacheSize = (35 * 1024 * 1024).toLong() // 15 MB
+            val cache = Cache(directory = context.cacheDir, maxSize = cacheSize)
             return OkHttpClient.Builder()
                 .addInterceptor(tokenInterceptor)
                 //.addInterceptor(HttpsInterceptor)
@@ -61,6 +66,7 @@ class RemoteModule {
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS)
+                .cache(cache = cache)
                 .build()
         }
 
