@@ -17,6 +17,7 @@ include(
     ":lib_compose_core",
     ":lib_currency_search",
     ":lib_currency_flag",
+    ":lint_playground",
     ":ft_currency",
     ":ft_home",
     ":navigation",

@@ -9,8 +9,8 @@ class FakeCurrencyConversionCache: CurrencyConversionCache {
     private val cache: List<ConversionEntity> = tempCache
 
 
-    override suspend fun saveCurrencyConversion(conversionEntity: ConversionEntity) {
-        tempCache.add(conversionEntity)
+    override suspend fun saveCurrencyConversion(conversion: ConversionEntity) {
+        tempCache.add(conversion)
     }
 
     override suspend fun fetchCurrencyConversionHistory(): List<ConversionEntity> {

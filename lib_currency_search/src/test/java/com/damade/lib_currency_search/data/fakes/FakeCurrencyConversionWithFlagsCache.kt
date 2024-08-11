@@ -8,8 +8,8 @@ class FakeCurrencyConversionWithFlagsCache: CurrencyConversionWithFlagsCache {
     private val tempCache: MutableList<ConversionWithFlagsEntity> = arrayListOf()
     private val cache: List<ConversionWithFlagsEntity> = tempCache
 
-    override suspend fun saveCurrencyConversion(conversionEntity: ConversionWithFlagsEntity) {
-        tempCache.add(conversionEntity)
+    override suspend fun saveCurrencyConversion(conversion: ConversionWithFlagsEntity) {
+        tempCache.add(conversion)
     }
 
     override suspend fun fetchCurrencyConversionHistory(): List<ConversionWithFlagsEntity> {
