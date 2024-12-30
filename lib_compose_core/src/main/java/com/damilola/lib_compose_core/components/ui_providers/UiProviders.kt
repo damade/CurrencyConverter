@@ -51,7 +51,8 @@ fun AppLoader(modifier: Modifier) {
         targetValue = 360F,
         animationSpec = infiniteRepeatable(
             animation = tween(750, easing = LinearEasing)
-        )
+        ),
+        label = ""
     )
 
     Image(
