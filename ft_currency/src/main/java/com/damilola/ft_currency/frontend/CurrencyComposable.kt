@@ -64,6 +64,4 @@ internal fun CurrencyComposable(
         onResetScreen = ::resetConversionResult,
         navigateToHistoryScreen = navigateToHistoryScreen
     )
-
-
 }

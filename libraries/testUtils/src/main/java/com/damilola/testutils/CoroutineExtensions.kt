@@ -1,12 +1,9 @@
 package com.damilola.testutils
 
-import app.cash.turbine.test
 import com.google.common.truth.IterableSubject
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.test.TestCoroutineScope
 import kotlinx.coroutines.test.TestScope
 import org.junit.Assert
@@ -16,6 +13,7 @@ import org.junit.function.ThrowingRunnable
  * Source: https://github.com/Ezike/StarWarsSearch-MVI/blob/main/libraries/testUtils/src/main/java/com/ezike/tobenna/starwarssearch/testutils/Extensions.kt
  * */
 @OptIn(ExperimentalCoroutinesApi::class)
+@ExperimentalCoroutinesApi
 inline fun <reified T : Throwable> TestCoroutineScope.assertThrows(
     crossinline runnable: suspend () -> Unit
 ): T {
