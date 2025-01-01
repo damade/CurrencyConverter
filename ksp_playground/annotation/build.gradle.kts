@@ -1,0 +1,5 @@
+plugins {
+    kotlinModule
+}
+
+apply<CurrencyConverterPlugin>()
