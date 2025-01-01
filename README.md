@@ -7,9 +7,9 @@ A simple app that converts the value of a currency to other currencies from [Exc
 ## Prerequisite
 To build this project, you require:
 - Android Studio 
-- Gradle 8.3.2
-- Kotlin 1.8.22
-- Android Gradle Plugin 8.2.0
+- Gradle 8.7.0
+- Kotlin 1.9.21
+- Android Gradle Plugin 8.5.0
 
 ## Features
 * Clean Architecture with MVVM (Uni-directional data model with UI states)
@@ -25,10 +25,11 @@ To build this project, you require:
 * Compose (Compose with Flow, RxJava Observable, Navigation)
 * Unit Test
 * Plugin for managing dependencies
+* KSP experimentation to generate basic fakes for tests and compose previews
 
 ## Future Tech Roadmap
 In no particular order
-* Add in-memory and locale cache for rate particular to currencies to reduce Api request calls conversion
+* Add in-memory and local cache for rate particular to currencies to reduce Api request calls conversion
 * Setup Ktlint on the project
 * Migrate to KSP and K2 compiler.
 * Use the Konsist library to write rules about the architecture and class conventions.
