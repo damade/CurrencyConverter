@@ -9,9 +9,15 @@ import org.junit.Assert.*
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-class ExampleUnitTest {
+internal class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
+    }
+
+    @Test
+    fun `when mapping fullname then the expected data is returned`() {
+        val name = NameUiFake.data(fullName = "Hallowed John Doe")
+        assertEquals("Hallowed John Doe", name.getFullName())
     }
 }

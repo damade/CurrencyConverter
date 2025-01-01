@@ -1,6 +1,7 @@
 package com.damilola.processor.fake_generator
 
 import com.damilola.processor.utils.className
+import com.damilola.processor.utils.getVisibilityModifierString
 import com.damilola.processor.utils.packageNameString
 import com.damilola.processor.utils.propertiesName
 import com.google.devtools.ksp.processing.CodeGenerator
@@ -47,13 +48,17 @@ internal fun KSClassDeclaration.buildFakeFunction() = buildString {
     appendLine("package $packageNameString")
     appendLine()
     appendLine()
-    appendLine("fun ${className}.fake(")
+    appendLine("${getVisibilityModifierString()} class $generatedClassName {")
+    appendLine("    companion object {")
+    appendLine("        fun data(")
     buildFakeParameter().forEach { (propertyName, propertyType, defaultParameter) ->
-        appendLine("    $propertyName: $propertyType = $defaultParameter,")
+        appendLine("            $propertyName: $propertyType = $defaultParameter,")
     }
-    appendLine(") = ${className}(")
+    appendLine("        ) = ${className}(")
     propertiesName().forEach { propertyName ->
-        appendLine("    $propertyName = $propertyName,")
+        appendLine("            $propertyName = $propertyName,")
     }
-    appendLine(")")
+    appendLine("        )")
+    appendLine("    }")
+    appendLine("}")
 }

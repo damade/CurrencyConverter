@@ -1,3 +1,6 @@
+import Dependencies.Compose
+import ProjectLib.libComposeCore
+
 plugins {
     androidLibrary
     kotlinAndroidModule
@@ -8,6 +11,14 @@ apply<CurrencyConverterPlugin>()
 
 android {
     namespace = "com.damilola.ksp_usage"
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Compose.Version.composeCompiler
+    }
+
+    buildFeatures {
+        compose = true
+    }
 }
 
 dependencies {
@@ -15,6 +26,12 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(project(libComposeCore))
+
+    debugImplementation(Compose.composeUiPreview)
+    debugImplementation(Compose.composeUiTestManifest)
+
+    implementAll(Compose.components)
 
     implementation(project(ProjectLib.kspPlaygroundAnnotation))
     ksp(project(ProjectLib.kspPlaygroundProcessor))
