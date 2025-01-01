@@ -12,10 +12,10 @@ repositories {
 
 object PluginsDependencies {
     object Version {
-        const val kotlin: String = "1.8.22"
-        const val androidGradle: String = "8.3.2"
+        const val kotlin: String = "1.9.21"
+        const val androidGradle: String = "8.5.0"
         const val navigation: String = "2.5.3"
-        const val daggerHiltAndroid: String = "2.44"
+        const val daggerHiltAndroid: String = "2.46"
         const val apolloGraphQl: String = "3.6.2"
     }
 

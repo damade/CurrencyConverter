@@ -1,8 +1,8 @@
 object Config {
     object Version {
         const val minSdkVersion: Int = 24
-        const val compileSdkVersion: Int = 34
-        const val targetSdkVersion: Int = 34
+        const val compileSdkVersion: Int = 35
+        const val targetSdkVersion: Int = 35
         const val versionName: String = "1.0"
         const val versionCode: Int = 1
     }
@@ -133,7 +133,7 @@ object Dependencies {
 
             const val composeConstraint: String = "1.0.1"
 
-            const val composeCompiler: String = "1.4.8"
+            const val composeCompiler: String = "1.5.6"
 
             const val composeTheme: String = "1.1.3"
 
@@ -249,8 +249,8 @@ object Dependencies {
 
     object DI {
         object Version {
-            const val daggerHilt: String = "2.44"
-            const val androidxHilt: String = "1.0.0"
+            const val daggerHilt: String = "2.46"
+            const val androidxHilt: String = "1.1.0"
         }
 
         object AnnotationProcessor {
@@ -346,7 +346,7 @@ object Dependencies {
 
     object Cache : Libraries {
         object Version {
-            const val room: String = "2.5.2"
+            const val room: String = "2.6.1"
         }
 
         object AnnotationProcessor {
@@ -412,6 +412,16 @@ object Dependencies {
 
         const val turbine: String = "app.cash.turbine:turbine:${Version.turbine}"
     }
+
+    object Playground {
+        object Version {
+            const val ksp = "1.9.21-1.0.16"
+            const val kotlinPoet = "1.18.1"
+        }
+
+        const val ksp = "com.google.devtools.ksp:symbol-processing-api:${Version.ksp}"
+        const val kotlinPoet = "com.squareup:kotlinpoet-ksp:${Version.kotlinPoet}"
+    }
 }
 
 object ProjectLib {
@@ -425,6 +435,9 @@ object ProjectLib {
     const val libCurrencySearch: String = ":lib_currency_search"
     const val libCurrencyFlag: String = ":lib_currency_flag"
     const val testUtils: String = ":libraries:testUtils"
+    const val kspPlaygroundAnnotation: String = ":ksp_playground:annotation"
+    const val kspPlaygroundProcessor: String = ":ksp_playground:processor"
+    const val kspPlaygroundUsage: String = ":ksp_playground:ksp_usage"
     const val ftCurrency: String = ":ft_currency"
     const val ftHome: String = ":ft_home"
     const val navigation: String = ":navigation"

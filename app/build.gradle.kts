@@ -8,6 +8,7 @@ import ProjectLib.core
 import ProjectLib.coreAndroid
 import ProjectLib.ftCurrency
 import ProjectLib.ftHome
+import ProjectLib.kspPlaygroundUsage
 import ProjectLib.navigation
 
 plugins {
@@ -45,6 +46,7 @@ dependencies {
     implementation(project(coreAndroid))
     implementation(project(ftCurrency))
     implementation(project(ftHome))
+    implementation(project(kspPlaygroundUsage))
     implementation(project(navigation))
 
     debugImplementation(Performance.leakCanary)
