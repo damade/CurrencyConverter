@@ -1,0 +1,1 @@
+tasks.register<GenerateFeatureModuleTask>("generateFeatureModule")

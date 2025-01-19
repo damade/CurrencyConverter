@@ -1,15 +1,14 @@
-package com.damilola.currencyconverter
+package {{packageName}}.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.damilola.currencyconverter.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import {{packageName}}.databinding.Activity{{className}}Binding
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class {{className}} : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(com.damilola.core_android.R.style.AppTheme)
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

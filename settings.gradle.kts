@@ -25,4 +25,5 @@ include(
     ":libraries:testUtils",
     ":lint_playground",
     ":navigation",
+    ":ft_latestrates",
 )

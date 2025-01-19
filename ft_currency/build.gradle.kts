@@ -56,10 +56,6 @@ dependencies {
     implementation(project(libCurrencySearch))
     implementAll(RxJava.components)
 
-    implementation(DI.daggerHiltAndroid)
-
-    androidTestImplementation(Test.compose)
-
     debugImplementation(Compose.composeUiPreview)
     debugImplementation(Compose.composeUiTestManifest)
 
@@ -67,9 +63,11 @@ dependencies {
     implementAll(Coroutines.components)
     implementation(View.fragment)
 
+    implementation(DI.daggerHiltAndroid)
     kapt(DI.AnnotationProcessor.daggerHilt)
     kapt(DI.AnnotationProcessor.androidxHiltCompiler)
 
+    androidTestImplementation(Test.compose)
     testImplementation(Test.junit)
     testImplementation(Test.truth)
     testImplementation(Test.coroutinesTest)
