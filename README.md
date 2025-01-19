@@ -26,6 +26,10 @@ To build this project, you require:
 * Unit Test
 * Plugin for managing dependencies
 * KSP experimentation to generate basic fakes for tests and compose previews
+* Gradle tasks experimentation to create feature module based on project structure
+
+## Future Tech Roadmap
+* To generate a feature module run: ./gradlew generateFeatureModule -PfeatureName="FeatureName" -PtemplateName=featureTemplate
 
 ## Future Tech Roadmap
 In no particular order
