@@ -1,15 +1,89 @@
 [versions]
+
+# Android
 coreKtx = "1.15.0"
+navigation = "2.7.7"
+multidex = "2.0.1"
+lifeCycle = "2.7.0"
+activity = "1.8.2"
+paging= "3.2.1"
+legacy = "1.0.0"
+
+# View
+materialComponent = "1.5.0"
+shimmerLayout = "0.5.0"
+appCompat = "1.6.1"
+constraintLayout = "2.1.4"
+fragment = "1.6.2"
+cardView = "1.0.0"
+recyclerView = "1.3.2"
+swipeRefresh = "1.1.0"
+loadingButton = "2.2.0"
+countryPicker = "2.4.2"
+lottieAnimation = "4.2.1"
+pinView = "2.1.2"
+viewPagerIndicator = "4.1.2"
+cardNumberView = "2.1.3"
+appcompat = "1.7.0"
+material = "1.12.0"
+
+# Compose
+composeBom = "2025.01.00"
+composeThemeAdapter = "1.2.1"
+
+# Network
+okhttp = "5.0.0-alpha.2"
+retrofit = "2.9.0"
+moshi = "1.14.0"
+apollographql = "3.6.2"
+
+# DI
+daggerHilt = "2.46"
+androidxHilt = "1.1.0"
+
+# Coroutines
+coroutines = "1.7.3"
+
+# RxJava
+rxjava3RxandroidVersion = "3.0.0"
+rxjava3Version = "3.1.5"
+rxrelay3Version = "3.0.1"
+
+# Image
+circleImageView = "3.1.0"
+glideLoader = "4.12.0"
+coilLoader = "2.2.1"
+
+# Cache
+room = "2.6.1"
+
+# Performance
+leakCanary = "2.7"
+logger = "0.1"
+
+# Test
 junit = "4.13.2"
-junitVersion = "1.2.1"
+junitRunner = "1.2.1"
+rules = "1.3.0-rc03"
+testExt = "1.1.3"
 espressoCore = "3.6.1"
-appcompat = "1.6.1"
-material = "1.10.0"
+truth = "1.0.1"
+mockWebServer = "4.7.2"
+robolectric = "4.5.1"
+archCoreTest = "1.1.1"
+fragmentTest = "1.4.0"
+coroutinesTest = "1.6.4"
+turbine = "0.12.1"
+junitParams = "1.1.1"
+
+# Others
+ksp = "1.9.21-1.0.16"
+kotlinPoet = "1.18.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
-androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitRunner" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }

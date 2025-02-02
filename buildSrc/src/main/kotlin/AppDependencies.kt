@@ -210,14 +210,6 @@ object Dependencies {
         )
     }
 
-    object FlowBinding {
-        private const val flowBindingVersion: String = "1.0.0-alpha02"
-        const val android: String =
-            "io.github.reactivecircus.flowbinding:flowbinding-android:$flowBindingVersion"
-        const val lifecycle: String =
-            "io.github.reactivecircus.flowbinding:flowbinding-lifecycle:$flowBindingVersion"
-    }
-
     object Network : Libraries {
         object Version {
             const val okhttp: String = "5.0.0-alpha.2"
@@ -318,18 +310,13 @@ object Dependencies {
 
     object Image {
         object Version {
-            const val imageSlider: String = "0.1.0"
             const val circleImageView: String = "3.1.0"
             const val glideLoader: String = "4.12.0"
-            const val picassoLoader: String = "3.1.0"
             const val coilLoader: String = "2.2.1"
         }
 
         const val circleImageView: String =
             "de.hdodenhof:circleimageview:${Version.circleImageView}"
-
-        const val imageSlider: String =
-            "com.github.denzcoskun:ImageSlideshow:${Version.imageSlider}"
 
         const val glideLoader: String =
             "com.github.bumptech.glide:glide:${Version.glideLoader}"
