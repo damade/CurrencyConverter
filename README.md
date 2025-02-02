@@ -28,7 +28,7 @@ To build this project, you require:
 * KSP experimentation to generate basic fakes for tests and compose previews
 * Gradle tasks experimentation to create feature module based on project structure
 
-## Future Tech Roadmap
+## Helpful Commands in project
 * To generate a feature module run: <br>
     `./gradlew generateFeatureModule -PfeatureName="FeatureName" -PtemplateName=featureTemplate`
 
