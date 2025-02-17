@@ -1,4 +1,3 @@
-rootProject.name = "CurrencyConverter"
 pluginManagement {
     repositories {
         google()
@@ -7,6 +6,8 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+rootProject.name = "CurrencyConverter"
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(
     ":app",
     ":config",

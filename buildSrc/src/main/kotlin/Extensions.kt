@@ -1,12 +1,13 @@
-import org.gradle.api.Project
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.initialization.dsl.ScriptHandler
-import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.kotlin
 import org.gradle.plugin.use.PluginDependenciesSpec
 import org.gradle.plugin.use.PluginDependencySpec
+
+val PluginDependenciesSpec.currencyConverterPlugin : PluginDependencySpec
+    get() = id("CurrencyConverterPlugin")
 
 val PluginDependenciesSpec.androidApplication: PluginDependencySpec
     get() = id("com.android.application")

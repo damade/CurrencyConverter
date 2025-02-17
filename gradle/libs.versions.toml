@@ -1,5 +1,9 @@
 [versions]
 
+# Kotlin
+kotlin = "2.0.0"
+kotlintest = "2.0.7"
+
 # Android
 coreKtx = "1.15.0"
 navigation = "2.7.7"
@@ -24,10 +28,19 @@ lottieAnimation = "4.2.1"
 pinView = "2.1.2"
 viewPagerIndicator = "4.1.2"
 cardNumberView = "2.1.3"
-appcompat = "1.7.0"
-material = "1.12.0"
 
 # Compose
+composeActivity = "1.6.0"
+compose = "1.4.3"
+composeMaterial = "1.1.1"
+composeConstraint = "1.0.1"
+composeCompiler = "1.5.6"
+composeTheme = "1.1.3"
+composeViewModel = "2.5.1"
+composeNavigation = "2.6.0"
+composeHiltNavigation = "1.0.0"
+composeMDCTheme = "1.1.16"
+composeAppCompatTheme = "0.25.1"
 composeBom = "2025.01.00"
 composeThemeAdapter = "1.2.1"
 
@@ -48,6 +61,9 @@ coroutines = "1.7.3"
 rxjava3RxandroidVersion = "3.0.0"
 rxjava3Version = "3.1.5"
 rxrelay3Version = "3.0.1"
+
+# Apollo GraphQl
+apollographqlVersion = "3.6.2"
 
 # Image
 circleImageView = "3.1.0"
@@ -79,13 +95,144 @@ junitParams = "1.1.1"
 # Others
 ksp = "1.9.21-1.0.16"
 kotlinPoet = "1.18.1"
+gradle = "8.5.0"
+navigationPlugin = "2.5.3"
+daggerHiltPlugin = "2.46"
+apolloGraphQlPlugin = "3.6.2"
 
 [libraries]
+# Kotlin
+kotlin-gradle = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk7", version.ref = "kotlin" }
+kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
+
+# Android
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+navigationFragmentKtx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
+navigationUiKtx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
+navigationDynamicFeatureKtx = { group = "androidx.navigation", name = "navigation-dynamic-features-fragment", version.ref = "navigation" }
+multiDex = { group = "androidx.multidex", name = "multidex", version.ref = "multidex" }
+activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+activityKtx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity" }
+lifeCycleCommon = { group = "androidx.lifecycle", name = "lifecycle-common-java8", version.ref = "lifeCycle" }
+viewModel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifeCycle" }
+liveData = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifeCycle" }
+savedState = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-savedstate", version.ref = "lifeCycle" }
+runTime = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifeCycle" }
+paging = { group = "androidx.paging", name = "paging-runtime-ktx", version.ref = "paging" }
+legacy = { group = "androidx.legacy", name = "legacy-support-v4", version.ref = "legacy" }
+
+# View
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appCompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "materialComponent" }
+fragment = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragment" }
+swipeRefresh = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swipeRefresh" }
+cardView = { group = "androidx.cardview", name = "cardview", version.ref = "cardView" }
+shimmerLayout = { group = "com.facebook.shimmer", name = "shimmer", version.ref = "shimmerLayout" }
+constraintLayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintLayout" }
+recyclerView = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerView" }
+loadingButton = { group = "br.com.simplepass", name = "loading-button-android", version.ref = "loadingButton" }
+countryPicker = { group = "com.hbb20", name = "ccp", version.ref = "countryPicker" }
+lottieAnimation = { group = "com.airbnb.android", name = "lottie", version.ref = "lottieAnimation" }
+pinView = { group = "com.github.mukeshsolanki", name = "android-otpview-pinview", version.ref = "pinView" }
+viewPagerIndicator = { group = "com.tbuonomo.andrui", name = "viewpagerdotsindicator", version.ref = "viewPagerIndicator" }
+cardNumberView = { group = "com.github.Mostafa-MA-Saleh", name = "EditCredit", version.ref = "cardNumberView" }
+
+# Compose
+composeActivity = { group = "androidx.activity", name = "activity-compose", version.ref = "composeActivity" }
+composeConstraintLayout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "composeConstraint" }
+composeAnimation = { group = "androidx.compose.animation", name = "animation", version.ref = "compose" }
+composeFoundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "compose" }
+composeMaterial = { group = "androidx.compose.material3", name = "material3", version.ref = "composeMaterial" }
+composeMaterialWindow = { group = "androidx.compose.material3", name = "material3-window-size-class", version.ref = "composeMaterial" }
+composeUi = { group = "androidx.compose.ui", name = "ui", version.ref = "compose" }
+composeUiPreview = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "compose" }
+composeUiTestManifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "compose" }
+composeRxJava = { group = "androidx.compose.runtime", name = "runtime-rxjava3", version.ref = "compose" }
+composeNavigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "composeNavigation" }
+composeViewModel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "composeViewModel" }
+composeMDCTheme = { group = "com.google.android.material", name = "compose-theme-adapter", version.ref = "composeMDCTheme" }
+composeHiltNavigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "composeHiltNavigation" }
+composeAppCompatTheme = { group = "com.google.accompanist", name = "accompanist-appcompat-theme", version.ref = "composeAppCompatTheme" }
+composeAnimationGraphics = { group = "androidx.compose.animation", name = "animation-graphics", version.ref = "compose" }
+composeAnimationCore = { group = "androidx.compose.animation", name = "animation-core", version.ref = "compose" }
+composeRuntime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "compose" }
+
+# Network
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+loggingInterceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofitMoshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }
+moshiKotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshi" }
+moshi = { group = "com.squareup.moshi", name = "moshi", version.ref = "moshi" }
+moshi-compiler = { group = "com.squareup.moshi", name = "moshi-kotlin-codegen", version.ref = "moshi" }
+
+# DI
+daggerHiltAndroid = { group = "com.google.dagger", name = "hilt-android", version.ref = "daggerHilt" }
+hiltViewModel = { group = "androidx.hilt", name = "hilt-lifecycle-viewmodel", version.ref = "androidxHilt" }
+hiltTesting = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "daggerHilt" }
+hiltCore = { group = "com.google.dagger", name = "hilt-core", version.ref = "daggerHilt" }
+daggerHiltCompiler = {group = "com.google.dagger", name = "hilt-compiler", version.ref = "daggerHilt" }
+androidx-hilt-compiler = {group = "androidx.hilt", name = "hilt-compiler", version.ref = "androidxHilt" }
+
+# Coroutines
+coreCoroutine = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+
+# RxJava
+rxJavaCore = { group = "io.reactivex.rxjava3", name = "rxjava", version.ref = "rxjava3Version" }
+rxAndroid = { group = "io.reactivex.rxjava3", name = "rxandroid", version.ref = "rxjava3RxandroidVersion" }
+rxRelay = { group = "com.jakewharton.rxrelay3", name = "rxrelay", version.ref = "rxrelay3Version" }
+
+# ApolloGraphQl
+apolloRuntime = { group = "com.apollographql.apollo3", name = "apollo-runtime", version.ref = "apollographqlVersion" }
+apolloApi = { group = "com.apollographql.apollo3", name = "apollo-api", version.ref = "apollographqlVersion" }
+apolloRxJava3 = { group = "com.apollographql.apollo3", name = "apollo-rx3-support", version.ref = "apollographqlVersion" }
+
+# Image
+circleImageView = { group = "de.hdodenhof", name = "circleimageview", version.ref = "circleImageView" }
+glideLoader = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glideLoader" }
+glideCompiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glideLoader" }
+coilLoader = { group = "io.coil-kt", name = "coil", version.ref = "coilLoader" }
+coilComposeLoader = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilLoader" }
+
+# Cache
+room = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+roomRuntime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+roomRxJava = { group = "androidx.room", name = "room-rxjava3", version.ref = "room" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+
+# Performace
+leakCanary = { group = "com.squareup.leakcanary", name = "leakcanary-android", version.ref = "leakCanary" }
+logger = { group = "com.squareup.logcat", name = "logcat", version.ref = "logger" }
+
+# Test
 junit = { group = "junit", name = "junit", version.ref = "junit" }
+junitParams = { group = "pl.pragmatists", name = "JUnitParams", version.ref = "junitParams" }
+runner = { group = "androidx.test", name = "runner", version.ref = "junitRunner" }
+fragmentTesting = { group = "androidx.fragment", name = "fragment-testing", version.ref = "fragment" }
+espressoContrib = { group = "androidx.test.espresso", name = "espresso-contrib", version.ref = "espressoCore" }
+rules = { group = "androidx.test", name = "rules", version.ref = "rules" }
+archCoreTest = { group = "android.arch.core", name = "core-testing", version.ref = "archCoreTest" }
+truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
+mockWebServer = { group = "com.squareup.okhttp3", name = "mockwebserver", version.ref = "mockWebServer" }
+coroutinesTest = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
+robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
+compose = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "compose" }
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitRunner" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
-androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
+# Playground
+ksp = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version.ref = "ksp" }
+kotlinPoet = { group = "com.squareup", name = "kotlinpoet-ksp", version.ref = "kotlinPoet" }
+
+# Others
+gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+navigationSafeArgsPlugin = { group = "androidx.navigation", name = "navigation-safe-args-gradle-plugin", version.ref = "navigationPlugin" }
+daggerHiltPlugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "daggerHiltPlugin" }
+apolloGraphQlPlugin = { group = "com.apollographql.apollo3", name = "apollo-gradle-plugin", version.ref = "apolloGraphQlPlugin" }
 
 [plugins]
+org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

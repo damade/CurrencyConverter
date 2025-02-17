@@ -4,6 +4,9 @@ import com.android.build.gradle.TestedExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.api.plugins.ExtensionContainer
+import org.gradle.api.plugins.JavaLibraryPlugin
+import org.gradle.api.plugins.JavaPlugin
+import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.kotlin.dsl.repositories
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -20,9 +23,12 @@ class CurrencyConverterPlugin : BaseGradlePlugin() {
                         }
 
                     is LibraryPlugin,
-                    -> extensions.getByType<TestedExtension>().apply {
+                        -> extensions.getByType<TestedExtension>().apply {
                         setUpAndroidLibraryModules(extension = this, project = project)
                     }
+
+                    is JavaPlugin, is JavaLibraryPlugin ->
+                        extensions.getByType<JavaPluginExtension>().setupModule()
                 }
             }
             setupRepositoriesHandler()
@@ -46,6 +52,11 @@ class CurrencyConverterPlugin : BaseGradlePlugin() {
     ) {
         extension.applyCommonProperties(project = project, isAppPlugin = true)
     }
+
+    private fun JavaPluginExtension.setupModule() = apply {
+            sourceCompatibility = JavaVersion.VERSION_17
+            targetCompatibility = JavaVersion.VERSION_17
+        }
 }
 
 private fun TestedExtension.applyCommonProperties(

@@ -16,9 +16,8 @@ plugins {
     kotlinAndroidModule
     kotlinKaptModule
     daggerHilt
+    currencyConverterPlugin
 }
-
-apply<CurrencyConverterPlugin>()
 
 kapt {
     correctErrorTypes = true

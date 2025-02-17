@@ -1,19 +1,11 @@
-import Dependencies.Test
-
 plugins {
     kotlinModule
-}
-
-apply<CurrencyConverterPlugin>()
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    currencyConverterPlugin
 }
 
 dependencies {
-    api(Test.junit)
-    api(Test.truth)
-    api(Test.coroutinesTest)
-    api(Test.turbine)
+    api(libs.junit)
+    api(libs.truth)
+    api(libs.coroutinesTest)
+    api(libs.turbine)
 }
