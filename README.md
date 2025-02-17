@@ -8,7 +8,7 @@ A simple app that converts the value of a currency to other currencies from [Exc
 To build this project, you require:
 - Android Studio 
 - Gradle 8.7.0
-- Kotlin 1.9.21
+- Kotlin 2.0.0
 - Android Gradle Plugin 8.5.0
 
 ## Features
