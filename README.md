@@ -39,7 +39,7 @@ In no particular order
 * Migrate to KSP and K2 compiler.
 * Use the Konsist library to write rules about the architecture and class conventions.
 * Set up macro benchmark and fix memory leaks. 
-* Replace BuildSrc, migrate to using version catalogs and update App Dependencies.
+* Replace BuildSrc, migrate to using version catalogs and update App Dependencies (In Progress).
 * Add screenshot and UI/integration testing, 
 
 ## Product Roadmap
