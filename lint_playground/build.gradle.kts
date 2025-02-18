@@ -14,11 +14,11 @@ dependencies {
     val lintVersion = "31.5.2"
 
     // Lint
-    compileOnly("com.android.tools.lint:lint-api:${lintVersion}")
-    compileOnly("com.android.tools.lint:lint-checks:${lintVersion}")
+    compileOnly(libs.lint.api)
+    compileOnly(libs.lint.checks)
 
     // Lint testing
-    testImplementation("com.android.tools.lint:lint:${lintVersion}")
-    testImplementation("com.android.tools.lint:lint-tests:${lintVersion}")
+    testImplementation(libs.lint)
+    testImplementation(libs.lint.tests)
     testImplementation("junit:junit:4.13.1")
 }

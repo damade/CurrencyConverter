@@ -1,20 +1,10 @@
-import Dependencies.AndroidX
-import Dependencies.Cache
-import Dependencies.Coroutines
-import Dependencies.DI
-import Dependencies.Network
-import Dependencies.Performance
-import ProjectLib.config
-import ProjectLib.core
-
 plugins {
     androidLibrary
     kotlinAndroidModule
     kotlinKaptModule
     daggerHilt
+    currencyConverterPlugin
 }
-
-apply<CurrencyConverterPlugin>()
 
 kapt {
     correctErrorTypes = true
@@ -28,15 +18,15 @@ android {
 }
 
 dependencies {
-    implementation(project(core))
-    implementation(project(config))
-    debugImplementation(Performance.logger)
-    implementation(AndroidX.coreKtx)
-    implementation(AndroidX.paging)
-    implementAll(Network.components)
-    implementation(DI.daggerHiltAndroid)
-    implementAll(Cache.components)
-    implementAll(Coroutines.components)
-    kapt(DI.AnnotationProcessor.daggerHilt)
-    kapt(Cache.AnnotationProcessor.room)
+    implementation(projects.core)
+    implementation(projects.config)
+    debugImplementation(libs.logger)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.paging)
+    implementation(libs.bundles.networkComponents)
+    implementation(libs.daggerHiltAndroid)
+    implementation(libs.bundles.cacheComponents)
+    implementation(libs.bundles.coroutinesComponents)
+    kapt(libs.daggerHiltCompiler)
+    kapt(libs.androidx.room.compiler)
 }

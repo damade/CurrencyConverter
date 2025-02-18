@@ -6,6 +6,7 @@ kotlintest = "2.0.7"
 
 # Android
 coreKtx = "1.15.0"
+lintVersion = "31.5.2"
 navigation = "2.7.7"
 multidex = "2.0.1"
 lifeCycle = "2.7.0"
@@ -177,7 +178,7 @@ androidx-hilt-compiler = {group = "androidx.hilt", name = "hilt-compiler", versi
 
 # Coroutines
 coreCoroutine = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+androidCoroutine = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 
 # RxJava
 rxJavaCore = { group = "io.reactivex.rxjava3", name = "rxjava", version.ref = "rxjava3Version" }
@@ -226,12 +227,22 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 # Playground
 ksp = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version.ref = "ksp" }
 kotlinPoet = { group = "com.squareup", name = "kotlinpoet-ksp", version.ref = "kotlinPoet" }
+lint = { module = "com.android.tools.lint:lint", version.ref = "lintVersion" }
+lint-api = { module = "com.android.tools.lint:lint-api", version.ref = "lintVersion" }
+lint-checks = { module = "com.android.tools.lint:lint-checks", version.ref = "lintVersion" }
+lint-tests = { module = "com.android.tools.lint:lint-tests", version.ref = "lintVersion" }
 
 # Others
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 navigationSafeArgsPlugin = { group = "androidx.navigation", name = "navigation-safe-args-gradle-plugin", version.ref = "navigationPlugin" }
 daggerHiltPlugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "daggerHiltPlugin" }
 apolloGraphQlPlugin = { group = "com.apollographql.apollo3", name = "apollo-gradle-plugin", version.ref = "apolloGraphQlPlugin" }
+
+[bundles]
+networkComponents = ["okhttp", "loggingInterceptor", "retrofit", "retrofitMoshi", "moshiKotlin"]
+apolloGraphqlComponents = ["apolloRxJava3", "apolloRuntime"]
+coroutinesComponents = ["coreCoroutine", "androidCoroutine"]
+cacheComponents = ["room", "roomRuntime", "roomRxJava"]
 
 [plugins]
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

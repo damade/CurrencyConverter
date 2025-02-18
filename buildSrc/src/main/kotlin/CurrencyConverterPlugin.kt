@@ -8,8 +8,6 @@ import org.gradle.api.plugins.JavaLibraryPlugin
 import org.gradle.api.plugins.JavaPlugin
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.kotlin.dsl.repositories
-import org.gradle.kotlin.dsl.withType
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 class CurrencyConverterPlugin : BaseGradlePlugin() {
 
@@ -19,12 +17,12 @@ class CurrencyConverterPlugin : BaseGradlePlugin() {
                 when (this) {
                     is AppPlugin ->
                         extensions.getByType<TestedExtension>().apply {
-                            setUpAndroidAppModules(extension = this, project = project)
+                            setUpAndroidAppModules(extension = this)
                         }
 
                     is LibraryPlugin,
                         -> extensions.getByType<TestedExtension>().apply {
-                        setUpAndroidLibraryModules(extension = this, project = project)
+                        setUpAndroidLibraryModules(extension = this)
                     }
 
                     is JavaPlugin, is JavaLibraryPlugin ->
@@ -39,19 +37,11 @@ class CurrencyConverterPlugin : BaseGradlePlugin() {
         applyDefault()
     }
 
-    private fun setUpAndroidLibraryModules(
-        project: Project,
-        extension: TestedExtension,
-    ) {
-        extension.applyCommonProperties(project = project, isAppPlugin = false)
-    }
+    private fun setUpAndroidLibraryModules(extension: TestedExtension) =
+        extension.applyCommonProperties(isAppPlugin = false)
 
-    private fun setUpAndroidAppModules(
-        project: Project,
-        extension: TestedExtension,
-    ) {
-        extension.applyCommonProperties(project = project, isAppPlugin = true)
-    }
+    private fun setUpAndroidAppModules(extension: TestedExtension) =
+        extension.applyCommonProperties(isAppPlugin = true)
 
     private fun JavaPluginExtension.setupModule() = apply {
             sourceCompatibility = JavaVersion.VERSION_17
@@ -59,10 +49,7 @@ class CurrencyConverterPlugin : BaseGradlePlugin() {
         }
 }
 
-private fun TestedExtension.applyCommonProperties(
-    project: Project,
-    isAppPlugin: Boolean,
-): TestedExtension {
+private fun TestedExtension.applyCommonProperties(isAppPlugin: Boolean): TestedExtension {
     return this.apply {
         setCompileSdkVersion(Config.Version.compileSdkVersion)
 
@@ -71,10 +58,6 @@ private fun TestedExtension.applyCommonProperties(
         compileOptions.apply {
             sourceCompatibility = JavaVersion.VERSION_17
             targetCompatibility = JavaVersion.VERSION_17
-        }
-
-        project.tasks.withType<KotlinCompile> {
-            kotlinOptions.jvmTarget = Jvm.kotlinCompileJvmVersion
         }
 
         if (isAppPlugin) {
