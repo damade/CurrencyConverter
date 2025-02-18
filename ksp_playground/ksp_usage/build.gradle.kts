@@ -5,9 +5,9 @@ plugins {
     androidLibrary
     kotlinAndroidModule
     id("com.google.devtools.ksp") version "1.9.21-1.0.16"
+    alias(libs.plugins.compose.compiler) apply false
+    currencyConverterPlugin
 }
-
-apply<CurrencyConverterPlugin>()
 
 android {
     namespace = "com.damilola.ksp_usage"

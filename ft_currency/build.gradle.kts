@@ -16,9 +16,9 @@ plugins {
     kotlinKaptModule
     safeArgs
     daggerHilt
+    currencyConverterPlugin
+    alias(libs.plugins.compose.compiler) apply false
 }
-
-apply<CurrencyConverterPlugin>()
 
 kapt {
     correctErrorTypes = true

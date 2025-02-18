@@ -1,13 +1,10 @@
-import Dependencies.Playground
-
 plugins {
     kotlinModule
+    currencyConverterPlugin
 }
 
-apply<CurrencyConverterPlugin>()
-
 dependencies {
-    implementation(project(ProjectLib.kspPlaygroundAnnotation))
-    implementation(Playground.ksp)
-    implementation(Playground.kotlinPoet)
+    implementation(projects.kspPlayground.annotation)
+    implementation(libs.ksp)
+    implementation(libs.kotlinPoet)
 }
