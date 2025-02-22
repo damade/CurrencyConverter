@@ -1,21 +1,11 @@
-import Dependencies.AndroidX
-import Dependencies.DI
-import Dependencies.Performance
-import Dependencies.Test
-import Dependencies.View
-import ProjectLib.core
-import ProjectLib.coreAndroid
-import ProjectLib.libCurrencySearch
-
 plugins {
     androidLibrary
     kotlinAndroidModule
     kotlinKaptModule
     safeArgs
     daggerHilt
+    currencyConverterPlugin
 }
-
-apply<CurrencyConverterPlugin>()
 
 kapt {
     correctErrorTypes = true
@@ -31,40 +21,39 @@ hilt {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
-    implementation(project(core))
-    implementation(project(coreAndroid))
-    implementation(project(libCurrencySearch))
+    implementation(projects.core)
+    implementation(projects.coreAndroid)
+    implementation(projects.libCurrencySearch)
 
-    debugImplementation(Performance.leakCanary)
-    debugImplementation(Performance.logger)
+    debugImplementation(libs.leakCanary)
+    debugImplementation(libs.logger)
 
-    with(AndroidX){
+
+    with(libs){
         implementation(lifeCycleCommon)
         implementation(runTime)
-        implementation(coreKtx)
+        implementation(androidx.core.ktx)
         implementation(activityKtx)
         implementation(navigationFragmentKtx)
         implementation(navigationUiKtx)
         implementation(viewModel)
         implementation(liveData)
         implementation(runTime)
-    }
 
-    View.run {
         implementation(fragment)
         implementation(swipeRefresh)
         implementation(shimmerLayout)
         implementation(lottieAnimation)
-        implementation(appCompat)
+        implementation(androidx.appcompat)
         implementation(recyclerView)
-        implementation(materialComponent)
+        implementation(material)
     }
 
-    implementation(DI.daggerHiltAndroid)
+    implementation(libs.daggerHiltAndroid)
 
-    kapt(DI.AnnotationProcessor.daggerHilt)
-    kapt(DI.AnnotationProcessor.androidxHiltCompiler)
+    kapt(libs.daggerHiltCompiler)
+    kapt(libs.androidx.hilt.compiler)
 
-    testImplementation(Test.junit)
-    testImplementation(Test.truth)
+    testImplementation(libs.junit)
+    testImplementation(libs.truth)
 }

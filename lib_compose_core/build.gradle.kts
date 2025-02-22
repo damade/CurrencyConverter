@@ -1,21 +1,13 @@
-import Dependencies.AndroidX
-import Dependencies.Compose
-import Dependencies.Test
-import ProjectLib.core
-import ProjectLib.coreAndroid
-
 plugins {
     androidLibrary
     kotlinAndroidModule
     kotlinKaptModule
+    currencyConverterPlugin
 }
 
-apply<CurrencyConverterPlugin>()
-
 android {
-
     composeOptions {
-        kotlinCompilerExtensionVersion = Compose.Version.composeCompiler
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
 
     buildFeatures {
@@ -27,12 +19,12 @@ android {
 
 
 dependencies {
-    implementation(project(core))
-    implementation(project(coreAndroid))
-    implementation(AndroidX.coreKtx)
+    implementation(projects.core)
+    implementation(projects.coreAndroid)
+    implementation(libs.androidx.core.ktx)
 
-    implementAll(Compose.components)
-    androidTestImplementation(Test.compose)
-    debugImplementation(Compose.composeUiPreview)
-    debugImplementation(Compose.composeUiTestManifest)
+    implementation(libs.bundles.composeComponents)
+    debugImplementation(libs.composeUiPreview)
+    debugImplementation(libs.composeUiTestManifest)
+    androidTestImplementation(libs.composeUiTest)
 }

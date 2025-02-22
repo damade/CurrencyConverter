@@ -1,16 +1,3 @@
-import Dependencies.AndroidX
-import Dependencies.Compose
-import Dependencies.Coroutines
-import Dependencies.DI
-import Dependencies.Image
-import Dependencies.Network
-import Dependencies.Performance
-import Dependencies.RxJava
-import Dependencies.Test
-import Dependencies.View
-import ProjectLib.config
-import ProjectLib.core
-
 plugins {
     androidLibrary
     kotlinAndroidModule
@@ -27,37 +14,41 @@ android {
 }
 
 dependencies {
-    implementation(project(core))
-    implementation(project(config))
-    implementation(AndroidX.lifeCycleCommon)
-    implementation(AndroidX.runTime)
-    implementation(AndroidX.coreKtx)
-    implementation(AndroidX.activity)
+    implementation(projects.core)
+    implementation(projects.config)
 
-    View.run {
+    libs.run {
+        implementation(lifeCycleCommon)
+        implementation(runTime)
+        implementation(androidx.core.ktx)
+        implementation(activity)
+    }
+
+    libs.run {
         implementation(fragment)
         implementation(swipeRefresh)
         implementation(shimmerLayout)
         implementation(lottieAnimation)
-        implementation(appCompat)
+        implementation(androidx.appcompat)
         implementation(recyclerView)
-        implementation(materialComponent)
+        implementation(material)
     }
-    implementation(Image.glideLoader)
-    implementation(Image.circleImageView)
-    implementation(DI.daggerHiltAndroid)
-    implementation(Network.moshi)
-    implementation(Coroutines.core)
-    implementation(Performance.logger)
-    implementAll(RxJava.components)
-    kapt(DI.AnnotationProcessor.daggerHilt)
-    kapt(Image.glideCompiler)
 
-    debugImplementation(Performance.leakCanary)
-    debugImplementation(Performance.logger)
+    implementation(libs.glideLoader)
+    implementation(libs.circleImageView)
+    implementation(libs.daggerHiltAndroid)
+    implementation(libs.moshi)
+    implementation(libs.coreCoroutine)
 
-    testImplementation(Test.junit)
-    testImplementation(Test.truth)
-    testImplementation(Test.coroutinesTest)
-    testImplementation(Test.mockWebServer)
+    implementation(libs.bundles.networkComponents)
+    kapt(libs.daggerHiltCompiler)
+    kapt(libs.glideCompiler)
+
+    debugImplementation(libs.leakCanary)
+    debugImplementation(libs.logger)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.truth)
+    testImplementation(libs.coroutinesTest)
+    testImplementation(libs.mockWebServer)
 }

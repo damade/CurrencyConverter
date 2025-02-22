@@ -1,22 +1,10 @@
-import Dependencies.Cache
-import Dependencies.Coroutines
-import Dependencies.DI
-import Dependencies.Network
-import Dependencies.Test
-import ProjectLib.cache
-import ProjectLib.core
-import ProjectLib.coreAndroid
-import ProjectLib.remote
-import ProjectLib.testUtils
-
 plugins {
     androidLibrary
     kotlinAndroidModule
     kotlinKaptModule
     daggerHilt
+    currencyConverterPlugin
 }
-
-apply<CurrencyConverterPlugin>()
 
 kapt {
     correctErrorTypes = true
@@ -28,27 +16,26 @@ android {
 
 dependencies {
 
-    implementation(project(remote))
-    implementation(project(cache))
-    implementation(project(core))
-    implementation(project(coreAndroid))
-    implementation(project(testUtils))
-    implementation(Coroutines.core)
-    implementation(Network.retrofit)
-    implementation(Network.retrofitMoshi)
+    implementation(projects.libraries.remote)
+    implementation(projects.libraries.cache)
+    implementation(projects.core)
+    implementation(projects.coreAndroid)
+    implementation(projects.libraries.testUtils)
+    implementation(libs.coreCoroutine)
 
-    implementation(DI.daggerHiltAndroid)
-    kapt(DI.AnnotationProcessor.daggerHilt)
+    implementation(libs.daggerHiltAndroid)
+    kapt(libs.daggerHiltCompiler)
 
-    testImplementation(Network.moshi)
-    testImplementation(Network.retrofitMoshi)
-    testImplementation(Cache.room)
+    implementation(libs.retrofit)
+    implementation(libs.retrofitMoshi)
+    testImplementation(libs.moshi)
+    testImplementation(libs.retrofitMoshi)
+    testImplementation(libs.room)
 
-    testImplementation(Test.runner)
-    testImplementation(Test.androidXTest)
-    testImplementation(Test.robolectric)
-
-    Test.run {
+    libs.run {
+        testImplementation(runner)
+        testImplementation(androidx.junit)
+        testImplementation(robolectric)
         testImplementation(junit)
         testImplementation(truth)
         testImplementation(coroutinesTest)

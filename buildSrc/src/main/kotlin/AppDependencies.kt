@@ -118,7 +118,8 @@ object Dependencies {
             "com.github.Mostafa-MA-Saleh:EditCredit:${Version.cardNumberView}"
 
         override val components: List<String> = listOf(
-            cardView, appCompat, fragment, swipeRefresh, lottieAnimation, pinView, cardNumberView,
+            cardView, appCompat, fragment, swipeRefresh,
+            lottieAnimation, pinView, cardNumberView,
             materialComponent, shimmerLayout, recyclerView
         )
     }

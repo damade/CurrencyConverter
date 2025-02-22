@@ -1,3 +1,5 @@
+package custom_gradle_tasks
+
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 import java.io.File

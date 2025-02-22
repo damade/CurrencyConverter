@@ -1,15 +1,3 @@
-import Dependencies.Compose
-import Dependencies.Coroutines
-import Dependencies.DI
-import Dependencies.RxJava
-import Dependencies.Test
-import Dependencies.View
-import ProjectLib.core
-import ProjectLib.coreAndroid
-import ProjectLib.libComposeCore
-import ProjectLib.libCurrencyFlag
-import ProjectLib.libCurrencySearch
-
 plugins {
     androidLibrary
     kotlinAndroidModule
@@ -32,7 +20,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Compose.Version.composeCompiler
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
 
     namespace = "com.damilola.ft_currency"
@@ -49,27 +37,26 @@ hilt {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
-    implementation(project(core))
-    implementation(project(coreAndroid))
-    implementation(project(libComposeCore))
-    implementation(project(libCurrencyFlag))
-    implementation(project(libCurrencySearch))
-    implementAll(RxJava.components)
+    implementation(projects.core)
+    implementation(projects.coreAndroid)
+    implementation(projects.libComposeCore)
+    implementation(projects.libCurrencyFlag)
+    implementation(projects.libCurrencySearch)
+    implementation(libs.bundles.rxjavaComponents)
 
-    debugImplementation(Compose.composeUiPreview)
-    debugImplementation(Compose.composeUiTestManifest)
+    debugImplementation(libs.composeUiPreview)
+    debugImplementation(libs.composeUiTestManifest)
 
-    implementAll(Compose.components)
-    implementAll(Coroutines.components)
-    implementation(View.fragment)
+    implementation(libs.bundles.coroutinesComponents)
+    implementation(libs.fragment)
+    implementation(libs.bundles.composeComponents)
 
-    implementation(DI.daggerHiltAndroid)
-    kapt(DI.AnnotationProcessor.daggerHilt)
-    kapt(DI.AnnotationProcessor.androidxHiltCompiler)
+    implementation(libs.daggerHiltAndroid)
+    kapt(libs.daggerHiltCompiler)
+    kapt(libs.androidx.hilt.compiler)
 
-    androidTestImplementation(Test.compose)
-    testImplementation(Test.junit)
-    testImplementation(Test.truth)
-    testImplementation(Test.coroutinesTest)
-    testImplementation(Test.mockWebServer)
+    testImplementation(libs.junit)
+    testImplementation(libs.truth)
+    testImplementation(libs.coroutinesTest)
+    testImplementation(libs.mockWebServer)
 }

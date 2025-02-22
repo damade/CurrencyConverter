@@ -11,8 +11,6 @@ java {
 }
 
 dependencies {
-    val lintVersion = "31.5.2"
-
     // Lint
     compileOnly(libs.lint.api)
     compileOnly(libs.lint.checks)
@@ -20,5 +18,5 @@ dependencies {
     // Lint testing
     testImplementation(libs.lint)
     testImplementation(libs.lint.tests)
-    testImplementation("junit:junit:4.13.1")
+    testImplementation(libs.junit)
 }

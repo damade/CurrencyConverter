@@ -1,26 +1,11 @@
-import Dependencies.AndroidX
-import Dependencies.Compose
-import Dependencies.DI
-import Dependencies.Performance
-import Dependencies.Test
-import Dependencies.View
-import ProjectLib.core
-import ProjectLib.coreAndroid
-import ProjectLib.ftCurrency
-import ProjectLib.ftHome
-import ProjectLib.kspPlaygroundUsage
-import ProjectLib.navigation
-import java.util.Locale
-
 plugins {
     androidApplication
     kotlinAndroidModule
     kotlinKaptModule
     safeArgs
     daggerHilt
+    currencyConverterPlugin
 }
-
-apply<CurrencyConverterPlugin>()
 
 kapt {
     correctErrorTypes = true
@@ -31,7 +16,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Compose.Version.composeCompiler
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
     namespace = "com.damilola.currencyconverter"
 }
@@ -43,34 +28,59 @@ hilt {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
-    implementation(project(core))
-    implementation(project(coreAndroid))
-    implementation(project(ftCurrency))
-    implementation(project(ftHome))
-    implementation(project(kspPlaygroundUsage))
-    implementation(project(navigation))
+    implementation(projects.core)
+    implementation(projects.coreAndroid)
+    implementation(projects.ftCurrency)
+    implementation(projects.ftHome)
+    implementation(projects.kspPlayground.kspUsage)
+    implementation(projects.navigation)
 
-    debugImplementation(Performance.leakCanary)
-    debugImplementation(Performance.logger)
+    debugImplementation(libs.leakCanary)
+    debugImplementation(libs.logger)
 
-    androidTestImplementation(Test.compose)
+    androidTestImplementation(libs.composeUiTest)
 
-    debugImplementation(Compose.composeUiPreview)
-    debugImplementation(Compose.composeUiTestManifest)
+    debugImplementation(libs.composeUiPreview)
+    debugImplementation(libs.composeUiTestManifest)
 
-    implementAll(Compose.components)
+    implementation(libs.bundles.composeComponents)
 
-    implementAll(View.components)
+    libs.run {
+        implementation(androidx.core.ktx)
+        implementation(navigationUiKtx)
+        implementation(navigationFragmentKtx)
+        implementation(navigationDynamicFeatureKtx)
+        implementation(multiDex)
+        implementation(activity)
+        implementation(activityKtx)
+        implementation(lifeCycleCommon)
+        implementation(liveData)
+        implementation(runTime)
+        implementation(viewModel)
+        implementation(savedState)
+        implementation(legacy)
+    }
 
-    implementation(DI.daggerHiltAndroid)
+    libs.run {
+        implementation(cardView)
+        implementation(androidx.appcompat)
+        implementation(fragment)
+        implementation(swipeRefresh)
+        implementation(lottieAnimation)
+        implementation(pinView)
+        implementation(cardNumberView)
+        implementation(material)
+        implementation(shimmerLayout)
+        implementation(recyclerView)
+    }
 
-    implementAll(AndroidX.components)
+    implementation(libs.daggerHiltAndroid)
 
-    kapt(DI.AnnotationProcessor.daggerHilt)
-    kapt(DI.AnnotationProcessor.androidxHiltCompiler)
+    kapt(libs.daggerHiltCompiler)
+    kapt(libs.androidx.hilt.compiler)
 
-    testImplementation(Test.junit)
-    testImplementation(Test.truth)
-    testImplementation(Test.coroutinesTest)
-    testImplementation(Test.mockWebServer)
+    testImplementation(libs.junit)
+    testImplementation(libs.truth)
+    testImplementation(libs.coroutinesTest)
+    testImplementation(libs.mockWebServer)
 }

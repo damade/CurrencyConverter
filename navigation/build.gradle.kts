@@ -68,6 +68,4 @@ dependencies {
         testImplementation(junit)
         testImplementation(truth)
     }
-
-
 }

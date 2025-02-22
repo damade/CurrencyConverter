@@ -1,28 +1,16 @@
-import Dependencies.Coroutines
-import Dependencies.RxJava
-import Dependencies.Test
-import ProjectLib.testUtils
-
-
 plugins {
     kotlinModule
-}
-
-apply<CurrencyConverterPlugin>()
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    currencyConverterPlugin
 }
 
 dependencies {
-    implementation(project(testUtils))
-    implementation(Coroutines.core)
-    RxJava.run {
+    implementation(projects.libraries.testUtils)
+    implementation(libs.coreCoroutine)
+    libs.run {
         implementation(rxJavaCore)
         implementation(rxRelay)
     }
-    Test.run {
+    libs.run {
         testImplementation(junit)
         testImplementation(junitParams)
         testImplementation(truth)

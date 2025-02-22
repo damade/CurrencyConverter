@@ -1,6 +1,3 @@
-import Dependencies.Compose
-import ProjectLib.libComposeCore
-
 plugins {
     androidLibrary
     kotlinAndroidModule
@@ -13,7 +10,7 @@ android {
     namespace = "com.damilola.ksp_usage"
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Compose.Version.composeCompiler
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
 
     buildFeatures {
@@ -26,15 +23,15 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(project(libComposeCore))
+    implementation(projects.libComposeCore)
 
-    debugImplementation(Compose.composeUiPreview)
-    debugImplementation(Compose.composeUiTestManifest)
+    debugImplementation(libs.composeUiPreview)
+    debugImplementation(libs.composeUiTestManifest)
 
-    implementAll(Compose.components)
+    implementation(libs.bundles.composeComponents)
 
-    implementation(project(ProjectLib.kspPlaygroundAnnotation))
-    ksp(project(ProjectLib.kspPlaygroundProcessor))
+    implementation(projects.kspPlayground.annotation)
+    ksp(projects.kspPlayground.processor)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
