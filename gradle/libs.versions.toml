@@ -95,7 +95,7 @@ junitParams = "1.1.1"
 # Others
 ksp = "1.9.21-1.0.16"
 kotlinPoet = "1.18.1"
-gradle = "8.5.0"
+gradle = "8.8.1"
 navigationPlugin = "2.5.3"
 daggerHiltPlugin = "2.46"
 apolloGraphQlPlugin = "3.6.2"
