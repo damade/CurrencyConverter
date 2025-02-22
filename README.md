@@ -36,7 +36,7 @@ To build this project, you require:
 In no particular order
 * Add in-memory and local cache for rate particular to currencies to reduce Api request calls conversion
 * Setup Ktlint on the project
-* Migrate to KSP and K2 compiler.
+* Migrate to KSP.
 * Use the Konsist library to write rules about the architecture and class conventions.
 * Set up macro benchmark and fix memory leaks. 
 * Replace BuildSrc, migrate to using version catalogs and update App Dependencies (In Progress).
