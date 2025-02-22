@@ -1,14 +1,3 @@
-import Dependencies.AndroidX
-import Dependencies.Compose
-import Dependencies.DI
-import Dependencies.Test
-import Dependencies.View
-import ProjectLib.core
-import ProjectLib.coreAndroid
-import ProjectLib.ftHome
-import ProjectLib.ftCurrency
-import ProjectLib.libComposeCore
-
 plugins {
     androidLibrary
     kotlinAndroidModule
@@ -29,7 +18,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Compose.Version.composeCompiler
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
     namespace = "com.damilola.navigation"
 }
@@ -41,30 +30,30 @@ hilt {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
-    implementation(project(core))
-    implementation(project(coreAndroid))
-    implementation(project(libComposeCore))
+    implementation(projects.core)
+    implementation(projects.coreAndroid)
+    implementation(projects.libComposeCore)
 
-    implementation(project(ftHome))
-    implementation(project(ftCurrency))
+    implementation(projects.ftHome)
+    implementation(projects.ftCurrency)
 
-    implementation(AndroidX.navigationFragmentKtx)
-    implementation(AndroidX.navigationUiKtx)
+    implementation(libs.navigationFragmentKtx)
+    implementation(libs.navigationUiKtx)
 
-    implementAll(Compose.components)
+    implementation(libs.bundles.composeComponents)
 
-    debugImplementation(Compose.composeUiPreview)
-    debugImplementation(Compose.composeUiTestManifest)
+    debugImplementation(libs.composeUiPreview)
+    debugImplementation(libs.composeUiTestManifest)
 
-    implementation(View.fragment)
+    implementation(libs.fragment)
 
-    implementation(DI.daggerHiltAndroid)
+    implementation(libs.daggerHiltAndroid)
 
-    kapt(DI.AnnotationProcessor.daggerHilt)
-    kapt(DI.AnnotationProcessor.androidxHiltCompiler)
+    kapt(libs.daggerHiltCompiler)
+    kapt(libs.androidx.hilt.compiler)
 
 
-    Test.run {
+    libs.run {
         testImplementation(junit)
         testImplementation(truth)
     }

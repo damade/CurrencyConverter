@@ -18,10 +18,6 @@ object Config {
     }
 }
 
-object Jvm {
-    const val kotlinCompileJvmVersion = "17"
-}
-
 interface Libraries {
     val components: List<String>
 }
