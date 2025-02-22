@@ -14,6 +14,12 @@ import org.jetbrains.uast.UParameter
 val UAnnotated.isComposable: Boolean
     get() = findAnnotation("androidx.compose.runtime.Composable") != null
 
+/**
+ * Returns true if the given method is annotated with `@Composable`.
+ */
+val UAnnotated.isComposablePreview: Boolean
+    get() = findAnnotation("import androidx.compose.ui.tooling.preview.Preview") != null
+
 
 /**
  * If a parameter is a Modifier,
