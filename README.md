@@ -38,7 +38,7 @@ In no particular order
 * Setup Ktlint on the project
 * Migrate to KSP.
 * Use the Konsist library to write rules about the architecture and class conventions.
-* Set up macro benchmark and fix memory leaks. 
+* Set up macro benchmark and fix jankiness and memory leaks. 
 * Replace BuildSrc, migrate to using version catalogs and update App Dependencies (In Progress).
 * Add screenshot and UI/integration testing, 
 
