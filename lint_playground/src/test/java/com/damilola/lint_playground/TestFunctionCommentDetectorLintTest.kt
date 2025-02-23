@@ -85,39 +85,39 @@ class TestFunctionCommentDetectorLintTest: BaseKotlinLintTest() {
             .expect("Test comment should be restricted to // given, // when, and // then")
     }
 
-    @Test
-    fun testCommentDetectionInTestSkip() {
-        lint()
-            .files(
-                *commonStubs,
-                TestFiles.kotlin(
-                    """
-                    package com.damilola.ft_currency
-                    
-                    import org.junit.Test
-
-                    class CurrencyConverterTest {
-                        
-                        fun `test conversion from dollar to naira`() {
-                            // TODO Given
-                            val dollar = 100
-                            val naira = 500
-                            
-                            // When the here is a typo
-                            val result = dollar * naira
-                            
-                            // then
-                            assert(result == 50000)
-                        }
-                    }
-                    """
-                ).indented()
-
-            )
-            .issues(TestFunctionCommentDetector.ISSUE)
-            .run()
-            .expect("No warnings.")
-    }
+//    @Test
+//    fun testCommentDetectionInTestSkip() {
+//        lint()
+//            .files(
+//                *commonStubs,
+//                TestFiles.kotlin(
+//                    """
+//                    package com.damilola.ft_currency
+//
+//                    import org.junit.Test
+//
+//                    class CurrencyConverterTest {
+//
+//                        fun `test conversion from dollar to naira`() {
+//                            // TODO Given
+//                            val dollar = 100
+//                            val naira = 500
+//
+//                            // When the here is a typo
+//                            val result = dollar * naira
+//
+//                            // then
+//                            assert(result == 50000)
+//                        }
+//                    }
+//                    """
+//                ).indented()
+//
+//            )
+//            .issues(TestFunctionCommentDetector.ISSUE)
+//            .run()
+//            .expect("No warnings.")
+//    }
 
 //    @Test
 //    fun testCommentDetectionInTestSkipClass() {

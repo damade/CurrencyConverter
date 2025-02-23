@@ -5,15 +5,15 @@ import com.android.tools.lint.detector.api.Detector
 import com.android.tools.lint.detector.api.Issue
 import org.junit.Test
 
-class ModifierLintTest: BaseComposeLintTest() {
-
-    override fun getDetector(): Detector {
-        return ModifierClickablePaddingDetector()
-    }
-
-    override fun getIssues(): List<Issue> {
-        return listOf(ModifierClickablePaddingDetector.ISSUE)
-    }
+//class ModifierLintTest: BaseComposeLintTest() {
+//
+//    override fun getDetector(): Detector {
+//        return ModifierClickablePaddingDetector()
+//    }
+//
+//    override fun getIssues(): List<Issue> {
+//        return listOf(ModifierClickablePaddingDetector.ISSUE)
+//    }
 
 //    @Test
 //    fun testModifierParameterOrder() {
@@ -50,4 +50,4 @@ class ModifierLintTest: BaseComposeLintTest() {
 //            .expect("Clickable Modifier after Padding Modifier")
 //    }
 
-}
+//}
