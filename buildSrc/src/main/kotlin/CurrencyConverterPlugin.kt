@@ -7,7 +7,10 @@ import org.gradle.api.plugins.ExtensionContainer
 import org.gradle.api.plugins.JavaLibraryPlugin
 import org.gradle.api.plugins.JavaPlugin
 import org.gradle.api.plugins.JavaPluginExtension
+import org.gradle.jvm.toolchain.JavaLanguageVersion
+import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.repositories
+import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 
 class CurrencyConverterPlugin : BaseGradlePlugin() {
 
@@ -29,6 +32,7 @@ class CurrencyConverterPlugin : BaseGradlePlugin() {
                         extensions.getByType<JavaPluginExtension>().setupModule()
                 }
             }
+            applyKotlinJvm()
             setupRepositoriesHandler()
         }
     }
@@ -44,28 +48,17 @@ class CurrencyConverterPlugin : BaseGradlePlugin() {
         extension.applyCommonProperties(isAppPlugin = true)
 
     private fun JavaPluginExtension.setupModule() = apply {
-            sourceCompatibility = JavaVersion.VERSION_17
-            targetCompatibility = JavaVersion.VERSION_17
-        }
-}
-
-internal object Config {
-    object Version {
-        const val minSdkVersion: Int = 24
-        const val compileSdkVersion: Int = 35
-        const val targetSdkVersion: Int = 35
-        const val versionName: String = "1.0"
-        const val versionCode: Int = 1
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
-    const val isMultiDexEnabled: Boolean = true
-
-    const val isViewBindingEnabled = true
-
-    object Android {
-        const val applicationId: String = "com.damilola.currencyconverter"
-        const val testInstrumentationRunner: String =
-            "androidx.test.runner.AndroidJUnitRunner"
+    private fun Project.applyKotlinJvm() {
+        // Configure the Kotlin JVM toolchain
+        configure<KotlinProjectExtension> {
+            jvmToolchain {
+                languageVersion.set(JavaLanguageVersion.of(17))
+            }
+        }
     }
 }
 
@@ -139,3 +132,23 @@ private fun TestedExtension.applyCommonProperties(isAppPlugin: Boolean): TestedE
 }
 
 inline fun <reified T : Any> ExtensionContainer.getByType(): T = getByType(T::class.java)
+
+internal object Config {
+    object Version {
+        const val minSdkVersion: Int = 24
+        const val compileSdkVersion: Int = 35
+        const val targetSdkVersion: Int = 35
+        const val versionName: String = "1.0"
+        const val versionCode: Int = 1
+    }
+
+    const val isMultiDexEnabled: Boolean = true
+
+    const val isViewBindingEnabled = true
+
+    object Android {
+        const val applicationId: String = "com.damilola.currencyconverter"
+        const val testInstrumentationRunner: String =
+            "androidx.test.runner.AndroidJUnitRunner"
+    }
+}
