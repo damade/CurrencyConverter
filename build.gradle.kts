@@ -7,7 +7,7 @@ tasks.register<GenerateFeatureModuleTask>("generateFeatureModule")
 
 // Tasks for automatically installing git-hooks and making it executable also.
 tasks.register("installGitHook", Copy::class) {
-    from(file("$rootDir/scripts/pre-push.sh"))
+    from(file("$rootDir/pre-push"))
     into(file("$rootDir/.git/hooks"))
     fileMode = 0b0111101101 // -rwxr-xr-x
 }
