@@ -5,7 +5,7 @@ echo "*********************************************************"
 
 # ./gradlew detekt ktlintCheck --daemon
 
-./gradlew test
+./gradlew test --daemon
 
 status=$?
 
