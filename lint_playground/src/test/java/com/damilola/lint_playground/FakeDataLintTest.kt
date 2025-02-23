@@ -129,44 +129,44 @@ src/com/damilola/ft_currency/frontend/components/test.kt:17: Error: Fake data sh
             .expectClean()
     }
 
-//    @Test
-//    fun `when fake ui model is used in a preview composable, then no error is returned`() {
-//        lint()
-//            .files(
-//                *commonStubs,
-//                TestFiles.kotlin(
-//                    """
-//                    package com.damilola.ft_currency.frontend.components
-//
-//                    import androidx.compose.foundation.clickable
-//                    import androidx.compose.foundation.layout.Column
-//                    import androidx.compose.foundation.layout.padding
-//                    import androidx.compose.runtime.Composable
-//                    import androidx.compose.ui.Modifier
-//                    import androidx.compose.ui.tooling.preview.Preview
-//                    import androidx.compose.ui.unit.dp
-//
-//                    object JohnDoeFake { fun data(): String = "test" }
-//
-//                    @Preview
-//                    @Composable
-//                    fun TestModifier() {
-//                        Column(
-//                            modifier = Modifier
-//                                .padding(all = 16.dp)
-//                                .clickable { }
-//                        ) {
-//                            val johnDoe = JohnDoeFake.data()
-//                        }
-//                    }
-//                    """
-//                ).indented()
-//
-//            )
-//            .issues(FakeDataDetector.ISSUE)
-//            .run()
-//            .expectClean()
-//    }
+    @Test
+    fun `when fake ui model is used in a preview composable, then no error is returned`() {
+        lint()
+            .files(
+                *commonStubs,
+                TestFiles.kotlin(
+                    """
+                    package com.damilola.ft_currency.frontend.components
+
+                    import androidx.compose.foundation.clickable
+                    import androidx.compose.foundation.layout.Column
+                    import androidx.compose.foundation.layout.padding
+                    import androidx.compose.runtime.Composable
+                    import androidx.compose.ui.Modifier
+                    import androidx.compose.ui.tooling.preview.Preview
+                    import androidx.compose.ui.unit.dp
+
+                    object JohnDoeFake { fun data(): String = "test" }
+
+                    @Preview
+                    @Composable
+                    fun TestModifier() {
+                        Column(
+                            modifier = Modifier
+                                .padding(all = 16.dp)
+                                .clickable { }
+                        ) {
+                            val johnDoe = JohnDoeFake.data()
+                        }
+                    }
+                    """
+                ).indented()
+
+            )
+            .issues(FakeDataDetector.ISSUE)
+            .run()
+            .expectClean()
+    }
 
     @Test
     fun `when fake model is used in regular composable, then no error is returned`() {
