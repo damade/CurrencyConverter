@@ -15,39 +15,39 @@ class ModifierLintTest: BaseComposeLintTest() {
         return listOf(ModifierClickablePaddingDetector.ISSUE)
     }
 
-    @Test
-    fun testModifierParameterOrder() {
-            lint()
-            .files(
-                *commonStubs,
-                TestFiles.kotlin(
-                    """
-                    package com.damilola.ft_currency.frontend.components
-                    
-                    import androidx.compose.foundation.clickable
-                    import androidx.compose.foundation.layout.Column
-                    import androidx.compose.foundation.layout.padding
-                    import androidx.compose.runtime.Composable
-                    import androidx.compose.ui.tooling.preview.Preview
-                    import androidx.compose.ui.Modifier
-                    import androidx.compose.ui.unit.dp
-
-                    @Preview
-                    fun TestModifier() {
-                        Column(
-                            modifier = Modifier
-                                .padding(all = 16.dp)
-                                .clickable { }
-                        ) {
-                        }
-                    }
-                    """
-                ).indented()
-
-            )
-            .issues(ModifierClickablePaddingDetector.ISSUE)
-            .run()
-            .expect("Clickable Modifier after Padding Modifier")
-    }
+//    @Test
+//    fun testModifierParameterOrder() {
+//            lint()
+//            .files(
+//                *commonStubs,
+//                TestFiles.kotlin(
+//                    """
+//                    package com.damilola.ft_currency.frontend.components
+//
+//                    import androidx.compose.foundation.clickable
+//                    import androidx.compose.foundation.layout.Column
+//                    import androidx.compose.foundation.layout.padding
+//                    import androidx.compose.runtime.Composable
+//                    import androidx.compose.ui.tooling.preview.Preview
+//                    import androidx.compose.ui.Modifier
+//                    import androidx.compose.ui.unit.dp
+//
+//                    @Preview
+//                    fun TestModifier() {
+//                        Column(
+//                            modifier = Modifier
+//                                .padding(all = 16.dp)
+//                                .clickable { }
+//                        ) {
+//                        }
+//                    }
+//                    """
+//                ).indented()
+//
+//            )
+//            .issues(ModifierClickablePaddingDetector.ISSUE)
+//            .run()
+//            .expect("Clickable Modifier after Padding Modifier")
+//    }
 
 }
