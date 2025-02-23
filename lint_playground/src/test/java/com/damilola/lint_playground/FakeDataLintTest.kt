@@ -101,33 +101,33 @@ src/com/damilola/ft_currency/frontend/components/test.kt:17: Error: Fake data sh
             )
     }
 
-//    @Test
-//    fun `when fake ui model is used in a raw preview composable, then no error is returned`() {
-//        lint()
-//            .files(
-//                *commonStubs,
-//                TestFiles.kotlin(
-//                    """
-//                    package com.damilola.ft_currency.frontend.components
-//
-//                    import androidx.compose.runtime.Composable
-//                    import androidx.compose.ui.tooling.preview.Preview
-//
-//                    object JohnDoeFake { fun data(): String = "test" }
-//
-//                    @Preview
-//                    @Composable
-//                    fun TestModifier() {
-//                        val johnDoe = JohnDoeFake.data()
-//                    }
-//                    """
-//                ).indented()
-//
-//            )
-//            .issues(FakeDataDetector.ISSUE)
-//            .run()
-//            .expectClean()
-//    }
+    @Test
+    fun `when fake ui model is used in a raw preview composable, then no error is returned`() {
+        lint()
+            .files(
+                *commonStubs,
+                TestFiles.kotlin(
+                    """
+                    package com.damilola.ft_currency.frontend.components
+
+                    import androidx.compose.runtime.Composable
+                    import androidx.compose.ui.tooling.preview.Preview
+
+                    object JohnDoeFake { fun data(): String = "test" }
+
+                    @Preview
+                    @Composable
+                    fun TestModifier() {
+                        val johnDoe = JohnDoeFake.data()
+                    }
+                    """
+                ).indented()
+
+            )
+            .issues(FakeDataDetector.ISSUE)
+            .run()
+            .expectClean()
+    }
 
 //    @Test
 //    fun `when fake ui model is used in a preview composable, then no error is returned`() {
