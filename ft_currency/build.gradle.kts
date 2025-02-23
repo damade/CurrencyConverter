@@ -5,7 +5,7 @@ plugins {
     safeArgs
     daggerHilt
     currencyConverterPlugin
-    alias(libs.plugins.compose.compiler) apply false
+    alias(libs.plugins.compose.compiler)
 }
 
 kapt {
@@ -17,10 +17,6 @@ android {
         getByName("androidTest") {
             assets.srcDirs(File(projectDir, "schemas"))
         }
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
 
     namespace = "com.damilola.ft_currency"

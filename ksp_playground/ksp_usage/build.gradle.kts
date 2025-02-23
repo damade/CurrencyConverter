@@ -1,17 +1,13 @@
 plugins {
     androidLibrary
     kotlinAndroidModule
-    id("com.google.devtools.ksp") version "1.9.21-1.0.16"
-    alias(libs.plugins.compose.compiler) apply false
+    alias(libs.plugins.google.ksp)
+    alias(libs.plugins.compose.compiler)
     currencyConverterPlugin
 }
 
 android {
     namespace = "com.damilola.ksp_usage"
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
-    }
 
     buildFeatures {
         compose = true

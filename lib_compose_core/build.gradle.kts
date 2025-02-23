@@ -3,12 +3,10 @@ plugins {
     kotlinAndroidModule
     kotlinKaptModule
     currencyConverterPlugin
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
-    }
 
     buildFeatures {
         compose = true

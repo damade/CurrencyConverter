@@ -5,7 +5,7 @@ plugins {
     safeArgs
     daggerHilt
     currencyConverterPlugin
-    alias(libs.plugins.compose.compiler) apply false
+    alias(libs.plugins.compose.compiler)
 }
 
 kapt {
@@ -17,9 +17,6 @@ android {
         compose = true
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
-    }
     namespace = "com.damilola.navigation"
 }
 

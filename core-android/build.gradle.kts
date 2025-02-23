@@ -41,6 +41,8 @@ dependencies {
     implementation(libs.coreCoroutine)
 
     implementation(libs.bundles.networkComponents)
+    implementation(libs.bundles.rxjavaComponents)
+
     kapt(libs.daggerHiltCompiler)
     kapt(libs.glideCompiler)
 

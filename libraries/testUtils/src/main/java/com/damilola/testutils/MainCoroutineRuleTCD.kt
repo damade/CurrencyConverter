@@ -8,10 +8,9 @@ import org.junit.runner.Description
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class MainCoroutineRuleTCD(
-    private val dispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
-) :
-    TestWatcher(),
-    TestCoroutineScope by createTestCoroutineScope(TestCoroutineDispatcher() + TestCoroutineExceptionHandler() + dispatcher) {
+    private val dispatcher: TestDispatcher = StandardTestDispatcher()
+) : TestWatcher(), TestCoroutineScope by createTestCoroutineScope(dispatcher) {
+
     override fun starting(description: Description) {
         super.starting(description)
         Dispatchers.setMain(dispatcher)
