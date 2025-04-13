@@ -1,11 +1,12 @@
 plugins {
-    androidLibrary
-    kotlinAndroidModule
-    kotlinKaptModule
-    safeArgs
-    daggerHilt
-    currencyConverterPlugin
+    id("com.android.library")
+    kotlin("android")
+    kotlin("kapt")
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.currencyconverter.app.plugin)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.android.navigation.safeargs)
+    id("CurrencyConverterLibraryComposePlugin")
 }
 
 kapt {
@@ -20,10 +21,6 @@ android {
     }
 
     namespace = "com.damilola.ft_currency"
-
-    buildFeatures {
-        compose = true
-    }
 }
 
 hilt {
@@ -40,12 +37,8 @@ dependencies {
     implementation(projects.libCurrencySearch)
     implementation(libs.bundles.rxjavaComponents)
 
-    debugImplementation(libs.composeUiPreview)
-    debugImplementation(libs.composeUiTestManifest)
-
     implementation(libs.bundles.coroutinesComponents)
     implementation(libs.fragment)
-    implementation(libs.bundles.composeComponents)
 
     implementation(libs.daggerHiltAndroid)
     kapt(libs.daggerHiltCompiler)

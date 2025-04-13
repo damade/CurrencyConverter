@@ -1,11 +1,13 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
+        gradlePluginPortal()
         google()
         mavenCentral()
         maven("https://jitpack.io")
-        gradlePluginPortal()
     }
 }
+
 rootProject.name = "CurrencyConverter"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(

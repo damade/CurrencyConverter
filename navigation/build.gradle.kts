@@ -1,11 +1,11 @@
 plugins {
-    androidLibrary
-    kotlinAndroidModule
-    kotlinKaptModule
-    safeArgs
-    daggerHilt
-    currencyConverterPlugin
-    alias(libs.plugins.compose.compiler)
+    id("com.android.library")
+    kotlin("android")
+    kotlin("kapt")
+    alias(libs.plugins.android.navigation.safeargs)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.currencyconverter.app.plugin)
+    id("CurrencyConverterLibraryComposePlugin")
 }
 
 kapt {
@@ -13,10 +13,6 @@ kapt {
 }
 
 android {
-    buildFeatures {
-        compose = true
-    }
-
     namespace = "com.damilola.navigation"
 }
 
@@ -36,11 +32,6 @@ dependencies {
 
     implementation(libs.navigationFragmentKtx)
     implementation(libs.navigationUiKtx)
-
-    implementation(libs.bundles.composeComponents)
-
-    debugImplementation(libs.composeUiPreview)
-    debugImplementation(libs.composeUiTestManifest)
 
     implementation(libs.fragment)
 

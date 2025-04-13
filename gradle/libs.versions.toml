@@ -1,7 +1,7 @@
 [versions]
 
 # Kotlin
-kotlin = "2.0.0"
+kotlin = "2.0.21"
 kotlintest = "2.0.7"
 
 # Android
@@ -94,7 +94,7 @@ junitParams = "1.1.1"
 # Others
 ksp = "2.0.0-1.0.21"
 kotlinPoet = "1.18.1"
-gradle = "8.8.1"
+gradle = "8.8.2"
 navigationPlugin = "2.5.3"
 daggerHiltPlugin = "2.51.1"
 apolloGraphQlPlugin = "3.6.2"
@@ -137,25 +137,44 @@ pinView = { group = "com.github.mukeshsolanki", name = "android-otpview-pinview"
 viewPagerIndicator = { group = "com.tbuonomo.andrui", name = "viewpagerdotsindicator", version.ref = "viewPagerIndicator" }
 cardNumberView = { group = "com.github.Mostafa-MA-Saleh", name = "EditCredit", version.ref = "cardNumberView" }
 
+## Compose
+#composeConstraintLayout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "composeConstraint" }
+#composeAnimation = { group = "androidx.compose.animation", name = "animation", version.ref = "compose" }
+#composeFoundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "compose" }
+#composeMaterial = { group = "androidx.compose.material3", name = "material3", version.ref = "composeMaterial" }
+#composeMaterialWindow = { group = "androidx.compose.material3", name = "material3-window-size-class", version.ref = "composeMaterial" }
+#composeUi = { group = "androidx.compose.ui", name = "ui", version.ref = "compose" }
+#composeUiPreview = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "compose" }
+#composeUiTestManifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "compose" }
+#composeRxJava = { group = "androidx.compose.runtime", name = "runtime-rxjava3", version.ref = "compose" }
+#composeViewModel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "composeViewModel" }
+#composeHiltNavigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "composeHiltNavigation" }
+#composeAppCompatTheme = { group = "com.google.accompanist", name = "accompanist-appcompat-theme", version.ref = "composeAppCompatTheme" }
+#composeAnimationGraphics = { group = "androidx.compose.animation", name = "animation-graphics", version.ref = "compose" }
+#composeRuntime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "compose" }
+
 # Compose
-composeActivity = { group = "androidx.activity", name = "activity-compose", version.ref = "composeActivity" }
-composeConstraintLayout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "composeConstraint" }
-composeAnimation = { group = "androidx.compose.animation", name = "animation", version.ref = "compose" }
-composeFoundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "compose" }
-composeMaterial = { group = "androidx.compose.material3", name = "material3", version.ref = "composeMaterial" }
-composeMaterialWindow = { group = "androidx.compose.material3", name = "material3-window-size-class", version.ref = "composeMaterial" }
-composeUi = { group = "androidx.compose.ui", name = "ui", version.ref = "compose" }
-composeUiPreview = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "compose" }
-composeUiTestManifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "compose" }
-composeRxJava = { group = "androidx.compose.runtime", name = "runtime-rxjava3", version.ref = "compose" }
-composeNavigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "composeNavigation" }
-composeViewModel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "composeViewModel" }
-composeMDCTheme = { group = "com.google.android.material", name = "compose-theme-adapter", version.ref = "composeMDCTheme" }
-composeHiltNavigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "composeHiltNavigation" }
-composeAppCompatTheme = { group = "com.google.accompanist", name = "accompanist-appcompat-theme", version.ref = "composeAppCompatTheme" }
-composeAnimationGraphics = { group = "androidx.compose.animation", name = "animation-graphics", version.ref = "compose" }
-composeAnimationCore = { group = "androidx.compose.animation", name = "animation-core", version.ref = "compose" }
-composeRuntime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "compose" }
+# Do not delete libs here that look like they are not used. They are used by the convention plugins. (build-logic)
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "composeActivity" }
+compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "composeNavigation" }
+compose-ui = { group = "androidx.compose.ui", name = "ui" }
+compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
+compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
+compose-material = { group = "androidx.compose.material", name = "material" }
+compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+compose-material3-window = { group = "androidx.compose.material3", name = "material3-window-size-class"}
+compose-animation = { group = "androidx.compose.animation", name = "animation" }
+compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+compose-view-binding = { group = "androidx.compose.ui", name = "ui-viewbinding" }
+compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+compose-rx-java = { group = "androidx.compose.runtime", name = "runtime-rxjava2" }
+compose-material-adapter = { group = "com.google.android.material", name = "compose-theme-adapter", version.ref = "composeThemeAdapter" }
+compose-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifeCycle" }
+compose-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "composeConstraint" }
+androidx-material-icons-core = { module = "androidx.compose.material:material-icons-core" }
+androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
 
 # Network
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
@@ -242,9 +261,20 @@ apolloGraphqlComponents = ["apolloRxJava3", "apolloRuntime"]
 coroutinesComponents = ["coreCoroutine", "androidCoroutine"]
 cacheComponents = ["room", "roomRuntime", "roomRxJava"]
 rxjavaComponents = ["rxAndroid", "rxJavaCore", "rxRelay"]
-composeComponents = ["composeActivity", "composeAnimation", "composeConstraintLayout", "composeFoundation", "composeMaterial", "composeMaterialWindow", "composeAppCompatTheme", "composeMDCTheme", "composeUi", "composeRxJava", "composeViewModel", "composeNavigation", "composeHiltNavigation", "composeAnimationGraphics", "composeRuntime"]
+# composeComponents = ["composeActivity", "composeAnimation", "composeConstraintLayout", "composeFoundation", "composeMaterial", "composeMaterialWindow", "composeAppCompatTheme", "composeMDCTheme", "composeUi", "composeRxJava", "composeViewModel", "composeNavigation", "composeHiltNavigation", "composeAnimationGraphics", "composeRuntime"]
 
 [plugins]
-org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt" }
+android-application = { id = "com.android.application", version.ref = "gradle" }
+android-library = { id = "com.android.library", version.ref = "gradle" }
+android-navigation-safeargs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigationPlugin" }
+apollo = { id = "com.apollographql.apollo3", version.ref = "apolloGraphQlPlugin" }
+
+# Custom Plugins within the project
+currencyconverter-custom-tasks = { id = "CurrencyConverterCustomTask"}
+currencyconverter-app-plugin = { id = "CurrencyConverterPlugin"}
+currencyconverter-library-compose-plugin = { id = "CurrencyConverterLibraryComposePlugin"}
+currencyconverter-application-compose-plugin = { id = "CurrencyConverterApplicationComposePlugin"}

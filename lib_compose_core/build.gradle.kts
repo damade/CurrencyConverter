@@ -1,17 +1,12 @@
 plugins {
-    androidLibrary
-    kotlinAndroidModule
-    kotlinKaptModule
-    currencyConverterPlugin
-    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.android.library)
+    kotlin("android") apply false
+    kotlin("kapt")
+    alias(libs.plugins.currencyconverter.app.plugin)
+    id("CurrencyConverterLibraryComposePlugin")
 }
 
 android {
-
-    buildFeatures {
-        compose = true
-    }
-
     namespace = "com.damilola.lib_compose_core"
 }
 
@@ -21,8 +16,6 @@ dependencies {
     implementation(projects.coreAndroid)
     implementation(libs.androidx.core.ktx)
 
-    implementation(libs.bundles.composeComponents)
-    debugImplementation(libs.composeUiPreview)
-    debugImplementation(libs.composeUiTestManifest)
+
     androidTestImplementation(libs.composeUiTest)
 }

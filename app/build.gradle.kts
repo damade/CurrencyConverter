@@ -1,21 +1,18 @@
 plugins {
-    androidApplication
-    kotlinAndroidModule
-    kotlinKaptModule
-    safeArgs
-    daggerHilt
-    currencyConverterPlugin
-    alias(libs.plugins.compose.compiler)
+    id("com.android.application")
+    kotlin("android")
+    kotlin("kapt")
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.currencyconverter.app.plugin)
+    id("CurrencyConverterApplicationComposePlugin")
+    alias(libs.plugins.android.navigation.safeargs)
 }
 
 kapt {
     correctErrorTypes = true
 }
-android {
-    buildFeatures {
-        compose = true
-    }
 
+android {
     namespace = "com.damilola.currencyconverter"
 }
 
@@ -37,11 +34,6 @@ dependencies {
     debugImplementation(libs.logger)
 
     androidTestImplementation(libs.composeUiTest)
-
-    debugImplementation(libs.composeUiPreview)
-    debugImplementation(libs.composeUiTestManifest)
-
-    implementation(libs.bundles.composeComponents)
 
     libs.run {
         implementation(androidx.core.ktx)

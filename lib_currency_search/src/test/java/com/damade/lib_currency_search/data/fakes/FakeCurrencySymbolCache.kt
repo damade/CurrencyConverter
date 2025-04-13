@@ -1,19 +1,19 @@
 package com.damade.lib_currency_search.data.fakes
 
 import com.damade.lib_currency_search.data.contract.cache.CurrencySymbolCache
-import com.damade.lib_currency_search.data.model.SymbolEntity
+import com.damade.lib_currency_search.domain.model.Symbol
 
 class FakeCurrencySymbolCache: CurrencySymbolCache {
 
-    private val tempCache: MutableList<SymbolEntity> = arrayListOf()
-    private val cache: List<SymbolEntity> = tempCache
+    private val tempCache: MutableList<Symbol> = arrayListOf()
+    private val cache: List<Symbol> = tempCache
 
-    override suspend fun saveCurrencySymbol(symbolEntities: List<SymbolEntity>) {
+    override suspend fun saveCurrencySymbol(symbol: List<Symbol>) {
             clearCache()
-            tempCache.addAll(symbolEntities)
+            tempCache.addAll(symbol)
     }
 
-    override suspend fun fetchCurrencySymbol(): List<SymbolEntity> {
+    override suspend fun fetchCurrencySymbol(): List<Symbol> {
         return cache
     }
 

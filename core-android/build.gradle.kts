@@ -1,9 +1,9 @@
 plugins {
-    androidLibrary
-    kotlinAndroidModule
-    kotlinKaptModule
-    daggerHilt
-    currencyConverterPlugin
+    id("com.android.library")
+    kotlin("android")
+    kotlin("kapt")
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.currencyconverter.app.plugin)
 }
 
 kapt {
@@ -39,6 +39,7 @@ dependencies {
     implementation(libs.daggerHiltAndroid)
     implementation(libs.moshi)
     implementation(libs.coreCoroutine)
+    implementation(libs.logger)
 
     implementation(libs.bundles.networkComponents)
     implementation(libs.bundles.rxjavaComponents)

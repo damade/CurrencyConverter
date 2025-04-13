@@ -1,10 +1,10 @@
 plugins {
-    androidLibrary
-    kotlinAndroidModule
-    kotlinKaptModule
-    daggerHilt
-    apollo
-    currencyConverterPlugin
+    id("com.android.library")
+    kotlin("android")
+    kotlin("kapt")
+    alias(libs.plugins.apollo)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.currencyconverter.app.plugin)
 }
 
 kapt {
