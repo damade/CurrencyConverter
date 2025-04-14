@@ -6,7 +6,7 @@ plugins {
     alias(libs.plugins.currencyconverter.app.plugin)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.android.navigation.safeargs)
-    id("CurrencyConverterLibraryComposePlugin")
+    alias(libs.plugins.currencyconverter.library.compose.plugin)
 }
 
 kapt {
@@ -38,6 +38,8 @@ dependencies {
     implementation(libs.bundles.rxjavaComponents)
 
     implementation(libs.bundles.coroutinesComponents)
+    implementation(libs.compose.navigation)
+    implementation(libs.compose.hilt.navigation)
     implementation(libs.fragment)
 
     implementation(libs.daggerHiltAndroid)

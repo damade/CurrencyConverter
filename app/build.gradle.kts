@@ -4,7 +4,7 @@ plugins {
     kotlin("kapt")
     alias(libs.plugins.hilt)
     alias(libs.plugins.currencyconverter.app.plugin)
-    id("CurrencyConverterApplicationComposePlugin")
+    alias(libs.plugins.currencyconverter.application.compose.plugin)
     alias(libs.plugins.android.navigation.safeargs)
 }
 

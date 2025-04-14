@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.android.navigation.safeargs)
     alias(libs.plugins.hilt)
     alias(libs.plugins.currencyconverter.app.plugin)
-    id("CurrencyConverterLibraryComposePlugin")
+    alias(libs.plugins.currencyconverter.library.compose.plugin)
 }
 
 kapt {
@@ -31,6 +31,8 @@ dependencies {
     implementation(projects.ftCurrency)
 
     implementation(libs.navigationFragmentKtx)
+    implementation(libs.compose.activity)
+    implementation(libs.compose.navigation)
     implementation(libs.navigationUiKtx)
 
     implementation(libs.fragment)

@@ -66,8 +66,7 @@ class HomeFragment : Fragment() {
 
         initializeViews()
 
-        //return binding.root
-        return inflater.inflate(0, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.android.library)
-    kotlin("android") apply false
+    kotlin("android")
     kotlin("kapt")
     alias(libs.plugins.currencyconverter.app.plugin)
     id("CurrencyConverterLibraryComposePlugin")
