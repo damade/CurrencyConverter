@@ -34,6 +34,7 @@ class CurrencyConverterPlugin : Plugin<Project> {
                         extensions.getByType<JavaPluginExtension>().setupModule()
                 }
             }
+            applyKotlinJvm()
             setupRepositoriesHandler()
         }
     }
@@ -53,14 +54,14 @@ class CurrencyConverterPlugin : Plugin<Project> {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-//    private fun Project.applyKotlinJvm() {
-//        // Configure the Kotlin JVM toolchain
-//        configure<KotlinProjectExtension> {
-//            jvmToolchain {
-//                languageVersion.set(JavaLanguageVersion.of(17))
-//            }
-//        }
-//    }
+    private fun Project.applyKotlinJvm() {
+        // Configure the Kotlin JVM toolchain
+        configure<KotlinProjectExtension> {
+            jvmToolchain {
+                languageVersion.set(JavaLanguageVersion.of(17))
+            }
+        }
+    }
 }
 
 private fun TestedExtension.applyCommonProperties(isAppPlugin: Boolean): TestedExtension {

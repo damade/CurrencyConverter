@@ -33,4 +33,6 @@ dependencies {
     testImplementation(libs.truth)
     testImplementation(libs.coroutinesTest)
     testImplementation(libs.mockWebServer)
+
+    lintChecks(projects.lintPlayground)
 }

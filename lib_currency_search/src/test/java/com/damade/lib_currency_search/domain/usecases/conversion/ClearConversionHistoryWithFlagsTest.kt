@@ -9,7 +9,6 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import java.io.IOException
 
-@OptIn(ExperimentalCoroutinesApi::class)
 class ClearConversionHistoryWithFlagsTest {
 
     private val repository = FakeCurrencyConversionRepository()

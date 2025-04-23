@@ -22,6 +22,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
+import kotlin.random.Random
 
 internal class CurrencyConversionRepositoryImplTest {
 
@@ -42,6 +43,16 @@ internal class CurrencyConversionRepositoryImplTest {
         currencyConversionWithFlagsCache = fakeCurrencyConversionWithFlagsCache,
         conversionWithFlagsEntityMapper = conversionWithFlagsEntityMapper
     )
+
+
+    @Test
+    fun `When they, nothing`(){
+        // given
+        val a = 3 + 5
+
+        // then
+
+    }
 
 
     @Test

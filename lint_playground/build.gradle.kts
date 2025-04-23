@@ -13,3 +13,7 @@ dependencies {
     testImplementation(libs.lint.tests)
     testImplementation(libs.junit)
 }
+
+tasks.withType(Jar::class.java).configureEach {
+    manifest.attributes["Lint-Registry-v2"] = "com.damilola.lint_playground.LintIssueRegistry"
+}

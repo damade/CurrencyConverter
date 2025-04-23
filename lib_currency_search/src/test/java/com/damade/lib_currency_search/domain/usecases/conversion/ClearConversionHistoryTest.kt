@@ -20,7 +20,7 @@ class ClearConversionHistoryTest {
     )
 
     @Test
-    fun `when clearConversionHistory succeed, it returns a unit`() = runTest {
+    fun `when clearConversionHistory succeed, then it returns a unit`() = runTest {
         // given
         repository.clearConversionHistoryResponseType = ResponseType.SUCCESS
         // when
@@ -30,7 +30,7 @@ class ClearConversionHistoryTest {
     }
 
     @Test(expected = IOException::class)
-    fun `when clearConversionHistory fails, an exception is thrown`() = runTest {
+    fun `when clearConversionHistory fails, then an exception is thrown`() = runTest {
         // given
         repository.clearConversionHistoryResponseType = ResponseType.ERROR
         // when

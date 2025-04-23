@@ -35,6 +35,8 @@ dependencies {
 
     androidTestImplementation(libs.composeUiTest)
 
+    lintChecks(projects.lintPlayground)
+
     libs.run {
         implementation(androidx.core.ktx)
         implementation(navigationUiKtx)

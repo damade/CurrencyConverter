@@ -15,6 +15,7 @@ android {
 }
 
 dependencies {
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
     implementation(projects.libraries.remote)
     implementation(projects.libraries.cache)
@@ -43,4 +44,5 @@ dependencies {
         testImplementation(turbine)
     }
 
+    lintChecks(projects.lintPlayground)
 }

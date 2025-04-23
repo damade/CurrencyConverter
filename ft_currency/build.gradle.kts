@@ -46,6 +46,8 @@ dependencies {
     kapt(libs.daggerHiltCompiler)
     kapt(libs.androidx.hilt.compiler)
 
+    lintChecks(projects.lintPlayground)
+
     testImplementation(libs.junit)
     testImplementation(libs.truth)
     testImplementation(libs.coroutinesTest)
