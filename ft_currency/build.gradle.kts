@@ -48,8 +48,10 @@ dependencies {
 
     lintChecks(projects.lintPlayground)
 
-    testImplementation(libs.junit)
+    androidTestImplementation(libs.runner)
+    androidTestImplementation(libs.androidx.junit)
     testImplementation(libs.truth)
+    testImplementation(libs.junit)
     testImplementation(libs.coroutinesTest)
     testImplementation(libs.mockWebServer)
 }

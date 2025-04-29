@@ -74,22 +74,22 @@ logger = "0.1"
 
 # Test
 junit = "4.13.2"
-junitRunner = "1.2.0"
+junitRunner = "1.6.2"
 rules = "1.3.0-rc03"
-testExt = "1.1.3"
+testExt = "1.2.1"
 espressoCore = "3.6.1"
-truth = "1.0.1"
+truth = "1.4.4"
 mockWebServer = "4.7.2"
 robolectric = "4.5.1"
 archCoreTest = "1.1.1"
 fragmentTest = "1.4.0"
-turbine = "0.12.1"
+turbine = "1.2.0"
 junitParams = "1.1.1"
 
 # Others
 ksp = "2.1.0-1.0.29"
 kotlinPoet = "1.18.1"
-gradle = "8.9.1"
+gradle = "8.9.2"
 navigationPlugin = "2.5.3"
 apolloGraphQlPlugin = "3.6.2"
 

@@ -15,8 +15,8 @@ buildscript {
 
 plugins {
     // Existing plugins
-    id("com.android.application") version "8.9.1" apply false
-    id("com.android.library") version "8.9.1" apply false
+    id("com.android.application") version "8.9.2" apply false
+    id("com.android.library") version "8.9.2" apply false
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.android.navigation.safeargs) apply false
