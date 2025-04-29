@@ -7,6 +7,7 @@ import com.android.tools.lint.detector.api.Scope.JAVA_FILE
 import com.android.tools.lint.detector.api.Scope.TEST_SOURCES
 import com.android.tools.lint.detector.api.Severity
 import com.damilola.lint_playground.TestMethodNameDetector
+import com.intellij.psi.PsiClass
 import org.jetbrains.uast.UAnnotated
 import java.util.EnumSet
 
@@ -15,6 +16,12 @@ import java.util.EnumSet
  */
 val UAnnotated.isTest: Boolean
     get() = findAnnotation(fqName = "org.junit.Test") != null
+
+val PsiClass.isTestClass: Boolean
+    get() = hasAnnotation("Test")
+
+val String.isTestClass: Boolean
+    get() = endsWith("Test")
 
 internal fun issue(
     id: String,

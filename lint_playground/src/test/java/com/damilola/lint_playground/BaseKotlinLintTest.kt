@@ -13,6 +13,15 @@ abstract class BaseKotlinLintTest : LintDetectorTest() {
 
     protected val commonStubs =
         arrayOf(
+//            kotlin(
+//                """
+//          package org.junit
+//
+//          @Target(AnnotationTarget.FUNCTION)
+//          annotation class Test
+//      """
+//                    .trimIndent()
+//            ),
             kotlin(
                 """
           package org.junit

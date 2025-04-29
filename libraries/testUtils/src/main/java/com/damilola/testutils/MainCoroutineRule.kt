@@ -7,9 +7,9 @@ import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class MainCoroutineRuleUTD(
+class MainCoroutineRule(
     private val dispatcher: TestDispatcher = UnconfinedTestDispatcher()
-) : TestWatcher(), TestCoroutineScope by createTestCoroutineScope(dispatcher) {
+) : TestWatcher() {
 
     override fun starting(description: Description) {
         super.starting(description)
@@ -19,6 +19,5 @@ class MainCoroutineRuleUTD(
     override fun finished(description: Description) {
         super.finished(description)
         Dispatchers.resetMain()
-        cleanupTestCoroutines()
     }
 }
