@@ -7,8 +7,8 @@ import dagger.hilt.android.scopes.FragmentScoped
 
 @FragmentScoped
 class RVEmptyObserver(eRecyclerView: RecyclerView, ev: View?) : AdapterDataObserver() {
-    private val emptyView: View?
-    private val recyclerView: RecyclerView?
+    private val emptyView: View? = ev
+    private val recyclerView: RecyclerView? = eRecyclerView
 
     private fun checkIfEmpty() {
         if (emptyView != null && recyclerView?.adapter != null) {
@@ -31,8 +31,6 @@ class RVEmptyObserver(eRecyclerView: RecyclerView, ev: View?) : AdapterDataObser
     }
 
     init {
-        emptyView = ev
-        recyclerView = eRecyclerView
         checkIfEmpty()
     }
 }

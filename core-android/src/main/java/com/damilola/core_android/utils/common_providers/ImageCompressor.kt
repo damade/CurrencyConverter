@@ -14,6 +14,7 @@ import java.io.InputStream
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
+import androidx.core.graphics.scale
 
 
 class ImageCompressor @Inject constructor( @ApplicationContext private val context: Context) {
@@ -40,7 +41,7 @@ class ImageCompressor @Inject constructor( @ApplicationContext private val conte
                     val W = 4000//do whatever you want with width. Fixed, screen size, anything
                     val H = W * aspRat //set the height based on width and aspect ratio
 
-                    finalBitmap = Bitmap.createScaledBitmap(bitmap, W, H, false)//scale the bitmap
+                    finalBitmap = bitmap.scale(W, H, false) //scale the bitmap
                     bitmap = null //save memory on the bitmap called 'image'
                 } else {
                     finalBitmap = bitmap

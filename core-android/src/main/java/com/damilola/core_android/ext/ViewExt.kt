@@ -18,6 +18,17 @@ import com.damilola.core_android.databinding.ErrorStateBinding
 import com.damilola.core_android.utils.ui_providers.RVEmptyObserver
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.button.MaterialButton
+import androidx.core.view.isVisible
+
+private const val SHORT_ANIMATION_DURATION = 150L
+
+fun View.fadeIn(duration: Long = SHORT_ANIMATION_DURATION) {
+    animate().alpha(1f).setDuration(duration).withStartAction { show = true }.start()
+}
+
+fun View.fadeOut(duration: Long = SHORT_ANIMATION_DURATION) {
+    animate().alpha(0f).setDuration(duration).withEndAction { show = false }.start()
+}
 
 fun ViewGroup.inflate(layout: Int): View {
     val layoutInflater: LayoutInflater =
@@ -32,8 +43,8 @@ fun Fragment.onBackPress(onBackPressed: OnBackPressedCallback.() -> Unit) {
     )
 }
 
-fun AutoCompleteTextView.showText(text: String){
-    this.setText(text,false)
+fun AutoCompleteTextView.showText(text: String) {
+    this.setText(text, false)
     this.setTextColor(resources.getColor(R.color.app_black))
     this.setSelection(this.text.count())
 }
@@ -51,25 +62,24 @@ fun Fragment.setResizeInput() {
 }
 
 
-
-fun RecyclerView.bindObserver(view: View){
-    val newAdapter =  this.adapter
+fun RecyclerView.bindObserver(view: View) {
+    val newAdapter = this.adapter
     val observer = RVEmptyObserver(this, view)
     newAdapter?.registerAdapterDataObserver(observer)
     this.adapter = newAdapter
 }
 
-fun ShimmerFrameLayout.stopAnim(){
+fun ShimmerFrameLayout.stopAnim() {
     this.stopShimmer()
     this.visibility = View.GONE
 }
 
-fun ShimmerFrameLayout.startAnim(){
+fun ShimmerFrameLayout.startAnim() {
     this.startShimmer()
     this.visibility = View.VISIBLE
 }
 
-fun ErrorStateBinding.showErrorMessage(errorEntered: String){
+fun ErrorStateBinding.showErrorMessage(errorEntered: String) {
     this.root.visibility = View.VISIBLE
     this.errorMessage.text = errorEntered
 }
@@ -120,16 +130,15 @@ fun MaterialButton.setShowProgress(showProgress: Boolean?) {
             override fun scheduleDrawable(who: Drawable, what: Runnable, `when`: Long) {
             }
         }
-    }
-    else{
-        icon = context?.let { ContextCompat.getDrawable(it, R.drawable.ic_button_forward)}
+    } else {
+        icon = context?.let { ContextCompat.getDrawable(it, R.drawable.ic_button_forward) }
         iconGravity = MaterialButton.ICON_GRAVITY_END
         iconTint = ContextCompat.getColorStateList(context, R.color.white)
     }
 }
 
 inline var View.show: Boolean
-    get() = visibility == View.VISIBLE
+    get() = isVisible
     set(shouldShow) {
         visibility = if (shouldShow) View.VISIBLE else View.INVISIBLE
     }
