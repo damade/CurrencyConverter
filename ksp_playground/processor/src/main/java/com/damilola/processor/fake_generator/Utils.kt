@@ -10,7 +10,7 @@ import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSPropertyDeclaration
 import java.io.OutputStream
 
-internal val KSClassDeclaration.generatedClassName get() = "${className}Fake"
+private val KSClassDeclaration.generatedClassName get() = "${className}Fake"
 
 internal fun CodeGenerator.createFakeClassFile(symbol: KSClassDeclaration): OutputStream =
     with(symbol) {
