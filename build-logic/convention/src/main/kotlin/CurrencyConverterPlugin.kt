@@ -50,15 +50,15 @@ class CurrencyConverterPlugin : Plugin<Project> {
         extension.applyCommonProperties(isAppPlugin = true)
 
     private fun JavaPluginExtension.setupModule() = apply {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 
     private fun Project.applyKotlinJvm() {
         // Configure the Kotlin JVM toolchain
         configure<KotlinProjectExtension> {
             jvmToolchain {
-                languageVersion.set(JavaLanguageVersion.of(17))
+                languageVersion.set(JavaLanguageVersion.of(21))
             }
         }
     }
@@ -71,8 +71,8 @@ private fun TestedExtension.applyCommonProperties(isAppPlugin: Boolean): TestedE
         viewBinding.isEnabled = Config.isViewBindingEnabled
 
         compileOptions.apply {
-            sourceCompatibility = JavaVersion.VERSION_17
-            targetCompatibility = JavaVersion.VERSION_17
+            sourceCompatibility = JavaVersion.VERSION_21
+            targetCompatibility = JavaVersion.VERSION_21
         }
 
         if (isAppPlugin) {
@@ -137,7 +137,7 @@ inline fun <reified T : Any> ExtensionContainer.getByType(): T = getByType(T::cl
 
 internal object Config {
     object Version {
-        const val minSdkVersion: Int = 24
+        const val minSdkVersion: Int = 28
         const val compileSdkVersion: Int = 35
         const val targetSdkVersion: Int = 35
         const val versionName: String = "1.0"
