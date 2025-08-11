@@ -24,6 +24,9 @@ import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.asTypeName
 import java.io.OutputStream
 
+private const val LITERAL_FORMAT_SPECIFIER = "%L"
+private const val MEMBER_FUNCTION_CALL_FORMAT_SPECIFIER = "%M()" // Or a more descriptive name based on its exact usage
+
 private val KSClassDeclaration.generatedClassName get() = "${className}FakeIt"
 
 internal fun KSClassDeclaration.generateFakeIt() = FileSpec
@@ -56,24 +59,22 @@ private fun KSClassDeclaration.buildFakeParameters() =
     }
 
 private fun KSPropertyDeclaration.getDefaultValueFromProperty(): Pair<String, Any?> {
-    return if (isNullable) {
-        "%L" to null
-    } else if (!isNonPrimitiveType()) {
-        "%L" to getPrimitiveDefaultValue()
-    } else if (isAnnotatedWith(annotationName = FakeIt::class.qualifiedName.toString())) {
-        val classDeclaration = asClassName()
-        if (classDeclaration == null) {
-            throw IllegalArgumentException("Non-nullable type $propertyType requires a default value")
+    return when {
+        isNullable -> LITERAL_FORMAT_SPECIFIER to null
+        !isNonPrimitiveType() -> LITERAL_FORMAT_SPECIFIER to getPrimitiveDefaultValue()
+        isAnnotatedWith(annotationName = FakeIt::class.qualifiedName.toString()) -> {
+            val classDeclaration = asClassName()
+                ?: throw IllegalArgumentException("Cannot determine class declaration for property '$simpleName' of type '$propertyType' annotated with FakeIt.")
+            val defaultValuesClass = ClassName(
+                classDeclaration.packageNameString,
+                "${classDeclaration.generatedClassName}FakeIt"
+            )
+            MEMBER_FUNCTION_CALL_FORMAT_SPECIFIER to defaultValuesClass.member(simpleName = "data")
         }
-        val defaultValuesClass = ClassName(
-            classDeclaration.packageNameString,
-            "${classDeclaration.generatedClassName}FakeIt"
-        )
-        "%M()" to defaultValuesClass.member(simpleName = "data")
-    } else {
-        throw IllegalArgumentException("Non-nullable type $propertyType requires a default value")
+        else -> throw IllegalArgumentException("Non-nullable type '$propertyType' for property '$simpleName' requires a default value.")
     }
 }
+
 
 private fun KSPropertyDeclaration.getPrimitiveDefaultValue(): Any = when (propertyType) {
     "kotlin.String" -> "\"\""

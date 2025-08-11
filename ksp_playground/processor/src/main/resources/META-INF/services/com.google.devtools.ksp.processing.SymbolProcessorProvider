@@ -1,1 +1,2 @@
 com.damilola.processor.fake_generator.FakeGeneratorProcessorProvider
+com.damilola.processor.fake_it_generator.FakeItGeneratorProcessorProvider
