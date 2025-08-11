@@ -2,8 +2,10 @@ package com.damilola.processor.fake_generator
 
 import com.damilola.processor.utils.className
 import com.damilola.processor.utils.getVisibilityModifierString
+import com.damilola.processor.utils.isNullable
 import com.damilola.processor.utils.packageNameString
 import com.damilola.processor.utils.propertiesName
+import com.damilola.processor.utils.propertyType
 import com.google.devtools.ksp.processing.CodeGenerator
 import com.google.devtools.ksp.processing.Dependencies
 import com.google.devtools.ksp.symbol.KSClassDeclaration
@@ -22,21 +24,18 @@ internal fun CodeGenerator.createFakeClassFile(symbol: KSClassDeclaration): Outp
     }
 
 private fun getDefaultValueFromProperty(property: KSPropertyDeclaration): String {
-    val propType = property.type.resolve().declaration.qualifiedName?.asString() ?: "Any"
-    val isNullable = property.type.resolve().isMarkedNullable
-
-    return if (isNullable) "null" else when (propType) {
+    return if (property.isNullable) "null" else when (property.propertyType) {
         "kotlin.String" -> "\"\""
         "kotlin.Int", "kotlin.Long", "kotlin.Short", "kotlin.Byte" -> "0"
         "kotlin.Double", "kotlin.Float" -> "0.0"
         "kotlin.Boolean" -> "false"
-        else -> throw IllegalArgumentException("Non-nullable type $propType requires a default value")
+        else -> throw IllegalArgumentException("Non-nullable type ${property.propertyType} requires a default value for @GenerateFake")
     }
 }
 
 private fun KSClassDeclaration.buildFakeParameter() = getAllProperties().map { property ->
     val propertyType = property.type.resolve().declaration.simpleName.asString()
-        .let { if (property.type.resolve().isMarkedNullable) "$it?" else it }
+        .let { if (property.isNullable) "$it?" else it }
     Triple(
         (property.simpleName.asString()),
         propertyType,

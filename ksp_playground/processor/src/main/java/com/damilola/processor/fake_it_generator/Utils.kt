@@ -3,16 +3,15 @@ package com.damilola.processor.fake_it_generator
 import com.damilola.annotation.fake_generator.FakeIt
 import com.damilola.processor.utils.asClassName
 import com.damilola.processor.utils.className
+import com.damilola.processor.utils.getPrimitiveKClass
+import com.damilola.processor.utils.getPrimitiveDefaultValue
 import com.damilola.processor.utils.getVisibilityModifier
-import com.damilola.processor.utils.getVisibilityModifierString
 import com.damilola.processor.utils.isAnnotatedWith
 import com.damilola.processor.utils.isNonPrimitiveType
 import com.damilola.processor.utils.isNullable
 import com.damilola.processor.utils.packageNameString
-import com.damilola.processor.utils.propertiesName
 import com.damilola.processor.utils.propertyType
-import com.google.devtools.ksp.processing.CodeGenerator
-import com.google.devtools.ksp.processing.Dependencies
+import com.damilola.processor.utils.toKotlinPoetClassName
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSPropertyDeclaration
 import com.squareup.kotlinpoet.ClassName
@@ -22,10 +21,10 @@ import com.squareup.kotlinpoet.MemberName.Companion.member
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.asTypeName
-import java.io.OutputStream
 
 private const val LITERAL_FORMAT_SPECIFIER = "%L"
-private const val MEMBER_FUNCTION_CALL_FORMAT_SPECIFIER = "%M()" // Or a more descriptive name based on its exact usage
+private const val MEMBER_FUNCTION_CALL_FORMAT_SPECIFIER =
+    "%M()" // Or a more descriptive name based on its exact usage
 
 private val KSClassDeclaration.generatedClassName get() = "${className}FakeIt"
 
@@ -40,8 +39,8 @@ internal fun KSClassDeclaration.buildFakeObject() =
         .addFunction(buildFakeFunctions())
         .build()
 
-internal fun KSClassDeclaration.buildFakeFunctions() = FunSpec.builder(name = "data")
-    .returns(returnType = this::class)
+internal fun KSClassDeclaration.buildFakeFunctions() = FunSpec.builder(name = "fake")
+    .returns(returnType = this.toKotlinPoetClassName())
     .addParameters(parameterSpecs = buildFakeParameters())
     .build()
 
@@ -49,13 +48,20 @@ internal fun KSClassDeclaration.buildFakeFunctions() = FunSpec.builder(name = "d
 private fun KSClassDeclaration.buildFakeParameters() =
     getAllProperties().asIterable().map { property ->
         val (format, arg) = property.getDefaultValueFromProperty()
-        ParameterSpec.builder(
-            name = property.simpleName.asString(),
-            type = property::class.asTypeName().copy(nullable = property.isNullable)
-        ).defaultValue(
-            format = format,
-            arg
-        ).build()
+        val propertyKClass = property.getPrimitiveKClass()
+        val parameterBuilder = if (propertyKClass != null) {
+            ParameterSpec.builder(
+                name = property.simpleName.asString(),
+                type = propertyKClass.asTypeName().copy(nullable = property.isNullable)
+            )
+        } else {
+            val propertyType = property.asClassName()?.toKotlinPoetClassName() ?: Any::class.asTypeName()
+            ParameterSpec.builder(
+                name = property.simpleName.asString(),
+                type = propertyType.copy(nullable = property.isNullable)
+            )
+        }
+        parameterBuilder.defaultValue(format = format, arg).build()
     }
 
 private fun KSPropertyDeclaration.getDefaultValueFromProperty(): Pair<String, Any?> {
@@ -71,16 +77,7 @@ private fun KSPropertyDeclaration.getDefaultValueFromProperty(): Pair<String, An
             )
             MEMBER_FUNCTION_CALL_FORMAT_SPECIFIER to defaultValuesClass.member(simpleName = "data")
         }
-        else -> throw IllegalArgumentException("Non-nullable type '$propertyType' for property '$simpleName' requires a default value.")
+
+        else -> throw IllegalArgumentException("Non-nullable type '$propertyType' for property '$simpleName' requires a default value for @FakeIt.")
     }
-}
-
-
-private fun KSPropertyDeclaration.getPrimitiveDefaultValue(): Any = when (propertyType) {
-    "kotlin.String" -> "\"\""
-    "kotlin.Char" -> "\'\'"
-    "kotlin.Int", "kotlin.Long", "kotlin.Short", "kotlin.Byte" -> 0
-    "kotlin.Double", "kotlin.Float" -> 0.0
-    "kotlin.Boolean" -> false
-    else -> throw IllegalArgumentException("Non-nullable type $propertyType requires a default value")
 }
