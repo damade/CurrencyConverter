@@ -42,8 +42,22 @@ internal fun KSClassDeclaration.buildFakeObject() =
 internal fun KSClassDeclaration.buildFakeFunctions() = FunSpec.builder(name = "fake")
     .returns(returnType = this.toKotlinPoetClassName())
     .addParameters(parameterSpecs = buildFakeParameters())
+    .apply {
+        addReturnStatement(this@buildFakeFunctions)
+    }
     .build()
 
+private fun FunSpec.Builder.addReturnStatement(classDeclaration: KSClassDeclaration) {
+    val properties = classDeclaration.getAllProperties().toList()
+    if (properties.isNotEmpty()) {
+        val statementArgs = properties.joinToString(separator = ",\n") { property ->
+            "${property.simpleName.asString()} = ${property.simpleName.asString()}"
+        }
+        addStatement("return %L(\n%L\n)", classDeclaration.simpleName.asString(), statementArgs)
+    } else {
+        addStatement("return %L()", classDeclaration.simpleName.asString())
+    }
+}
 
 private fun KSClassDeclaration.buildFakeParameters() =
     getAllProperties().asIterable().map { property ->
@@ -55,7 +69,8 @@ private fun KSClassDeclaration.buildFakeParameters() =
                 type = propertyKClass.asTypeName().copy(nullable = property.isNullable)
             )
         } else {
-            val propertyType = property.asClassName()?.toKotlinPoetClassName() ?: Any::class.asTypeName()
+            val propertyType =
+                property.asClassName()?.toKotlinPoetClassName() ?: Any::class.asTypeName()
             ParameterSpec.builder(
                 name = property.simpleName.asString(),
                 type = propertyType.copy(nullable = property.isNullable)

@@ -18,10 +18,19 @@ import com.damilola.lib_compose_core.resources.sp24
 private fun TestComposablePreview() {
     PreviewContainer {
         Column {
-            val names = NameUiFakes.data(fullName = "Hallowed John Doe")
-            val name = NameUiFake.data(fullName = "Hallowed John Doe")
+            val dataFake = DataUiFakeIt.fake(fullName = "Desmond John Doe")
+            val name = NameUiFakes.data(fullName = "Hallowed John Doe")
             Text(
                 text = "Hello",
+                color = AppColour,
+                fontSize = sp24,
+                modifier = Modifier
+                    .centerHorizontally()
+                    .layoutId("signUpText")
+            )
+
+            Text(
+                text = dataFake.fullName,
                 color = AppColour,
                 fontSize = sp24,
                 modifier = Modifier
